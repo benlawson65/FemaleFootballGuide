@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6FF08CE5-8511-4403-BA8D-40F4C3DF2E9F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FootbalAppSkeleton</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9E99EFB5B4F7F06780A28CED4E88284CD459B479</key>
+		<string>https://bitbucket.org/Just_Add_Water/female-football-app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FootbalAppSkeleton.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9E99EFB5B4F7F06780A28CED4E88284CD459B479</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/Just_Add_Water/female-football-app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9E99EFB5B4F7F06780A28CED4E88284CD459B479</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9E99EFB5B4F7F06780A28CED4E88284CD459B479</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FootbalAppSkeleton</string>
+		</dict>
+	</array>
+</dict>
+</plist>

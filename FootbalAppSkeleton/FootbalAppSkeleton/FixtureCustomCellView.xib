@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C2043" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCellView" rowHeight="177" id="5iX-uU-P6B" customClass="FixtureCustomCellView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5iX-uU-P6B" id="8Gx-6G-XXK">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-L7-fHG">
+                        <rect key="frame" x="8" y="14" width="304" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOc-6w-ss9">
+                        <rect key="frame" x="149" y="44" width="22" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Away Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRr-Bs-fNv">
+                        <rect key="frame" x="8" y="73" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-QL-qif">
+                        <rect key="frame" x="113" y="116" width="199" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="199" id="HVQ-cu-qCA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFM-TS-hHz">
+                        <rect key="frame" x="8" y="116" width="187" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EOc-6w-ss9" firstAttribute="top" secondItem="VwO-L7-fHG" secondAttribute="bottom" constant="8" symbolic="YES" id="1x1-p8-AQX"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="VJl-QL-qif" secondAttribute="bottom" constant="31" id="3My-oW-8w4"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="trailing" secondItem="SRr-Bs-fNv" secondAttribute="trailing" id="8nR-gx-g7v"/>
+                    <constraint firstItem="OFM-TS-hHz" firstAttribute="leading" secondItem="8Gx-6G-XXK" secondAttribute="leadingMargin" id="ATg-2h-PHb"/>
+                    <constraint firstAttribute="centerX" secondItem="VwO-L7-fHG" secondAttribute="centerX" id="Kvo-3X-jlf"/>
+                    <constraint firstAttribute="centerX" secondItem="EOc-6w-ss9" secondAttribute="centerX" id="bFb-Ag-FWJ"/>
+                    <constraint firstItem="EOc-6w-ss9" firstAttribute="top" secondItem="8Gx-6G-XXK" secondAttribute="top" constant="44" id="bSk-hd-IUT"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="trailing" secondItem="8Gx-6G-XXK" secondAttribute="trailingMargin" id="bUt-la-abS"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="trailing" secondItem="VwO-L7-fHG" secondAttribute="trailing" id="cZk-jo-s0X"/>
+                    <constraint firstAttribute="centerX" secondItem="SRr-Bs-fNv" secondAttribute="centerX" id="gk5-ex-GL8"/>
+                    <constraint firstItem="OFM-TS-hHz" firstAttribute="baseline" secondItem="VJl-QL-qif" secondAttribute="baseline" id="hBS-B8-FlE"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="top" secondItem="SRr-Bs-fNv" secondAttribute="bottom" constant="22" id="ngc-OO-Jvl"/>
+                    <constraint firstAttribute="centerX" secondItem="EOc-6w-ss9" secondAttribute="centerX" id="sdD-Jr-6PH"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="leading" secondItem="OFM-TS-hHz" secondAttribute="trailing" constant="-82" id="tHt-pK-dzz"/>
+                    <constraint firstItem="SRr-Bs-fNv" firstAttribute="top" secondItem="EOc-6w-ss9" secondAttribute="bottom" constant="8" symbolic="YES" id="ylK-MV-HqL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="awayTeam" destination="SRr-Bs-fNv" id="ClO-4p-urB"/>
+                <outlet property="homeTeam" destination="VwO-L7-fHG" id="X37-jb-nfr"/>
+                <outlet property="time" destination="VJl-QL-qif" id="vJo-9r-5XR"/>
+                <outlet property="venue" destination="OFM-TS-hHz" id="CPM-9y-qwj"/>
+            </connections>
+            <point key="canvasLocation" x="292" y="175.5"/>
+        </tableViewCell>
+    </objects>
+</document>
