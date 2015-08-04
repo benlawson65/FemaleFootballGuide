@@ -22,5 +22,6 @@
 +(NSMutableArray*) getAllLeagueTeamsWales;
 +(void) formatData: (NSString*) returnedDataWales;
 + (NSString *) getDataFromWales;
++(void)resetLeaguesWales;
 
 @end

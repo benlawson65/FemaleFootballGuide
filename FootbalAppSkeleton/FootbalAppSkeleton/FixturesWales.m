@@ -13,15 +13,16 @@
 static NSMutableArray *allFixturesWales;
 
 +(void)addFixturesWales: (FixturesWales *)objectToAdd{
-    if([allFixturesWales count] == 0){
-        allFixturesWales = [[NSMutableArray alloc] init];
-    }
-    
+
     [allFixturesWales addObject:objectToAdd];
 }
 
 +(NSMutableArray *)getAllFixturesWales{
     return allFixturesWales;
+}
+
++(void)resetFixturesWales{
+    allFixturesWales = [[NSMutableArray alloc] init];
 }
 
 + (NSString *) getDataFromWales{
@@ -53,7 +54,7 @@ static NSMutableArray *allFixturesWales;
     NSInteger i = 0;
     NSString *skey;
     
-    
+    [self resetFixturesWales];
     
     if(userinfo != nil){
         for( i = 0; i < [detailedUserInfo count]; i++ ) {

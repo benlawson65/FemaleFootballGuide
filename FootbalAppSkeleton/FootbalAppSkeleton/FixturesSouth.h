@@ -20,5 +20,6 @@
 +(NSMutableArray*) getAllFixturesSouth;
 +(void) formatData: (NSString*) returnedDataSouth;
 + (NSString *) getDataFromSouth;
++(void)resetFixturesSouth;
 
 @end

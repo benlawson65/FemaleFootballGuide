@@ -13,15 +13,15 @@
 static NSMutableArray *allFixturesSouth;
 
 +(void)addFixturesSouth: (FixturesSouth *)objectToAdd{
-    if([allFixturesSouth count] == 0){
-        allFixturesSouth = [[NSMutableArray alloc] init];
-    }
-    
+
     [allFixturesSouth addObject:objectToAdd];
 }
 
 +(NSMutableArray *)getAllFixturesSouth{
     return allFixturesSouth;
+}
++(void)resetFixturesSouth{
+    allFixturesSouth = [[NSMutableArray alloc] init];
 }
 
 + (NSString *) getDataFromSouth{
@@ -54,7 +54,7 @@ static NSMutableArray *allFixturesSouth;
     NSInteger i = 0;
     NSString *skey;
     
-    
+    [self resetFixturesSouth];
     
     if(userinfo != nil){
         for( i = 0; i < [detailedUserInfo count]; i++ ) {

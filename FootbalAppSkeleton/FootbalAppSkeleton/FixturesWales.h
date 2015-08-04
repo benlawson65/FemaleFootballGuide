@@ -21,4 +21,5 @@
 +(NSMutableArray*) getAllFixturesWales;
 +(void) formatData: (NSString*) returnedDataWales;
 + (NSString *) getDataFromWales;
++(void)resetFixturesWales;
 @end

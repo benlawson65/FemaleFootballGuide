@@ -13,16 +13,17 @@
 static NSMutableArray *allFixturesNorth;
 
 +(void)addFixturesNorth: (FixturesNorth *)objectToAdd{
-    if([allFixturesNorth count] == 0){
-        allFixturesNorth = [[NSMutableArray alloc] init];
-    }
-    
     [allFixturesNorth addObject:objectToAdd];
 }
 
 +(NSMutableArray *)getAllFixturesNorth{
     return allFixturesNorth;
 }
+
++(void)resetFixturesNorth{
+    allFixturesNorth = [[NSMutableArray alloc] init];
+}
+
 
 + (NSString *) getDataFromNorth{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -54,6 +55,7 @@ static NSMutableArray *allFixturesNorth;
     NSInteger i = 0;
     NSString *skey;
     
+    [self resetFixturesNorth];
     
     
     if(userinfo != nil){

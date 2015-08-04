@@ -55,6 +55,7 @@ static NSMutableArray *allLeaguesWales;
     NSDictionary *user1;
     NSInteger i = 0;
     NSString *skey;
+    NSInteger index = 1;
     
     [self resetLeaguesWales];
     
@@ -81,9 +82,11 @@ static NSMutableArray *allLeaguesWales;
             
             newLeaguesWales.draws = [singleGameDetails objectForKey:@"Draws"];
             
-            newLeaguesWales.index = [NSString stringWithFormat:@"%ld", (long)i];
+            newLeaguesWales.index = [NSString stringWithFormat:@"%ld", (long)index];
             
             [LeagueWales addLeaguesWales:newLeaguesWales];
+            
+            index++;
         }
     }
     else{

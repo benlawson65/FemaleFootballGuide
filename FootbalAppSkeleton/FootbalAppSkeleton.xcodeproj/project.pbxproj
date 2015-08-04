@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80DE1B70C2880009319B /* FixturesWSL1.m */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		501C80DD1B70C2880009319B /* FixturesWSL1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesWSL1.h; sourceTree = "<group>"; };
+		501C80DE1B70C2880009319B /* FixturesWSL1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesWSL1.m; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				50C210801B6B698E007DF45F /* FixturesNorth.m */,
 				50C210821B6B8CE4007DF45F /* FixturesWales.h */,
 				50C210831B6B8CE4007DF45F /* FixturesWales.m */,
+				501C80DD1B70C2880009319B /* FixturesWSL1.h */,
+				501C80DE1B70C2880009319B /* FixturesWSL1.m */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				506A671E1B63E71E00BF7ECF /* MatchFinderViewController.m in Sources */,
 				50C210911B6F5F45007DF45F /* LeagueCustomView.m in Sources */,
 				506A67141B62937A00BF7ECF /* TabBarController.m in Sources */,
+				501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */,
 				50C210561B667F71007DF45F /* LeagueMenuTableViewController.m in Sources */,
 				50C210701B68E1C7007DF45F /* FixtureDetailTableViewController.m in Sources */,
 				50C2105E1B67BC9B007DF45F /* CustomCellView.m in Sources */,

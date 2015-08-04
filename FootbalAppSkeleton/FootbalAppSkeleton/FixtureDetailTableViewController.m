@@ -10,6 +10,7 @@
 #import "FixturesSouth.h"
 #import "FixturesNorth.h"
 #import "FixturesWales.h"
+#import "FixturesWSL1.h"
 
 @interface FixtureDetailTableViewController ()
 
@@ -51,6 +52,16 @@
         
         //formate data and put it in fixtures object
         [FixturesWales formatData:returnedDataWales];
+        
+    }
+    if([fixtureSelected isEqualToString:@"WSL1"]){
+        NSString *returnedDataWSL1 = [[NSString alloc] init];
+        
+        //retrieve data from api
+        returnedDataWSL1 = [FixturesWSL1 getDataFromWSL1];
+        
+        //formate data and put it in fixtures object
+        [FixturesWSL1 formatData:returnedDataWSL1];
         
     }
     
