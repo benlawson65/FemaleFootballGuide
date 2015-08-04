@@ -16,6 +16,8 @@
 
 @synthesize leagueSelected;
 @synthesize expandedIndexPath;
+@synthesize previousTableView;
+@synthesize previousIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -140,7 +142,9 @@
     if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
         return 129.0; // Expanded height
     }
+    
     return 42.0; // Normal height
+    
 }
 
 /*
@@ -185,6 +189,9 @@
 
     [tableView beginUpdates]; // tell the table you're about to start making changes
     
+    //set tableView so it can be accessed elsewhere
+
+    
     // If the index path of the currently expanded cell is the same as the index that
     // has just been tapped set the expanded index to nil so that there aren't any
     // expanded cells, otherwise, set the expanded index to the index that has just
@@ -206,16 +213,28 @@
         cell.drawsTitle.hidden = YES;
         
     } else {
+        //when cell not expanded, expand it and show details
         self.expandedIndexPath = indexPath;
         //show expanded data
-        [self performSelector:@selector(tableView:delayedMethod:) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(delayedMethodExpand:) withObject:@[tableView, indexPath] afterDelay:0.25];
         
+        //if theres has been a previously expanded cell, minimize it
+        if (previousIndexPath != nil && previousTableView != nil){
+            [self minimizeDetails];
+        }
+        
+        //keep track of the last expanded cell
+        previousTableView = tableView;
+        previousIndexPath = indexPath;
     }
     
     [tableView endUpdates]; // tell the table you're done making your changes
 }
-- (void)tableView:(UITableView *)tableView delayedMethod:(NSIndexPath *)indexPath {
-    //put whatever code you want to happen after the 30 seconds
+
+//hides details when cell is expanded
+-(void)delayedMethodExpand:(NSArray *)array{
+    UITableView *tableView = [array objectAtIndex:0];
+    NSIndexPath *indexPath = [array objectAtIndex:1];
     LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
     cell.leagueGD.hidden = NO;
     cell.gdTitle.hidden = NO;
@@ -228,7 +247,21 @@
     cell.winsTitle.hidden = NO;
     cell.drawsTitle.hidden = NO;
 }
-
+-(void)minimizeDetails{
+    UITableView *tableView = previousTableView;
+    NSIndexPath *indexPath = previousIndexPath;
+    LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.leagueGD.hidden = YES;
+    cell.gdTitle.hidden = YES;
+    cell.ptsTitle.hidden = YES;
+    cell.leaguePoints.hidden = YES;
+    cell.leagueDraws.hidden = YES;
+    cell.leagueWins.hidden = YES;
+    cell.leagueLosees.hidden = YES;
+    cell.lossesTitle.hidden = YES;
+    cell.winsTitle.hidden = YES;
+    cell.drawsTitle.hidden = YES;
+}
 
 
 /*
