@@ -53,6 +53,8 @@ static NSMutableArray *allFixturesWSL1;
     NSInteger i = 0;
     NSString *skey;
     NSString *previousDate;
+    NSString *previousLeague = @"FA WSL 1";
+    NSString *currentLeague;
     
     [self resetFixturesWSL1];
     
@@ -74,15 +76,27 @@ static NSMutableArray *allFixturesWSL1;
             
             newFixturesWSL1.dateOnly = [singleGameDetails objectForKey:@"Date"];
             
-            if (![newFixturesWSL1.dateOnly isEqualToString:(nil)]){
+            //give correct date to fixtures that dont have date on website
+            if (![newFixturesWSL1.dateOnly isEqualToString:(@"")]){
                 previousDate = newFixturesWSL1.dateOnly;
             }
             
-            if ([newFixturesWSL1.dateOnly isEqualToString:(nil)]){
+            if ([newFixturesWSL1.dateOnly isEqualToString:(@"")]){
                 newFixturesWSL1.dateOnly = previousDate;
             }
             
-            newFixturesWSL1.venue = [singleGameDetails objectForKey:@"Venue"];
+            currentLeague = [singleGameDetails objectForKey:@"League"];
+            
+            if(![currentLeague isEqualToString:@""]){
+                previousLeague = currentLeague;
+            }
+            
+            if([currentLeague isEqualToString:@""]){
+                    currentLeague = previousLeague;
+            }
+            
+            
+            newFixturesWSL1.venue = [singleGameDetails objectForKey:@"venue"];
             
             newFixturesWSL1.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -90,7 +104,11 @@ static NSMutableArray *allFixturesWSL1;
             
             newFixturesWSL1.timeDate = mergeDateTime;
             
-            [FixturesWSL1 addFixturesWSL1:newFixturesWSL1];
+            //give correct league to fixtures that dont have league stated on website
+            if ([currentLeague isEqualToString:(@"FA WSL 1")]){
+            
+                [FixturesWSL1 addFixturesWSL1:newFixturesWSL1];
+            }
         }
     }
     else{

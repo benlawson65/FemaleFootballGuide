@@ -100,6 +100,10 @@
         NSArray *returnedFixtures = [FixturesWales getAllFixturesWales];
         return returnedFixtures.count;
     }
+    if([fixtureSelected isEqualToString:@"WSL1"]){
+        NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
+        return returnedFixtures.count;
+    }
     else{
             NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
             return returnedFixtures.count;
@@ -147,6 +151,16 @@
         //set cell text to data
         NSArray *returnedFixtures = [FixturesWales getAllFixturesWales];
         FixturesWales *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+        
+        cell.homeTeam.text = currentFixture.homeTeam;
+        cell.awayTeam.text = currentFixture.awayTeam;
+        cell.time.text = currentFixture.timeDate;
+        cell.venue.text = currentFixture.venue;
+    }
+    if ([fixtureSelected isEqualToString:@"WSL1"]){
+        //set cell text to data
+        NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
+        FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
         cell.homeTeam.text = currentFixture.homeTeam;
         cell.awayTeam.text = currentFixture.awayTeam;
