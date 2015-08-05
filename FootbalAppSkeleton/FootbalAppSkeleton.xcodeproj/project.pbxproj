@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80DE1B70C2880009319B /* FixturesWSL1.m */; };
+		501C80E41B7202BC0009319B /* ClubSelection1TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80E21B7202BC0009319B /* ClubSelection1TableController.m */; };
+		501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501C80E31B7202BC0009319B /* ClubSelection1TableController.xib */; };
+		501C80E91B72057E0009319B /* ClubSelection2TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80E71B72057E0009319B /* ClubSelection2TableController.m */; };
+		501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501C80E81B72057E0009319B /* ClubSelection2TableController.xib */; };
+		501C80ED1B720A570009319B /* ClubsForLeagueChosen.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80EC1B720A570009319B /* ClubsForLeagueChosen.m */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -54,6 +59,14 @@
 /* Begin PBXFileReference section */
 		501C80DD1B70C2880009319B /* FixturesWSL1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesWSL1.h; sourceTree = "<group>"; };
 		501C80DE1B70C2880009319B /* FixturesWSL1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesWSL1.m; sourceTree = "<group>"; };
+		501C80E11B7202BC0009319B /* ClubSelection1TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubSelection1TableController.h; sourceTree = "<group>"; };
+		501C80E21B7202BC0009319B /* ClubSelection1TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubSelection1TableController.m; sourceTree = "<group>"; };
+		501C80E31B7202BC0009319B /* ClubSelection1TableController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubSelection1TableController.xib; sourceTree = "<group>"; };
+		501C80E61B72057E0009319B /* ClubSelection2TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubSelection2TableController.h; sourceTree = "<group>"; };
+		501C80E71B72057E0009319B /* ClubSelection2TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubSelection2TableController.m; sourceTree = "<group>"; };
+		501C80E81B72057E0009319B /* ClubSelection2TableController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubSelection2TableController.xib; sourceTree = "<group>"; };
+		501C80EB1B720A570009319B /* ClubsForLeagueChosen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubsForLeagueChosen.h; sourceTree = "<group>"; };
+		501C80EC1B720A570009319B /* ClubsForLeagueChosen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubsForLeagueChosen.m; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,6 +140,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		501C80E01B7202490009319B /* Clubs */ = {
+			isa = PBXGroup;
+			children = (
+				501C80E11B7202BC0009319B /* ClubSelection1TableController.h */,
+				501C80E21B7202BC0009319B /* ClubSelection1TableController.m */,
+				501C80E31B7202BC0009319B /* ClubSelection1TableController.xib */,
+				501C80E61B72057E0009319B /* ClubSelection2TableController.h */,
+				501C80E71B72057E0009319B /* ClubSelection2TableController.m */,
+				501C80E81B72057E0009319B /* ClubSelection2TableController.xib */,
+				501C80EB1B720A570009319B /* ClubsForLeagueChosen.h */,
+				501C80EC1B720A570009319B /* ClubsForLeagueChosen.m */,
+			);
+			name = Clubs;
+			sourceTree = "<group>";
+		};
 		506A66E01B62930900BF7ECF = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +178,7 @@
 		506A66EB1B62930900BF7ECF /* FootbalAppSkeleton */ = {
 			isa = PBXGroup;
 			children = (
+				501C80E01B7202490009319B /* Clubs */,
 				50C2108C1B6F5A5D007DF45F /* Fixtures */,
 				50C2108B1B6F5980007DF45F /* Match Finder */,
 				50C2108A1B6F590A007DF45F /* Leagues */,
@@ -360,6 +389,8 @@
 				50C2106C1B68C6EC007DF45F /* FixturesTableViewController.xib in Resources */,
 				506A66F41B62930900BF7ECF /* Images.xcassets in Resources */,
 				50C210571B667F71007DF45F /* LeagueMenuTableViewController.xib in Resources */,
+				501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */,
+				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
 				50C210891B6E1717007DF45F /* LeagueDetailTableViewController.xib in Resources */,
 				50C210731B68EC75007DF45F /* FixtureCustomCellView.xib in Resources */,
 			);
@@ -416,16 +447,19 @@
 				50C210591B6776F0007DF45F /* ViewController.m in Sources */,
 				50C2106B1B68C6EC007DF45F /* FixturesTableViewController.m in Sources */,
 				50C210811B6B698E007DF45F /* FixturesNorth.m in Sources */,
+				501C80E91B72057E0009319B /* ClubSelection2TableController.m in Sources */,
 				506A671E1B63E71E00BF7ECF /* MatchFinderViewController.m in Sources */,
 				50C210911B6F5F45007DF45F /* LeagueCustomView.m in Sources */,
 				506A67141B62937A00BF7ECF /* TabBarController.m in Sources */,
 				501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */,
 				50C210561B667F71007DF45F /* LeagueMenuTableViewController.m in Sources */,
+				501C80E41B7202BC0009319B /* ClubSelection1TableController.m in Sources */,
 				50C210701B68E1C7007DF45F /* FixtureDetailTableViewController.m in Sources */,
 				50C2105E1B67BC9B007DF45F /* CustomCellView.m in Sources */,
 				50C210881B6E1717007DF45F /* LeagueDetailTableViewController.m in Sources */,
 				506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */,
 				50C210941B6F635C007DF45F /* LeagueWales.m in Sources */,
+				501C80ED1B720A570009319B /* ClubsForLeagueChosen.m in Sources */,
 				506A66EF1B62930900BF7ECF /* main.m in Sources */,
 				50C210761B6904F2007DF45F /* FixtureCustomCellView.m in Sources */,
 				50C210791B690D7E007DF45F /* FixturesSouth.m in Sources */,

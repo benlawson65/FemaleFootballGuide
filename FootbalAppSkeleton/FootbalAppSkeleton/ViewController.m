@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "LeagueMenuTableViewController.h"
 #import "FixturesTableViewController.h"
+#import "ClubSelection1TableController.h"
 
 
 @interface ViewController ()
@@ -73,10 +74,21 @@
                                     target:nil
                                     action:nil];
     
-    [[fixtureView navigationItem] setTitle:@"Fixtures (Choose League)"];
+    [[fixtureView navigationItem] setTitle:@"Fixtures (Choose by League)"];
     
 }
 
 - (IBAction)clubsButton:(id)sender {
+    
+    UITableViewController *clubView = [[ClubSelection1TableController alloc] initWithNibName:@"ClubSelection1TableController" bundle:nil];
+    
+    [self.navigationController pushViewController:clubView animated:YES];
+    
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    
+    [[clubView navigationItem] setTitle:@"Clubs (Choose by League)"];
 }
 @end
