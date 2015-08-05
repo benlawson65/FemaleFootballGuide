@@ -45,26 +45,46 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    NSArray *returnedClubs = [ClubsForLeagueChosen getAllClubsForLeagueChosen];
+    return returnedClubs.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *CellIdentifier = @"ClubListCustomCell";
+    
+    ClubListCustomCell *cell = (ClubListCustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(cell == nil){
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ClubListCustomCell" owner:self options:nil];
+        
+        cell = [nib objectAtIndex:0];
+    }
+    
+    //set cell text to data
+    NSArray *returnedClubs = [ClubsForLeagueChosen getAllClubsForLeagueChosen];
+    ClubsForLeagueChosen *currentClubName = [returnedClubs objectAtIndex:indexPath.row];
+    
+    cell.labelTeam.text = currentClubName.team;
+    
+    //add grey arow to each cell
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

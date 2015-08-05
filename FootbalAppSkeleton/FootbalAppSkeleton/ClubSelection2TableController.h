@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ClubsForLeagueChosen.h"
+#import "ClubListCustomCell.h"
 
 @interface ClubSelection2TableController : UITableViewController
 @property(weak, nonatomic) NSString *leagueForClubSelected;

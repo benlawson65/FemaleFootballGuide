@@ -79,11 +79,11 @@
     
     cell.cellLabel.text = clubMenu[indexPath.row];
     
+    //add grey arow to each cell
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
     
-    // Configure the cell...
-    
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

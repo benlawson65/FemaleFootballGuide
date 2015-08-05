@@ -76,6 +76,9 @@
         cell = [nib objectAtIndex:0];
     }
     
+    //add grey arow to each cell
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     
     cell.cellLabel.text = leagueMenu[indexPath.row];
     
