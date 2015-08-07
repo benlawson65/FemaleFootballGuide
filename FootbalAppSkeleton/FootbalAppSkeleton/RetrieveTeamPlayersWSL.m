@@ -14,6 +14,7 @@
 @synthesize position;
 @synthesize chosenClub;
 @synthesize index;
+@synthesize chosenLeague;
 
 static NSMutableArray *allPlayersWSL;
 
@@ -22,7 +23,7 @@ static NSMutableArray *allPlayersWSL;
     [allPlayersWSL addObject:objectToAdd];
 }
 
-+(NSMutableArray *)getAllPlayersWSL{
+-(NSMutableArray *)getAllPlayersWSL{
     return allPlayersWSL;
 }
 -(void)resetPlayersWSL{
@@ -32,12 +33,15 @@ static NSMutableArray *allPlayersWSL;
 -(void)setClubChosen:(NSString*)clubForPlayersChosen{
     chosenClub = clubForPlayersChosen;
 }
+-(void)setLeagueChosen:(NSString*)leagueForClubsChosen{
+    chosenLeague = leagueForClubsChosen;
+}
 
 - (NSString *) getDataFromWSL{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
     
-    if ([chosenClub isEqualToString:(@"WSL1")]){
+    if ([chosenLeague isEqualToString:(@"WSL1")]){
     
             [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/eeknfvvw?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
@@ -53,7 +57,7 @@ static NSMutableArray *allPlayersWSL;
     
         return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
     }
-    if ([chosenClub isEqualToString:(@"WSL2")]){
+    if ([chosenLeague isEqualToString:(@"WSL2")]){
         
         [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/6ablbrxq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
         
@@ -85,6 +89,7 @@ static NSMutableArray *allPlayersWSL;
     NSString *skey;
     
     BOOL clubFound = false;
+    BOOL firstPlayer = false;
     
     [self resetPlayersWSL];
     
@@ -103,31 +108,35 @@ static NSMutableArray *allPlayersWSL;
             if([chosenClub isEqualToString:teamName]){
                 
                 newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"name"];
+                newPlayersForClubChosen.position = [singleGameDetails objectForKey:@"Position"];
                 
                 newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
                 
                 //add data to array of objects
                 [RetrieveTeamPlayersWSL addPlayersWSL:newPlayersForClubChosen];
                 
+                //continue to extract data from correct club
                 clubFound = true;
+                firstPlayer = true;
             }
             
             //extract data when found right club for rest of players
-            if(clubFound == true){
+            if(clubFound == true && firstPlayer == false){
                 
                 RetrieveTeamPlayersWSL * newPlayersForClubChosen = [[RetrieveTeamPlayersWSL alloc] init];
                 
-                NSString *position = [singleGameDetails objectForKey:@"position"];
+                NSString *positionLocal = [singleGameDetails objectForKey:@"Position"];
                 
                 NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
                 f.numberStyle = NSNumberFormatterDecimalStyle;
-                NSNumber *numberPosition = [f numberFromString:position];
+                NSNumber *numberPosition = [f numberFromString:positionLocal];
                 
                 NSNumber *nextTeam = [NSNumber numberWithInt:1];
                 
-                //stop extracting when found beginning of next club
-                if(!(numberPosition == nextTeam)){
-                    newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"name"];
+                //only extract if still in same club, if not, stop extracting data
+                if(!([numberPosition isEqualToNumber:nextTeam])){
+                    newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
+                    newPlayersForClubChosen.position = [singleGameDetails objectForKey:@"Position"];
                 
                     newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
                 }
@@ -138,6 +147,7 @@ static NSMutableArray *allPlayersWSL;
                 //add data to array of objects
                 [RetrieveTeamPlayersWSL addPlayersWSL:newPlayersForClubChosen];
             }
+            firstPlayer = false;
 
         }
     }

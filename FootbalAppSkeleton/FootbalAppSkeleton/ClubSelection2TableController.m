@@ -31,6 +31,10 @@
     
     [obj formatData:returnedDataFromLeagueChosen];
     
+
+    
+    
+    
     clubList = [[NSMutableArray alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -150,6 +154,9 @@
  
     //set title
     [[playerView navigationItem] setTitle:clubChosen];
+    
+    //send league chosen to player list selector
+    [playerView setLeagueChosen:leagueForClubSelected];
  
     //set back button
     self.navigationItem.backBarButtonItem =

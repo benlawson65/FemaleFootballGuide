@@ -15,6 +15,8 @@
 @implementation PlayerTableViewController
 
 @synthesize clubForPlayersChosen;
+@synthesize leagueChosen;
+@synthesize returnedPlayers;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,21 +30,30 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     //pass chosen club to object class
     RetrieveTeamPlayersWSL *obj = [[RetrieveTeamPlayersWSL alloc] init];
     [obj setChosenClub:clubForPlayersChosen];
+    
+    [obj setLeagueChosen:leagueChosen];
     
     NSString *returnedDataFromClubChosen = [[NSString alloc] init];
     
     returnedDataFromClubChosen = [obj getDataFromWSL];
     
     [obj formatData:returnedDataFromClubChosen];
+    
+    returnedPlayers = [[NSArray alloc] init];
+    returnedPlayers = [obj getAllPlayersWSL];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setLeagueChosen:(NSString *)leagueChosenPassed{
+    leagueChosen = leagueChosenPassed;
 }
 
 #pragma mark - Table view data source
@@ -53,10 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
 
-    
-    NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
     return returnedPlayers.count;
 }
 
@@ -75,14 +83,11 @@
     }
     
     //set cell text to data
-    NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
+    //NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
     RetrieveTeamPlayersWSL *currentPlayerName = [returnedPlayers objectAtIndex:indexPath.row];
     
     cell.playerNameLabel.text = currentPlayerName.name;
     cell.positionLabel.text = currentPlayerName.position;
-    
-    //add grey arow to each cell
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 

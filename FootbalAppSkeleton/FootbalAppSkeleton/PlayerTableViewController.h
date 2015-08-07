@@ -12,4 +12,8 @@
 
 @interface PlayerTableViewController : UITableViewController
 @property (weak, nonatomic) NSString* clubForPlayersChosen;
+@property (weak, nonatomic) NSString* leagueChosen;
+@property (strong, nonatomic) NSArray* returnedPlayers;
+
+-(void)setLeagueChosen:(NSString *)leagueChosenPassed;
 @end

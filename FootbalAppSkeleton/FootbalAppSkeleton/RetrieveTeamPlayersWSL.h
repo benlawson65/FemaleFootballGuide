@@ -13,11 +13,14 @@
 @property (nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *chosenClub;
 @property (nonatomic, retain) NSString *index;
+@property (nonatomic, retain) NSString *chosenLeague;
 
 +(void) addPlayersWSL: (RetrieveTeamPlayersWSL *)objectToAdd;
-+(NSMutableArray*) getAllPlayersWSL;
+-(NSMutableArray*) getAllPlayersWSL;
 -(void) formatData: (NSString*) returnedDataWSL;
 -(NSString *) getDataFromWSL;
 -(void)resetPlayersWSL;
 -(void)setChosenClub:(NSString *)chosenClub;
+-(void)setLeagueChosen:(NSString*)leagueForClubsChosen;
+
 @end

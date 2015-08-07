@@ -130,6 +130,9 @@
             cell.winsTitle.hidden = YES;
             cell.lossesTitle.hidden = YES;
             cell.drawsTitle.hidden = YES;
+        
+        //put this in expand and minimize methods!!!
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     
     return cell;
