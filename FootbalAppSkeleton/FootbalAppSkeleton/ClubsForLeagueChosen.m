@@ -25,9 +25,10 @@ static NSMutableArray *allClubsForLeagueChosen;
     allClubsForLeagueChosen = [[NSMutableArray alloc] init];
 }
 
--(void)setLeagueChosen:(NSString*)leagueForClubSelected{
-    leagueForClubChosenPassed = leagueForClubSelected;
+-(void)setLeagueForClubChosenPassed:(NSString *)leagueForClubChosenSelected{
+    leagueForClubChosenPassed = leagueForClubChosenSelected;
 }
+
 - (NSString *) getDataForLeagueChosen{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];

@@ -20,5 +20,5 @@
 -(void) formatData: (NSString*) returnedClubsForLeagueChosen;
 - (NSString *) getDataForLeagueChosen;
 -(void)resetClubsForLeagueChosen;
--(void)setLeagueChosen:(NSString*)leagueForClubSelected;
+-(void)setLeagueForClubChosenPassed:(NSString *)leagueForClubChosenSelected;
 @end

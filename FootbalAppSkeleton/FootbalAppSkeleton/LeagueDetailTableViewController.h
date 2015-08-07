@@ -16,5 +16,5 @@
 -(void)delayedMethodExpand:(NSArray *)array;
 @property (weak, nonatomic) UITableView *previousTableView;
 @property (weak, nonatomic) NSIndexPath *previousIndexPath;
--(void)minimizeDetails;
+-(void) minimizeDetails;
 @end

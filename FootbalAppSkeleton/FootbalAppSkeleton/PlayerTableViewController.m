@@ -1,37 +1,25 @@
 //
-//  ClubSelection2TableController.m
+//  PlayerTableViewController.m
 //  FootbalAppSkeleton
 //
-//  Created by Homer Simpson on 05/08/2015.
+//  Created by Homer Simpson on 06/08/2015.
 //  Copyright (c) 2015 Ben Lawson. All rights reserved.
 //
 
-#import "ClubSelection2TableController.h"
+#import "PlayerTableViewController.h"
 
-@interface ClubSelection2TableController ()
+@interface PlayerTableViewController ()
 
 @end
 
-@implementation ClubSelection2TableController
+@implementation PlayerTableViewController
 
-@synthesize leagueForClubSelected;
-@synthesize clubChosen;
-@synthesize clubList;
+@synthesize clubForPlayersChosen;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //send league selected to object class to decide which api to take data from
-    ClubsForLeagueChosen *obj = [[ClubsForLeagueChosen alloc] init];
-    [obj setLeagueForClubChosenPassed:leagueForClubSelected];
-    
-    NSString *returnedDataFromLeagueChosen = [[NSString alloc] init];
-    
-    returnedDataFromLeagueChosen = [obj getDataForLeagueChosen];
-    
-    [obj formatData:returnedDataFromLeagueChosen];
-    
-    clubList = [[NSMutableArray alloc] init];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -40,16 +28,22 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)addToClubList:(NSString *)clubToBeAddedToList
-{
-    [clubList addObject:clubToBeAddedToList];
+-(void)viewDidAppear:(BOOL)animated{
+    //pass chosen club to object class
+    RetrieveTeamPlayersWSL *obj = [[RetrieveTeamPlayersWSL alloc] init];
+    [obj setChosenClub:clubForPlayersChosen];
+    
+    NSString *returnedDataFromClubChosen = [[NSString alloc] init];
+    
+    returnedDataFromClubChosen = [obj getDataFromWSL];
+    
+    [obj formatData:returnedDataFromClubChosen];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Table view data source
 
@@ -59,9 +53,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    NSArray *returnedClubs = [ClubsForLeagueChosen getAllClubsForLeagueChosen];
-    return returnedClubs.count;
+    
+
+    
+    NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
+    return returnedPlayers.count;
 }
 
 
@@ -69,31 +65,27 @@
     
     static NSString *CellIdentifier = @"ClubListCustomCell";
     
-    ClubListCustomCell *cell = (ClubListCustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlayerListCustomCell *cell = (PlayerListCustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil){
         
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ClubListCustomCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PlayerListCustomCell" owner:self options:nil];
         
         cell = [nib objectAtIndex:0];
     }
     
     //set cell text to data
-    NSArray *returnedClubs = [ClubsForLeagueChosen getAllClubsForLeagueChosen];
-    ClubsForLeagueChosen *currentClubName = [returnedClubs objectAtIndex:indexPath.row];
+    NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
+    RetrieveTeamPlayersWSL *currentPlayerName = [returnedPlayers objectAtIndex:indexPath.row];
     
-    cell.labelTeam.text = currentClubName.team;
-    
-    [self addToClubList:currentClubName.team];
+    cell.playerNameLabel.text = currentPlayerName.name;
+    cell.positionLabel.text = currentPlayerName.position;
     
     //add grey arow to each cell
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
-}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
 }
 
 
@@ -131,33 +123,21 @@
 }
 */
 
-
+/*
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
- 
-    PlayerTableViewController *playerView = [[PlayerTableViewController alloc] initWithNibName:@"PlayerTableViewController" bundle:nil];
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
-    clubChosen = clubList[indexPath.row];
- 
-    // Pass the selected object to the new view controller and object class
-    playerView.clubForPlayersChosen = clubChosen;
- 
- 
+    // Pass the selected object to the new view controller.
+    
     // Push the view controller.
-    [self.navigationController pushViewController:playerView animated:YES];
- 
-    //set title
-    [[playerView navigationItem] setTitle:clubChosen];
- 
-    //set back button
-    self.navigationItem.backBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@""style:UIBarButtonItemStylePlain
- target:nil
- action:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
-
+*/
 
 /*
 #pragma mark - Navigation
