@@ -107,9 +107,9 @@ static NSMutableArray *allPlayersWSL;
             //find right club and extract data from first person
             if([chosenClub isEqualToString:teamName]){
                 
-                newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"name"];
+                newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
                 newPlayersForClubChosen.position = [singleGameDetails objectForKey:@"Position"];
-                
+                NSLog(@"Name: %@, Position: %@", newPlayersForClubChosen.name, newPlayersForClubChosen.position);
                 newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
                 
                 //add data to array of objects
@@ -137,6 +137,7 @@ static NSMutableArray *allPlayersWSL;
                 if(!([numberPosition isEqualToNumber:nextTeam])){
                     newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
                     newPlayersForClubChosen.position = [singleGameDetails objectForKey:@"Position"];
+                    NSLog(@"Name: %@, Position: %@", newPlayersForClubChosen.name, newPlayersForClubChosen.position);
                 
                     newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
                 }
