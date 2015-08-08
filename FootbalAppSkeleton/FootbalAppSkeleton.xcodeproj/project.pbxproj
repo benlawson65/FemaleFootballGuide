@@ -50,6 +50,7 @@
 		50C2108E1B6F5C42007DF45F /* LeagueCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50C2108D1B6F5C42007DF45F /* LeagueCustomView.xib */; };
 		50C210911B6F5F45007DF45F /* LeagueCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C210901B6F5F45007DF45F /* LeagueCustomView.m */; };
 		50C210941B6F635C007DF45F /* LeagueWales.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C210931B6F635C007DF45F /* LeagueWales.m */; };
+		50C7D9A41B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7D9A31B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m */; };
 		CAA0FFD3BA285F754D670913 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721F5A1BD8D490C162AB90FE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,8 @@
 		50C210901B6F5F45007DF45F /* LeagueCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueCustomView.m; sourceTree = "<group>"; };
 		50C210921B6F635C007DF45F /* LeagueWales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueWales.h; sourceTree = "<group>"; };
 		50C210931B6F635C007DF45F /* LeagueWales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueWales.m; sourceTree = "<group>"; };
+		50C7D9A21B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveTeamPlayersPremierLeague.h; sourceTree = "<group>"; };
+		50C7D9A31B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrieveTeamPlayersPremierLeague.m; sourceTree = "<group>"; };
 		721F5A1BD8D490C162AB90FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE62CA63292495AB9C35CCAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC3BA648CFCDD732ED0A9E09 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				501C81031B73F3D50009319B /* PlayerListCustomCell.m */,
 				501C80FD1B739E1A0009319B /* RetrieveTeamPlayersWSL.h */,
 				501C80FE1B739E1A0009319B /* RetrieveTeamPlayersWSL.m */,
+				50C7D9A21B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.h */,
+				50C7D9A31B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m */,
 			);
 			name = Clubs;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				501C80F21B721DBD0009319B /* ClubListCustomCell.m in Sources */,
 				501C81041B73F3D50009319B /* PlayerListCustomCell.m in Sources */,
 				50C210761B6904F2007DF45F /* FixtureCustomCellView.m in Sources */,
+				50C7D9A41B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m in Sources */,
 				50C210791B690D7E007DF45F /* FixturesSouth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

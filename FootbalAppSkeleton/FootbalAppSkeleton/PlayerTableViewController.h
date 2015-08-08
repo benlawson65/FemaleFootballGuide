@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RetrieveTeamPlayersWSL.h"
 #import "PlayerListCustomCell.h"
-
+#import "RetrieveTeamPlayersPremierLeague.h"
 @interface PlayerTableViewController : UITableViewController
 @property (weak, nonatomic) NSString* clubForPlayersChosen;
 @property (weak, nonatomic) NSString* leagueChosen;

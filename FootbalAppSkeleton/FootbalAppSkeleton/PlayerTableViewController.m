@@ -31,20 +31,43 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    //pass chosen club to object class
-    RetrieveTeamPlayersWSL *obj = [[RetrieveTeamPlayersWSL alloc] init];
-    [obj setChosenClub:clubForPlayersChosen];
     
-    [obj setLeagueChosen:leagueChosen];
+    //pass chosen club to object class for wsl
+    if ([leagueChosen isEqualToString:@"WSL1"] || [leagueChosen isEqualToString:@"WSL2"]) {
+        
+        RetrieveTeamPlayersWSL *obj = [[RetrieveTeamPlayersWSL alloc] init];
+        [obj setChosenClub:clubForPlayersChosen];
+        
+        [obj setLeagueChosen:leagueChosen];
+        
+        NSString *returnedDataFromClubChosen = [[NSString alloc] init];
+        
+        returnedDataFromClubChosen = [obj getDataFromWSL];
+        
+        [obj formatData:returnedDataFromClubChosen];
+        
+        returnedPlayers = [[NSArray alloc] init];
+        returnedPlayers = [obj getAllPlayersWSL];
+    }
     
-    NSString *returnedDataFromClubChosen = [[NSString alloc] init];
+    //pass chosen club to object class for premier league
+    if ([leagueChosen isEqualToString:@"WPL: Northern Division"] || [leagueChosen isEqualToString:@"WPL: Southern Division"]) {
+        //pass chosen club to object class for wsl
+        RetrieveTeamPlayersPremierLeague *obj = [[RetrieveTeamPlayersPremierLeague alloc] init];
+        [obj setChosenClub:clubForPlayersChosen];
+        
+        [obj setLeagueChosen:leagueChosen];
+        
+        NSString *returnedDataFromClubChosen = [[NSString alloc] init];
+        
+        returnedDataFromClubChosen = [obj getDataFromPremierLeague];
+        
+        [obj formatData:returnedDataFromClubChosen];
+        
+        returnedPlayers = [[NSArray alloc] init];
+        returnedPlayers = [obj getAllPlayersPremierLeague];
+    }
     
-    returnedDataFromClubChosen = [obj getDataFromWSL];
-    
-    [obj formatData:returnedDataFromClubChosen];
-    
-    returnedPlayers = [[NSArray alloc] init];
-    returnedPlayers = [obj getAllPlayersWSL];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,12 +105,23 @@
         cell = [nib objectAtIndex:0];
     }
     
-    //set cell text to data
-    //NSArray *returnedPlayers = [RetrieveTeamPlayersWSL getAllPlayersWSL];
-    RetrieveTeamPlayersWSL *currentPlayerName = [returnedPlayers objectAtIndex:indexPath.row];
+    //display data for premier league
+    if ([leagueChosen isEqualToString:@"WPL: Northern Division"] || [leagueChosen isEqualToString:@"WPL: Southern Division"]) {
+        //set cell text to data
+        RetrieveTeamPlayersPremierLeague *currentPlayerName = [returnedPlayers objectAtIndex:indexPath.row];
+        
+        cell.playerNameLabel.text = currentPlayerName.name;
+    }
     
-    cell.playerNameLabel.text = currentPlayerName.name;
-    cell.positionLabel.text = currentPlayerName.position;
+    //diplay data for wsl
+    if ([leagueChosen isEqualToString:@"WSL1"] || [leagueChosen isEqualToString:@"WSL2"]) {
+    
+        //set cell text to data
+        RetrieveTeamPlayersWSL *currentPlayerName = [returnedPlayers objectAtIndex:indexPath.row];
+    
+        cell.playerNameLabel.text = currentPlayerName.name;
+        cell.positionLabel.text = currentPlayerName.position;
+    }
     
     return cell;
 
