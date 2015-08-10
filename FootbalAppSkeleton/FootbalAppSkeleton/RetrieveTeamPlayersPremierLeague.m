@@ -43,7 +43,7 @@ static NSMutableArray *allPlayersPremierLeague;
     
     /// NORTHERN DIVISION ///
     
-    //will need manual data
+    //cant find player line up
     if([chosenClub isEqualToString:@"Guiseley AFC Vixens"]){
         urlForApiData = @"https://www.kimonolabs.com/api/3xr7khui?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A";
     }
@@ -52,8 +52,8 @@ static NSMutableArray *allPlayersPremierLeague;
         urlForApiData = @"https://www.kimonolabs.com/api/d6dp90li?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A";
     }
     
-    //needs filtering
-    if([chosenClub isEqualToString:@"BlackBurn Rovers LFC"]){
+    //needs filtering (done)
+    if([chosenClub isEqualToString:@"Blackburn Rovers LFC"]){
         urlForApiData = @"https://www.kimonolabs.com/api/d6jf4xt6?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A";
     }
     
@@ -204,19 +204,51 @@ static NSMutableArray *allPlayersPremierLeague;
             
             nameTest = [singleGameDetails valueForKey:@"Name"];
             
-            if([nameTest count] >= 2){
-                getTextData = [singleGameDetails objectForKey:@"Name"];
-                newPlayersForClubChosen.name = [getTextData valueForKey:@"text"];
-                newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
+            //if the data is under text not name then run this statement
+            if([nameTest isKindOfClass:[NSDictionary class]]){
+                
+                //named under alt not text for stoke
+                if([chosenClub isEqualToString:@"Stoke City LFC"]){
+                    
+                    getTextData = [singleGameDetails objectForKey:@"Name"];
+                    newPlayersForClubChosen.name = [getTextData valueForKey:@"alt"];
+                    newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
+
+                }
+                else{
+                    getTextData = [singleGameDetails objectForKey:@"Name"];
+                    newPlayersForClubChosen.name = [getTextData valueForKey:@"text"];
+                    newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
+                }
             }
             else{
-                newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
-                newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
-            }
                 
+                //blackburn rovers has the wrong data for the first two indexes, dont take it
+                if([chosenClub isEqualToString:@"Blackburn Rovers LFC"]){
+                    if (i != 0 && i != 1){
+                        newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
+                        newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i - 2];
+                    }
+                }
+                
+                else{
+                    newPlayersForClubChosen.name = [singleGameDetails objectForKey:@"Name"];
+                    newPlayersForClubChosen.index = [NSString stringWithFormat:@"%ld", (long)i];
+                }
+            }
+            
+            //dont add elements to array if they are the junk data from blackburn rovers
+            if(i == 0 || i == 1){
+                if(![chosenClub isEqualToString:@"Blackburn Rovers LFC"]){
+                    //add data to array of objects
+                    [RetrieveTeamPlayersPremierLeague addPlayersPremierLeague:newPlayersForClubChosen];
+                }
+            }
+            
+            else{
                 //add data to array of objects
                 [RetrieveTeamPlayersPremierLeague addPlayersPremierLeague:newPlayersForClubChosen];
-            
+            }
         }
     }
     else{

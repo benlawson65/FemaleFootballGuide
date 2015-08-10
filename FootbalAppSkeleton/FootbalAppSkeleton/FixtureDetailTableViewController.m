@@ -11,6 +11,7 @@
 #import "FixturesNorth.h"
 #import "FixturesWales.h"
 #import "FixturesWSL1.h"
+#import "FixturesWSL2.h"
 
 @interface FixtureDetailTableViewController ()
 
@@ -64,6 +65,16 @@
         [FixturesWSL1 formatData:returnedDataWSL1];
         
     }
+    if([fixtureSelected isEqualToString:@"WSL2"]){
+        NSString *returnedDataWSL2 = [[NSString alloc] init];
+        
+        //retrieve data from api
+        returnedDataWSL2 = [FixturesWSL2 getDataFromWSL2];
+        
+        //formate data and put it in fixtures object
+        [FixturesWSL2 formatData:returnedDataWSL2];
+        
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -102,6 +113,10 @@
     }
     if([fixtureSelected isEqualToString:@"WSL1"]){
         NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
+        return returnedFixtures.count;
+    }
+    if([fixtureSelected isEqualToString:@"WSL2"]){
+        NSArray *returnedFixtures = [FixturesWSL2 getAllFixturesWSL2];
         return returnedFixtures.count;
     }
     else{
@@ -161,6 +176,16 @@
         //set cell text to data
         NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
         FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+        
+        cell.homeTeam.text = currentFixture.homeTeam;
+        cell.awayTeam.text = currentFixture.awayTeam;
+        cell.time.text = currentFixture.timeDate;
+        cell.venue.text = currentFixture.venue;
+    }
+    if ([fixtureSelected isEqualToString:@"WSL2"]){
+        //set cell text to data
+        NSArray *returnedFixtures = [FixturesWSL2 getAllFixturesWSL2];
+        FixturesWSL2 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
         cell.homeTeam.text = currentFixture.homeTeam;
         cell.awayTeam.text = currentFixture.awayTeam;

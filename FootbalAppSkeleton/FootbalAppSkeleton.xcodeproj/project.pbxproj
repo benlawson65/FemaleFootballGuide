@@ -51,6 +51,9 @@
 		50C210911B6F5F45007DF45F /* LeagueCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C210901B6F5F45007DF45F /* LeagueCustomView.m */; };
 		50C210941B6F635C007DF45F /* LeagueWales.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C210931B6F635C007DF45F /* LeagueWales.m */; };
 		50C7D9A41B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7D9A31B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m */; };
+		50C7D9A61B77FC6200D59001 /* WSL1fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 50C7D9A51B77FC6200D59001 /* WSL1fixtures.json */; };
+		50C7D9A81B78A0B300D59001 /* WSL2fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */; };
+		50C7D9AB1B78A0FF00D59001 /* FixturesWSL2.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */; };
 		CAA0FFD3BA285F754D670913 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721F5A1BD8D490C162AB90FE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +140,10 @@
 		50C210931B6F635C007DF45F /* LeagueWales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueWales.m; sourceTree = "<group>"; };
 		50C7D9A21B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveTeamPlayersPremierLeague.h; sourceTree = "<group>"; };
 		50C7D9A31B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrieveTeamPlayersPremierLeague.m; sourceTree = "<group>"; };
+		50C7D9A51B77FC6200D59001 /* WSL1fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WSL1fixtures.json; path = ../../../Desktop/WSL1fixtures.json; sourceTree = "<group>"; };
+		50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WSL2fixtures.json; path = ../../../Desktop/WSL2fixtures.json; sourceTree = "<group>"; };
+		50C7D9A91B78A0FF00D59001 /* FixturesWSL2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesWSL2.h; sourceTree = "<group>"; };
+		50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesWSL2.m; sourceTree = "<group>"; };
 		721F5A1BD8D490C162AB90FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE62CA63292495AB9C35CCAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC3BA648CFCDD732ED0A9E09 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +245,8 @@
 		506A66EC1B62930900BF7ECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */,
+				50C7D9A51B77FC6200D59001 /* WSL1fixtures.json */,
 				506A66ED1B62930900BF7ECF /* Info.plist */,
 				506A66EE1B62930900BF7ECF /* main.m */,
 			);
@@ -309,6 +318,8 @@
 				50C210831B6B8CE4007DF45F /* FixturesWales.m */,
 				501C80DD1B70C2880009319B /* FixturesWSL1.h */,
 				501C80DE1B70C2880009319B /* FixturesWSL1.m */,
+				50C7D9A91B78A0FF00D59001 /* FixturesWSL2.h */,
+				50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -418,6 +429,7 @@
 				50C210671B68C4E6007DF45F /* CustomCellViewLeagueTable.xib in Resources */,
 				501C80EF1B721D730009319B /* ClubListCustomCell.xib in Resources */,
 				506A67151B62937A00BF7ECF /* TabBarController.xib in Resources */,
+				50C7D9A61B77FC6200D59001 /* WSL1fixtures.json in Resources */,
 				50C210711B68E1C7007DF45F /* FixtureDetailTableViewController.xib in Resources */,
 				501C81011B73F3A90009319B /* PlayerListCustomCell.xib in Resources */,
 				506A67101B62932900BF7ECF /* ViewController.xib in Resources */,
@@ -426,6 +438,7 @@
 				506A66F41B62930900BF7ECF /* Images.xcassets in Resources */,
 				50C210571B667F71007DF45F /* LeagueMenuTableViewController.xib in Resources */,
 				501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */,
+				50C7D9A81B78A0B300D59001 /* WSL2fixtures.json in Resources */,
 				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
 				50C210891B6E1717007DF45F /* LeagueDetailTableViewController.xib in Resources */,
 				50C210731B68EC75007DF45F /* FixtureCustomCellView.xib in Resources */,
@@ -493,6 +506,7 @@
 				50C210561B667F71007DF45F /* LeagueMenuTableViewController.m in Sources */,
 				501C80E41B7202BC0009319B /* ClubSelection1TableController.m in Sources */,
 				50C210701B68E1C7007DF45F /* FixtureDetailTableViewController.m in Sources */,
+				50C7D9AB1B78A0FF00D59001 /* FixturesWSL2.m in Sources */,
 				50C2105E1B67BC9B007DF45F /* CustomCellView.m in Sources */,
 				50C210881B6E1717007DF45F /* LeagueDetailTableViewController.m in Sources */,
 				506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */,

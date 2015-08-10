@@ -25,21 +25,30 @@ static NSMutableArray *allFixturesWSL1;
 }
 
 + (NSString *) getDataFromWSL1{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/2gjq99ou?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    //[request setHTTPMethod:@"GET"];
+    //[request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/2gjq99ou?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"WSL1fixtures" ofType:@"json"];
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSError *error;
+    //NSHTTPURLResponse *responseCode = nil;
     
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/2gjq99ou?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        return nil;
+    NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding  error:&error];
+    
+    if(error){
+        NSLog(@"Error reading json file");
     }
     
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    //NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    
+    //if([responseCode statusCode] != 200){
+     //   NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/2gjq99ou?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
+     //   return nil;
+   // }
+    
+    //return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    return fileContents;
 }
 + (void) formatData: (NSString*) returnedDataWSL1{
     NSError *error =  nil;
@@ -47,14 +56,11 @@ static NSMutableArray *allFixturesWSL1;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataWSL1 dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
     NSDictionary *userinfo=[json valueForKey:@"results"];
-    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection2"];
     NSDictionary *singleGameDetails;
   //  NSDictionary *user1;
     NSInteger i = 0;
     NSString *skey;
-    NSString *previousDate;
-    NSString *previousLeague = @"FA WSL 1";
-    NSString *currentLeague;
     
     [self resetFixturesWSL1];
     
@@ -68,35 +74,15 @@ static NSMutableArray *allFixturesWSL1;
             FixturesWSL1 * newFixturesWSL1
             = [[FixturesWSL1 alloc] init];
             
-            newFixturesWSL1.homeTeam = [singleGameDetails objectForKey:@"HomeTeam"];
+            newFixturesWSL1.homeTeam = [singleGameDetails objectForKey:@"Home Team"];
             
-            newFixturesWSL1.awayTeam = [singleGameDetails objectForKey:@"awayTeam"];
+            newFixturesWSL1.awayTeam = [singleGameDetails objectForKey:@"Away Team"];
             
             newFixturesWSL1.timeDate = [singleGameDetails objectForKey:@"Time"];
             
             newFixturesWSL1.dateOnly = [singleGameDetails objectForKey:@"Date"];
             
-            //give correct date to fixtures that dont have date on website
-            if (![newFixturesWSL1.dateOnly isEqualToString:(@"")]){
-                previousDate = newFixturesWSL1.dateOnly;
-            }
-            
-            if ([newFixturesWSL1.dateOnly isEqualToString:(@"")]){
-                newFixturesWSL1.dateOnly = previousDate;
-            }
-            
-            currentLeague = [singleGameDetails objectForKey:@"League"];
-            
-            if(![currentLeague isEqualToString:@""]){
-                previousLeague = currentLeague;
-            }
-            
-            if([currentLeague isEqualToString:@""]){
-                    currentLeague = previousLeague;
-            }
-            
-            
-            newFixturesWSL1.venue = [singleGameDetails objectForKey:@"venue"];
+            newFixturesWSL1.venue = [singleGameDetails objectForKey:@"Venue"];
             
             newFixturesWSL1.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -104,11 +90,7 @@ static NSMutableArray *allFixturesWSL1;
             
             newFixturesWSL1.timeDate = mergeDateTime;
             
-            //give correct league to fixtures that dont have league stated on website
-            if ([currentLeague isEqualToString:(@"FA WSL 1")]){
-            
-                [FixturesWSL1 addFixturesWSL1:newFixturesWSL1];
-            }
+            [FixturesWSL1 addFixturesWSL1:newFixturesWSL1];
         }
     }
     else{
