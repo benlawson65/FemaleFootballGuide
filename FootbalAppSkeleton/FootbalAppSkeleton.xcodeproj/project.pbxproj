@@ -54,6 +54,7 @@
 		50C7D9A61B77FC6200D59001 /* WSL1fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 50C7D9A51B77FC6200D59001 /* WSL1fixtures.json */; };
 		50C7D9A81B78A0B300D59001 /* WSL2fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */; };
 		50C7D9AB1B78A0FF00D59001 /* FixturesWSL2.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */; };
+		50C7D9AE1B78DDE900D59001 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7D9AD1B78DDE900D59001 /* Location.m */; };
 		CAA0FFD3BA285F754D670913 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721F5A1BD8D490C162AB90FE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +145,8 @@
 		50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WSL2fixtures.json; path = ../../../Desktop/WSL2fixtures.json; sourceTree = "<group>"; };
 		50C7D9A91B78A0FF00D59001 /* FixturesWSL2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesWSL2.h; sourceTree = "<group>"; };
 		50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesWSL2.m; sourceTree = "<group>"; };
+		50C7D9AC1B78DDE900D59001 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		50C7D9AD1B78DDE900D59001 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		721F5A1BD8D490C162AB90FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE62CA63292495AB9C35CCAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC3BA648CFCDD732ED0A9E09 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				506A671B1B63E71E00BF7ECF /* MatchFinderViewController.h */,
 				506A671C1B63E71E00BF7ECF /* MatchFinderViewController.m */,
 				506A671D1B63E71E00BF7ECF /* MatchFinderViewController.xib */,
+				50C7D9AC1B78DDE900D59001 /* Location.h */,
+				50C7D9AD1B78DDE900D59001 /* Location.m */,
 			);
 			name = "Match Finder";
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				50C210561B667F71007DF45F /* LeagueMenuTableViewController.m in Sources */,
 				501C80E41B7202BC0009319B /* ClubSelection1TableController.m in Sources */,
 				50C210701B68E1C7007DF45F /* FixtureDetailTableViewController.m in Sources */,
+				50C7D9AE1B78DDE900D59001 /* Location.m in Sources */,
 				50C7D9AB1B78A0FF00D59001 /* FixturesWSL2.m in Sources */,
 				50C2105E1B67BC9B007DF45F /* CustomCellView.m in Sources */,
 				50C210881B6E1717007DF45F /* LeagueDetailTableViewController.m in Sources */,

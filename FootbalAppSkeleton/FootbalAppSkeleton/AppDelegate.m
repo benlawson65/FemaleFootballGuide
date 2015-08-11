@@ -31,6 +31,11 @@
     
     UINavigationController *myNavigationController = [[UINavigationController alloc] initWithRootViewController:myViewController];
     
+    /*[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0]}];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]];
+    myNavigationController.navigationBar.translucent = NO;
+    */
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -38,6 +43,8 @@
 
     //root view controller
     self.window.rootViewController = myTabBarController;
+    
+    [myTabBarController.tabBar setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

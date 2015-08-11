@@ -14,16 +14,11 @@
             <rect key="frame" x="0.0" y="64" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
-                    <rect key="frame" x="72" y="99" width="270" height="28"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
                     <rect key="frame" x="167" y="210" width="86" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Leagues">
+                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -34,6 +29,7 @@
                     <rect key="frame" x="167" y="311" width="80" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Fixtures">
+                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -44,25 +40,32 @@
                     <rect key="frame" x="178" y="426" width="59" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Clubs">
+                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="clubsButton:" destination="-1" eventType="touchUpInside" id="q4w-FX-L4h"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
+                    <rect key="frame" x="68" y="92" width="285" height="28"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="23I-mr-1OP" secondAttribute="centerX" constant="-3" id="51p-lf-hov"/>
-                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="99" id="9gO-Mg-6pF"/>
+                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="9gO-Mg-6pF"/>
                 <constraint firstAttribute="centerX" secondItem="ZvT-j4-2YB" secondAttribute="centerX" id="JwC-ms-JRg"/>
                 <constraint firstAttribute="centerX" secondItem="i1c-ZW-YAh" secondAttribute="centerX" id="YQR-PE-AiV"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="top" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="83" id="bqo-m1-JBw" userLabel="Vertical Space - (50) - Leagues - The Female Football Guide"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="top" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="90" id="bqo-m1-JBw" userLabel="Vertical Space - (50) - Leagues - The Female Football Guide"/>
                 <constraint firstAttribute="trailing" secondItem="kkD-ei-jny" secondAttribute="trailing" constant="69" id="dr9-WY-vp2"/>
                 <constraint firstItem="ZvT-j4-2YB" firstAttribute="top" secondItem="23I-mr-1OP" secondAttribute="bottom" constant="61" id="naf-x8-36x"/>
                 <constraint firstItem="kkD-ei-jny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="69" id="o13-vJ-W2U"/>
                 <constraint firstItem="i1c-ZW-YAh" firstAttribute="top" secondItem="ZvT-j4-2YB" secondAttribute="bottom" constant="75" id="q5p-ag-SfA"/>
-                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" id="zul-no-K6z"/>
+                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-3" id="zul-no-K6z"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">

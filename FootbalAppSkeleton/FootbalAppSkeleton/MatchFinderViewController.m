@@ -31,7 +31,7 @@
     
     NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
     
-    NSLog(theLocation);
+    NSLog(@"location: %@", theLocation);
     while(locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
         [self deviceLocation];
     }
@@ -39,6 +39,20 @@
     [self setLocation];
    // [self performSelector:@selector(deviceLocation) withObject:nil afterDelay:5 ];
     
+    Location *locationObj = [[Location alloc] init];
+    [locationObj getAllFixtures];
+    NSMutableArray *returnedFixureData = [locationObj cycleThroughFixtures];
+    
+    NSString *title = [returnedFixureData objectAtIndex:1];
+    
+    //convert string coordinates back to cllocationcoordinate2d
+    
+   CLLocationCoordinate2D location = [Location getLocationFromAddressString:[returnedFixureData objectAtIndex:0]];
+    
+    GMSMarker *testMarker = [[GMSMarker alloc] init];
+    testMarker.position = location;
+    testMarker.title = title;
+    testMarker.map = mapView_;
 }
 
 -(void)setLocation {
@@ -56,7 +70,7 @@
 
 - (void)deviceLocation {
     NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
-    NSLog(theLocation);
+    NSLog(@"location: %@", theLocation);
 }
 
 

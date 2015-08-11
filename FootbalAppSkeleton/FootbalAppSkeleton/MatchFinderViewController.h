@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "Location.h"
 
 @interface MatchFinderViewController : UIViewController
 @property(nonatomic,retain) CLLocationManager *locationManager;
