@@ -17,6 +17,24 @@
 @synthesize fixturesWSL2;
 @synthesize listOfFixtures;
 
+@synthesize venue;
+@synthesize snippet;
+@synthesize title;
+
+static NSMutableArray *allFixtures;
+
++(void)addFixtures: (Location *)objectToAdd{
+    [allFixtures addObject:objectToAdd];
+}
+
++(NSMutableArray *)returnAllFixtures{
+    return allFixtures;
+}
+
++(void)resetFixtures{
+    allFixtures = [[NSMutableArray alloc] init];
+}
+
 -(void) getAllFixtures{
     
     //retrieve data from api
@@ -42,10 +60,12 @@
     
 }
     
--(NSMutableArray*) cycleThroughFixtures{
+-(void*) cycleThroughFixtures{
+    
+    allFixtures = [[NSMutableArray alloc] init];
     
     NSInteger i = 0;
-    for (i = 0; i < [fixturesSouth count]; i++){
+    for (i = 0; i < [fixturesSouth count]; i++ ){
         FixturesSouth *currentFixture = [fixturesSouth objectAtIndex:i];
         
         NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
@@ -66,13 +86,18 @@
         if(showFixture){
             
             //send fixture data to matchfinder
-            NSString *title = [NSString stringWithFormat:@"%@, VS, %@ (%@)",currentFixture.homeTeam,currentFixture.awayTeam,currentFixture.timeDate];
+            NSString *snippetString = [NSString stringWithFormat:@"%@ VS %@ (%@)",currentFixture.homeTeam,currentFixture.awayTeam,currentFixture.timeDate];
+            NSString *titleString = currentFixture.timeDate;
             
-            NSMutableArray *sendFixtureData = [[NSMutableArray alloc] init];
-            [sendFixtureData addObject:currentFixture.venue];
-            [sendFixtureData addObject:title];
+            Location * newFixture = [[Location alloc] init];
             
-            return sendFixtureData;
+            newFixture.title = titleString;
+            newFixture.snippet = snippetString;
+            newFixture.venue = currentFixture.venue;
+
+            
+            [Location addFixtures:newFixture];
+            
         }
         
         else {return nil;}
@@ -103,7 +128,6 @@
 //get location on google maps from fixture
 +(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr {
     double latitude = 0, longitude = 0;
-    addressStr = @"Select Security Stadium";
     //encode address
     NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];

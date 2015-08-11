@@ -19,7 +19,9 @@
 
 +(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr;
 -(void) getAllFixtures;
--(NSMutableArray*) cycleThroughFixtures;
+-(void*) cycleThroughFixtures;
++(NSMutableArray *)returnAllFixtures;
++(void)resetFixtures;
 
 @property (nonatomic, retain) NSArray* fixturesSouth;
 @property (nonatomic, retain) NSArray* fixturesNorth;
@@ -27,5 +29,9 @@
 @property (nonatomic, retain) NSArray* fixturesWSL2;
 @property (nonatomic, retain) NSArray* fixturesWales;
 @property (nonatomic, retain) NSMutableArray* listOfFixtures;
+
+@property (nonatomic, retain) NSString *venue;
+@property (nonatomic, retain) NSString *snippet;
+@property (nonatomic, retain) NSString *title;
 
 @end

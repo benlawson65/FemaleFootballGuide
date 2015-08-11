@@ -41,18 +41,60 @@
     
     Location *locationObj = [[Location alloc] init];
     [locationObj getAllFixtures];
-    NSMutableArray *returnedFixureData = [locationObj cycleThroughFixtures];
+    [locationObj cycleThroughFixtures];
     
-    NSString *title = [returnedFixureData objectAtIndex:1];
+    NSMutableArray *listOfLocations = [[NSMutableArray alloc] init];
+    NSMutableArray *returnedFixtures = [Location returnAllFixtures];
+    NSInteger i = 0;
     
-    //convert string coordinates back to cllocationcoordinate2d
+    for (i = 0; i < [returnedFixtures count]; i++){
+        
+        locationObj = [returnedFixtures objectAtIndex:i];
+        
+        NSString *snippet = locationObj.snippet;
     
-   CLLocationCoordinate2D location = [Location getLocationFromAddressString:[returnedFixureData objectAtIndex:0]];
+        
     
-    GMSMarker *testMarker = [[GMSMarker alloc] init];
-    testMarker.position = location;
-    testMarker.title = title;
-    testMarker.map = mapView_;
+        CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
+        NSLog(@"Longditude: %f Latitude: %f Venue: %@",location.longitude, location.latitude, locationObj.venue);
+        NSInteger j = 0;
+        BOOL duplicateVenueFound = false;
+        
+        for (j = 0; j < [listOfLocations count]; j++){
+            if([locationObj.venue isEqualToString:[listOfLocations objectAtIndex:j]]){
+                
+                duplicateVenueFound = true;
+                j = [listOfLocations count];
+            }
+            else{
+                duplicateVenueFound = false;
+            }
+        }
+        if(!duplicateVenueFound){
+            if(!(location.latitude == 0.000000 && location.longitude == 0.00000)) {
+            GMSMarker *testMarker = [[GMSMarker alloc] init];
+            testMarker.position = location;
+            testMarker.title = locationObj.venue;
+            testMarker.snippet = snippet;
+            testMarker.map = mapView_;
+            
+            //keep list of locations for stopping multiple markers in same place
+            [listOfLocations addObject:locationObj.venue];
+            }
+
+        }
+        if(location.latitude == 0.000000 && location.longitude == 0.00000 && !duplicateVenueFound){
+            location.longitude = location.longitude + i;
+            GMSMarker *testMarker = [[GMSMarker alloc] init];
+            testMarker.position = location;
+            testMarker.title = locationObj.venue;
+            testMarker.snippet = snippet;
+            testMarker.map = mapView_;
+            [listOfLocations addObject:locationObj.venue];
+        }
+        
+        
+    }
 }
 
 -(void)setLocation {
