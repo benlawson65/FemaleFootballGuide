@@ -19,7 +19,7 @@
 
 +(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr;
 -(void) getAllFixtures;
--(void*) cycleThroughFixtures;
+-(void) cycleThroughFixtures;
 +(NSMutableArray *)returnAllFixtures;
 +(void)resetFixtures;
 
