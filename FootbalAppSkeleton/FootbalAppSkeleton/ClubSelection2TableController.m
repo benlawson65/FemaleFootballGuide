@@ -31,6 +31,8 @@
     
     [obj formatData:returnedDataFromLeagueChosen];
     
+    self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
+    
 
     
     
@@ -92,6 +94,8 @@
     
     //add grey arow to each cell
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

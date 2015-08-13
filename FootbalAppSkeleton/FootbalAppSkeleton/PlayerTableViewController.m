@@ -121,6 +121,7 @@
     
         cell.playerNameLabel.text = currentPlayerName.name;
         cell.positionLabel.text = currentPlayerName.position;
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     return cell;

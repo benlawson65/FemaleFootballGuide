@@ -20,6 +20,7 @@
 		501C80FF1B739E1A0009319B /* RetrieveTeamPlayersWSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C80FE1B739E1A0009319B /* RetrieveTeamPlayersWSL.m */; };
 		501C81011B73F3A90009319B /* PlayerListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501C81001B73F3A90009319B /* PlayerListCustomCell.xib */; };
 		501C81041B73F3D50009319B /* PlayerListCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 501C81031B73F3D50009319B /* PlayerListCustomCell.m */; };
+		502C61CF1B7CAD7200772B78 /* fixtureCoordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61CE1B7CAD7200772B78 /* fixtureCoordinates.json */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -90,6 +91,7 @@
 		501C81001B73F3A90009319B /* PlayerListCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerListCustomCell.xib; sourceTree = "<group>"; };
 		501C81021B73F3D50009319B /* PlayerListCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerListCustomCell.h; sourceTree = "<group>"; };
 		501C81031B73F3D50009319B /* PlayerListCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerListCustomCell.m; sourceTree = "<group>"; };
+		502C61CE1B7CAD7200772B78 /* fixtureCoordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fixtureCoordinates.json; path = ../../../Desktop/fixtureCoordinates.json; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		506A66EC1B62930900BF7ECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				502C61CE1B7CAD7200772B78 /* fixtureCoordinates.json */,
 				50C7D9A71B78A0B300D59001 /* WSL2fixtures.json */,
 				50C7D9A51B77FC6200D59001 /* WSL1fixtures.json */,
 				506A66ED1B62930900BF7ECF /* Info.plist */,
@@ -446,6 +449,7 @@
 				50C7D9A81B78A0B300D59001 /* WSL2fixtures.json in Resources */,
 				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
 				50C210891B6E1717007DF45F /* LeagueDetailTableViewController.xib in Resources */,
+				502C61CF1B7CAD7200772B78 /* fixtureCoordinates.json in Resources */,
 				50C210731B68EC75007DF45F /* FixtureCustomCellView.xib in Resources */,
 				501C80F71B7361620009319B /* PlayerTableViewController.xib in Resources */,
 			);

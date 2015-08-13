@@ -86,7 +86,7 @@ static NSMutableArray *allFixturesWSL1;
             
             newFixturesWSL1.index = [NSString stringWithFormat:@"%ld", (long)i];
             
-            NSString *mergeDateTime = [NSString stringWithFormat:@"%@, %@",newFixturesWSL1.dateOnly, newFixturesWSL1.timeDate];
+            NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesWSL1.timeDate, newFixturesWSL1.dateOnly];
             
             newFixturesWSL1.timeDate = mergeDateTime;
             

@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+   self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -80,9 +80,7 @@
     
     cell.cellLabel.text = fixtureMenu[indexPath.row];
     
-    return cell;
-    
-    // Configure the cell...
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

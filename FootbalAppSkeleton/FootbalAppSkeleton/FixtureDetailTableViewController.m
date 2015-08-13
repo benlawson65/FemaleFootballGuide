@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
     if([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
         NSString *returnedDataSouth = [[NSString alloc] init];
@@ -192,6 +193,8 @@
         cell.time.text = currentFixture.timeDate;
         cell.venue.text = currentFixture.venue;
     }
+    
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

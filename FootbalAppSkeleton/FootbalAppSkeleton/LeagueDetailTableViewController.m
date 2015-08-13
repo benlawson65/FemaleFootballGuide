@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
     
     NSString *returnedDataWales = [[NSString alloc] init];
@@ -134,6 +135,8 @@
         //put this in expand and minimize methods!!!
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
+    
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
