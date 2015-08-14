@@ -12,4 +12,8 @@
 
 @interface FixtureDetailTableViewController : UITableViewController
 @property(weak, nonatomic) NSString *fixtureSelected;
+@property (strong, nonatomic) NSMutableArray *allTableData;
+@property (strong, nonatomic) NSMutableArray *filteredTableData;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchbarFixtures;
+@property BOOL isFiltered;
 @end

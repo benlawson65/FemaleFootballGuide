@@ -20,9 +20,18 @@
 @implementation FixtureDetailTableViewController
 
 @synthesize fixtureSelected;
+@synthesize allTableData;
+@synthesize filteredTableData;
+@synthesize isFiltered;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //searchBarFixtures.delegate = (id)self;
+    allTableData = [[NSMutableArray alloc] init];
+    filteredTableData = [[NSMutableArray alloc] init];
+    isFiltered = FALSE;
+    
     self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
     if([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
@@ -33,6 +42,16 @@
         
         //formate data and put it in fixtures object
         [FixturesSouth formatData:returnedDataSouth];
+     
+        NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesSouth *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+      
 
     }
     
@@ -44,6 +63,16 @@
         
         //formate data and put it in fixtures object
         [FixturesNorth formatData:returnedDataNorth];
+       
+        NSArray *returnedFixtures = [FixturesNorth getAllFixturesNorth];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesNorth *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+        
         
     }
     if([fixtureSelected isEqualToString:@"Welsh Premier League"]){
@@ -54,6 +83,16 @@
         
         //formate data and put it in fixtures object
         [FixturesWales formatData:returnedDataWales];
+    
+        NSArray *returnedFixtures = [FixturesWales getAllFixturesWales];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesWales *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+     
         
     }
     if([fixtureSelected isEqualToString:@"WSL1"]){
@@ -64,6 +103,16 @@
         
         //formate data and put it in fixtures object
         [FixturesWSL1 formatData:returnedDataWSL1];
+     
+        NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+      
         
     }
     if([fixtureSelected isEqualToString:@"WSL2"]){
@@ -74,6 +123,16 @@
         
         //formate data and put it in fixtures object
         [FixturesWSL2 formatData:returnedDataWSL2];
+      
+        NSArray *returnedFixtures = [FixturesWSL2 getAllFixturesWSL2];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesWSL2 *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+       
         
     }
     
@@ -82,6 +141,23 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString *)searchText{
+    if(searchText.length == 0){
+        isFiltered = FALSE;
+    }
+    else{
+        isFiltered = TRUE;
+        filteredTableData = [[NSMutableArray alloc] init];
+        for (NSString *fixtureTitle in allTableData){
+            NSRange nameRange = [fixtureTitle rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound){
+                [filteredTableData addObject:fixtureTitle];
+            }
+        }
+    }
 }
 
 
@@ -99,8 +175,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-
-    if([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
+    
+    NSInteger rowCount;
+    if(self.isFiltered){
+        rowCount = filteredTableData.count;
+    }
+    else{
+        rowCount = allTableData.count;
+    }
+    return rowCount;
+  /*  if([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
         NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
         return returnedFixtures.count;
     }
@@ -124,7 +208,7 @@
             NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
             return returnedFixtures.count;
     }
-
+   */
 
 }
 
@@ -143,15 +227,33 @@
     }
     
     
+    
     if ([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
+        
+        
         //set cell text to data
         NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
         FixturesSouth *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
-        cell.homeTeam.text = currentFixture.homeTeam;
-        cell.awayTeam.text = currentFixture.awayTeam;
-        cell.time.text = currentFixture.timeDate;
-        cell.venue.text = currentFixture.venue;
+        if(isFiltered){
+            NSString *awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+            NSInteger i = 0;
+            for(i = 0; i < [filteredTableData count]; i++){
+                if([awayAndHome isEqualToString:[filteredTableData objectAtIndex:i]]){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                }
+            }
+        }
+        else{
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
+        
     }
     if ([fixtureSelected isEqualToString:@"WPL: Northern Division"]){
         //set cell text to data

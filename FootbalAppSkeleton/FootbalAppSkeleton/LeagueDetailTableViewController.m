@@ -253,6 +253,8 @@
     cell.winsTitle.hidden = NO;
     cell.drawsTitle.hidden = NO;
 }
+
+//used to hide previous cell (fixes bug)
 -(void)minimizeDetails{
     UITableView *tableView = previousTableView;
     NSIndexPath *indexPath = previousIndexPath;
