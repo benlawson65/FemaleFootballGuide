@@ -17,7 +17,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-            <searchBar key="tableHeaderView" contentMode="redraw" id="x4O-Xe-1R9">
+            <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search by Club" id="x4O-Xe-1R9">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                 <textInputTraits key="textInputTraits"/>

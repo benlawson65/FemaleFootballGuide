@@ -13,6 +13,7 @@
 @interface LeagueDetailTableViewController : UITableViewController
 @property(weak, nonatomic) NSString *leagueSelected;
 @property (strong, nonatomic) NSIndexPath *expandedIndexPath;
+@property (strong, nonatomic) NSMutableArray *expandedIndexPaths;
 -(void)delayedMethodExpand:(NSArray *)array;
 @property (weak, nonatomic) UITableView *previousTableView;
 @property (weak, nonatomic) NSIndexPath *previousIndexPath;

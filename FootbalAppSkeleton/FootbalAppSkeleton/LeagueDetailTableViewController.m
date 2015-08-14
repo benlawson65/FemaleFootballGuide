@@ -18,12 +18,13 @@
 @synthesize expandedIndexPath;
 @synthesize previousTableView;
 @synthesize previousIndexPath;
+@synthesize expandedIndexPaths;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
-    
+    expandedIndexPaths = [[NSMutableArray alloc] init];
     NSString *returnedDataWales = [[NSString alloc] init];
     
     //retrieve data from api
@@ -148,6 +149,12 @@
     if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
         return 129.0; // Expanded height
     }
+    NSInteger i = 0;
+    for (i = 0; i< [expandedIndexPaths count]; i++){
+        if([indexPath compare:[expandedIndexPaths objectAtIndex:i]] == NSOrderedSame){
+            return 129.0;
+        }
+    }
     
     return 42.0; // Normal height
     
@@ -203,6 +210,12 @@
     // expanded cells, otherwise, set the expanded index to the index that has just
     // been selected.
     if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
+        NSInteger i = 0;
+        for(i = 0;i < [expandedIndexPaths count]; i++){
+            if([indexPath compare:[expandedIndexPaths objectAtIndex:i]]){
+                [expandedIndexPaths removeObjectAtIndex:i];
+            }
+        }
         self.expandedIndexPath = nil;
         //retract expanded data
         
@@ -221,12 +234,13 @@
     } else {
         //when cell not expanded, expand it and show details
         self.expandedIndexPath = indexPath;
+        [expandedIndexPaths addObject:indexPath];
         //show expanded data
         [self performSelector:@selector(delayedMethodExpand:) withObject:@[tableView, indexPath] afterDelay:0.25];
         
         //if theres has been a previously expanded cell, minimize it
         if (previousIndexPath != nil && previousTableView != nil){
-            [self minimizeDetails];
+            //[self minimizeDetails];
         }
         
         //keep track of the last expanded cell

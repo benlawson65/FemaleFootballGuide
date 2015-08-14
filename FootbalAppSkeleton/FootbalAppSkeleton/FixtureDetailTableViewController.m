@@ -1,4 +1,3 @@
-//
 //  FixtureDetailTableViewController.m
 //  FootbalAppSkeleton
 //
@@ -23,6 +22,7 @@
 @synthesize allTableData;
 @synthesize filteredTableData;
 @synthesize isFiltered;
+@synthesize found;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +31,7 @@
     allTableData = [[NSMutableArray alloc] init];
     filteredTableData = [[NSMutableArray alloc] init];
     isFiltered = FALSE;
+    found = FALSE;
     
     self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
@@ -234,21 +235,28 @@
         
         //set cell text to data
         NSArray *returnedFixtures = [FixturesSouth getAllFixturesSouth];
-        FixturesSouth *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
         if(isFiltered){
-            NSString *awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+            NSString *awayAndHome = [[NSString alloc] init];
             NSInteger i = 0;
-            for(i = 0; i < [filteredTableData count]; i++){
-                if([awayAndHome isEqualToString:[filteredTableData objectAtIndex:i]]){
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesSouth *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
                     cell.homeTeam.text = currentFixture.homeTeam;
                     cell.awayTeam.text = currentFixture.awayTeam;
                     cell.time.text = currentFixture.timeDate;
                     cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
                 }
             }
         }
         else{
+            FixturesSouth *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
             cell.homeTeam.text = currentFixture.homeTeam;
             cell.awayTeam.text = currentFixture.awayTeam;
             cell.time.text = currentFixture.timeDate;
@@ -259,42 +267,129 @@
     if ([fixtureSelected isEqualToString:@"WPL: Northern Division"]){
         //set cell text to data
         NSArray *returnedFixtures = [FixturesNorth getAllFixturesNorth];
-        FixturesNorth *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
-        cell.homeTeam.text = currentFixture.homeTeam;
-        cell.awayTeam.text = currentFixture.awayTeam;
-        cell.time.text = currentFixture.timeDate;
-        cell.venue.text = currentFixture.venue;
+        if(isFiltered){
+            NSString *awayAndHome = [[NSString alloc] init];
+            NSInteger i = 0;
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesNorth *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
+                }
+            }
+        }
+        else{
+            FixturesNorth *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
+        
     }
     if ([fixtureSelected isEqualToString:@"Welsh Premier League"]){
         //set cell text to data
         NSArray *returnedFixtures = [FixturesWales getAllFixturesWales];
-        FixturesWales *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
-        cell.homeTeam.text = currentFixture.homeTeam;
-        cell.awayTeam.text = currentFixture.awayTeam;
-        cell.time.text = currentFixture.timeDate;
-        cell.venue.text = currentFixture.venue;
+        if(isFiltered){
+            NSString *awayAndHome = [[NSString alloc] init];
+            NSInteger i = 0;
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesWales *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
+                }
+            }
+        }
+        else{
+            FixturesWales *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
+        
     }
     if ([fixtureSelected isEqualToString:@"WSL1"]){
         //set cell text to data
         NSArray *returnedFixtures = [FixturesWSL1 getAllFixturesWSL1];
-        FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
-        cell.homeTeam.text = currentFixture.homeTeam;
-        cell.awayTeam.text = currentFixture.awayTeam;
-        cell.time.text = currentFixture.timeDate;
-        cell.venue.text = currentFixture.venue;
+        if(isFiltered){
+            NSString *awayAndHome = [[NSString alloc] init];
+            NSInteger i = 0;
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
+                }
+            }
+        }
+        else{
+            FixturesWSL1 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
+        
     }
     if ([fixtureSelected isEqualToString:@"WSL2"]){
         //set cell text to data
         NSArray *returnedFixtures = [FixturesWSL2 getAllFixturesWSL2];
-        FixturesWSL2 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
         
-        cell.homeTeam.text = currentFixture.homeTeam;
-        cell.awayTeam.text = currentFixture.awayTeam;
-        cell.time.text = currentFixture.timeDate;
-        cell.venue.text = currentFixture.venue;
+        if(isFiltered){
+            NSString *awayAndHome = [[NSString alloc] init];
+            NSInteger i = 0;
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesWSL2 *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
+                }
+            }
+        }
+        else{
+            FixturesWSL2 *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
     }
     
     cell.backgroundColor = [UIColor clearColor];
