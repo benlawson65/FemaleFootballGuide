@@ -158,6 +158,7 @@
             }
         }
     }
+    [self.tableView reloadData];
 }
 
 

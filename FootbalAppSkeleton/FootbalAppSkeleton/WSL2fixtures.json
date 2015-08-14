@@ -1,0 +1,188 @@
+{
+  "results": {
+    "collection1": [
+      {
+        "Date": "Saturday 22 August 2015",
+        "Time": "18:00",
+        "Home Team": "Reading FC Women",
+        "Away Team": "London Bees",
+        "Venue": "Farnborough FC"
+      },
+      {
+        "Date": "Sunday 23 August 2015",
+        "Time": "12:00",
+        "Home Team": "Watford Ladies FC",
+        "Away Team": "Oxford United Women",
+        "Venue": "Berkhamsted FC"
+      },
+      {
+        "Date": "Sunday 23 August 2015",
+        "Time": "12:00",
+        "Home Team": "Durham Women FC",
+        "Away Team": "Everton Ladies FC",
+        "Venue": "New Ferens Park"
+      },
+      {
+        "Date": "Sunday 23 August 2015",
+        "Time": "14:00",
+        "Home Team": "Millwall Lionesses",
+        "Away Team": "Doncaster Rovers Belles",
+        "Venue": "Millwall Football Club"
+      },
+      {
+        "Date": "Sunday 23 August 2015",
+        "Time": "14:00",
+        "Home Team": "Yeovil Town Ladies FC",
+        "Away Team": "Aston Villa Ladies FC",
+        "Venue": "Sherborne Town FC"
+      },
+      {
+        "Date": "Saturday 05 September 2015",
+        "Time": "18:00",
+        "Home Team": "Reading FC Women",
+        "Away Team": "Doncaster Rovers Belles",
+        "Venue": "Farnborough FC"
+      },
+      {
+        "Date": "Sunday 06 September 2015",
+        "Time": "12:00",
+        "Home Team": "Durham Women FC",
+        "Away Team": "Yeovil Town Ladies FC",
+        "Venue": "New Ferens Park"
+      },
+      {
+        "Date": "Sunday 06 September 2015",
+        "Time": "14:00",
+        "Home Team": "Everton Ladies FC",
+        "Away Team": "Aston Villa Ladies FC",
+        "Venue": "Select Security Stadium"
+      },
+      {
+        "Date": "Sunday 06 September 2015",
+        "Time": "14:00",
+        "Home Team": "London Bees",
+        "Away Team": "Watford Ladies FC",
+        "Venue": "The Hive"
+      },
+      {
+        "Date": "Sunday 06 September 2015",
+        "Time": "14:00",
+        "Home Team": "Millwall Lionesses",
+        "Away Team": "Oxford United Women",
+        "Venue": "Millwall Football Club"
+      },
+      {
+        "Date": "Thursday 10 September 2015",
+        "Time": "19:45",
+        "Home Team": "Doncaster Rovers Belles",
+        "Away Team": "Everton Ladies FC",
+        "Venue": "Keepmoat Stadium"
+      },
+      {
+        "Date": "Sunday 27 September 2015",
+        "Time": "12:00",
+        "Home Team": "Watford Ladies FC",
+        "Away Team": "Reading FC Women",
+        "Venue": "Berkhamsted FC"
+      },
+      {
+        "Date": "Sunday 27 September 2015",
+        "Time": "14:00",
+        "Home Team": "London Bees",
+        "Away Team": "Doncaster Rovers Belles",
+        "Venue": "The Hive"
+      },
+      {
+        "Date": "Sunday 27 September 2015",
+        "Time": "14:00",
+        "Home Team": "Everton Ladies FC",
+        "Away Team": "Durham Women FC",
+        "Venue": "Select Security Stadium"
+      },
+      {
+        "Date": "Sunday 27 September 2015",
+        "Time": "14:00",
+        "Home Team": "Millwall Lionesses",
+        "Away Team": "Aston Villa Ladies FC",
+        "Venue": "Millwall Football Club"
+      },
+      {
+        "Date": "Sunday 27 September 2015",
+        "Time": "14:00",
+        "Home Team": "Yeovil Town Ladies FC",
+        "Away Team": "Oxford United Women",
+        "Venue": "Sherborne Town FC"
+      },
+      {
+        "Date": "Saturday 03 October 2015",
+        "Time": "18:30",
+        "Home Team": "Doncaster Rovers Belles",
+        "Away Team": "Oxford United Women",
+        "Venue": "Keepmoat Stadium"
+      },
+      {
+        "Date": "Sunday 04 October 2015",
+        "Time": "12:00",
+        "Home Team": "Durham Women FC",
+        "Away Team": "Watford Ladies FC",
+        "Venue": "New Ferens Park"
+      },
+      {
+        "Date": "Sunday 04 October 2015",
+        "Time": "14:00",
+        "Home Team": "London Bees",
+        "Away Team": "Everton Ladies FC",
+        "Venue": "The Hive"
+      },
+      {
+        "Date": "Sunday 04 October 2015",
+        "Time": "14:00",
+        "Home Team": "Millwall Lionesses",
+        "Away Team": "Reading FC Women",
+        "Venue": "Millwall Football Club"
+      },
+      {
+        "Date": "Sunday 04 October 2015",
+        "Time": "14:00",
+        "Home Team": "Aston Villa Ladies FC",
+        "Away Team": "Yeovil Town Ladies FC",
+        "Venue": "Sutton Coldfield Central Ground"
+      },
+      {
+        "Date": "Sunday 18 October 2015",
+        "Time": "14:00",
+        "Home Team": "Aston Villa Ladies FC",
+        "Away Team": "Reading FC Women",
+        "Venue": "Sutton Coldfield Central Ground"
+      },
+      {
+        "Date": "Sunday 18 October 2015",
+        "Time": "14:00",
+        "Home Team": "Doncaster Rovers Belles",
+        "Away Team": "Millwall Lionesses",
+        "Venue": "Keepmoat Stadium"
+      },
+      {
+        "Date": "Sunday 18 October 2015",
+        "Time": "14:00",
+        "Home Team": "Everton Ladies FC",
+        "Away Team": "Oxford United Women",
+        "Venue": "Select Security Stadium"
+      },
+      {
+        "Date": "Sunday 18 October 2015",
+        "Time": "14:00",
+        "Home Team": "Watford Ladies FC",
+        "Away Team": "London Bees",
+        "Venue": "Berkhamsted FC"
+      },
+      {
+        "Date": "Sunday 18 October 2015",
+        "Time": "14:00",
+        "Home Team": "Yeovil Town Ladies FC",
+        "Away Team": "Durham Women FC",
+        "Venue": "Sherborne Town FC"
+      },
+    ]
+  }
+}
