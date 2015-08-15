@@ -19,6 +19,10 @@
 @synthesize previousTableView;
 @synthesize previousIndexPath;
 @synthesize expandedIndexPaths;
+@synthesize expandedCellFound;
+@synthesize firstLoad;
+@synthesize cellsizeStatus;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +30,11 @@
     
     expandedIndexPaths = [[NSMutableArray alloc] init];
     NSString *returnedDataWales = [[NSString alloc] init];
+    expandedCellFound = FALSE;
+    firstLoad = TRUE;
+    BOOL b = NO;
+    cellsizeStatus = [[NSMutableArray alloc] initWithObjects:
+                      [NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b], nil];
     
     //retrieve data from api
     returnedDataWales = [LeagueWales getDataFromWales];
@@ -40,7 +49,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -114,14 +122,8 @@
         NSArray *returnedLeague = [LeagueWales getAllLeagueTeamsWales];
         LeagueWales *currentLeague = [returnedLeague objectAtIndex:indexPath.row];
         
-        cell.leagueTeamName.text = currentLeague.team;
-        cell.leaguePoints.text = currentLeague.points;
-        cell.leagueGD.text = currentLeague.goalDifference;
-        cell.leagueWins.text = currentLeague.wins;
-        cell.leagueDraws.text = currentLeague.draws;
-        cell.leagueRank.text = currentLeague.index;
-        cell.leagueLosees.text = currentLeague.losses;
-
+        if(![[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+            // [self delayedMethodExpand:@[tableView, indexPath]];
             cell.leagueWins.hidden = YES;
             cell.leagueDraws.hidden = YES;
             cell.leagueLosees.hidden = YES;
@@ -132,6 +134,64 @@
             cell.winsTitle.hidden = YES;
             cell.lossesTitle.hidden = YES;
             cell.drawsTitle.hidden = YES;
+            NSLog(@"%ld",(long)indexPath.row);
+        }
+        else{
+            //  [self minimizeDetails:@[indexPath, tableView]];
+            
+            cell.leagueGD.hidden = NO;
+            cell.gdTitle.hidden = NO;
+            cell.ptsTitle.hidden = NO;
+            cell.leaguePoints.hidden = NO;
+            cell.leagueDraws.hidden = NO;
+            cell.leagueWins.hidden = NO;
+            cell.leagueLosees.hidden = NO;
+            cell.lossesTitle.hidden = NO;
+            cell.winsTitle.hidden = NO;
+            cell.drawsTitle.hidden = NO;
+        }
+
+        
+        cell.leagueTeamName.text = currentLeague.team;
+        cell.leaguePoints.text = currentLeague.points;
+        cell.leagueGD.text = currentLeague.goalDifference;
+        cell.leagueWins.text = currentLeague.wins;
+        cell.leagueDraws.text = currentLeague.draws;
+        cell.leagueRank.text = currentLeague.index;
+        cell.leagueLosees.text = currentLeague.losses;
+        NSLog(firstLoad ? @"Yes" : @"No");
+
+    if(firstLoad){
+        cell.leagueWins.hidden = YES;
+        cell.leagueDraws.hidden = YES;
+        cell.leagueLosees.hidden = YES;
+        cell.leagueGD.hidden = YES;
+        cell.leaguePoints.hidden = YES;
+        cell.gdTitle.hidden = YES;
+        cell.ptsTitle.hidden = YES;
+        cell.winsTitle.hidden = YES;
+        cell.lossesTitle.hidden = YES;
+        cell.drawsTitle.hidden = YES;
+        
+        //if just set last cell on first load of view controller set firstLoad to false
+       if([returnedLeague count] - 1 == indexPath.row){
+            firstLoad = FALSE;
+        }
+        /*
+        NSInteger i = 0;
+        expandedCellFound = FALSE;
+        for(i = 0;i < [expandedIndexPaths count]; i++){
+            if([indexPath compare:[expandedIndexPaths objectAtIndex:i]] == NSOrderedSame){
+                [self delayedMethodExpand:@[tableView, indexPath]];
+                expandedCellFound = TRUE;
+            }
+        }
+        if(!expandedCellFound){
+            [self minimizeDetails:@[indexPath, tableView]];
+        }*/
+        
+        
+    }
         
         //put this in expand and minimize methods!!!
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -143,21 +203,36 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    // Compares the index path for the current cell to the index path stored in the expanded
-    // index path variable. If the two match, return a height of 100 points, otherwise return
-    // a height of 44 points.
-    if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
-        return 129.0; // Expanded height
+    
+    if ([[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+        return 129.0;
     }
-    NSInteger i = 0;
-    for (i = 0; i< [expandedIndexPaths count]; i++){
-        if([indexPath compare:[expandedIndexPaths objectAtIndex:i]] == NSOrderedSame){
-            return 129.0;
+    else{
+        return 42.0;
+    }
+    
+    /*//if this indx path has been clicked expand
+    if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
+        NSLog(@"being expanded");
+        return 129.0; // Expanded height
+        
+    }
+    
+    //else check its in the array of index paths that are set to be expanded and if so keep expanded
+    else{
+        
+        NSInteger i = 0;
+        for (i = 0; i< [expandedIndexPaths count]; i++){
+            if([indexPath compare:[expandedIndexPaths objectAtIndex:i]] == NSOrderedSame){
+                NSLog(@"continue being expanded");
+                return 129.0;
+            }
         }
     }
-    
+
+    NSLog(@"cell is or should be minmized");
     return 42.0; // Normal height
-    
+    */
 }
 
 /*
@@ -209,32 +284,32 @@
     // has just been tapped set the expanded index to nil so that there aren't any
     // expanded cells, otherwise, set the expanded index to the index that has just
     // been selected.
-    if ([indexPath compare:self.expandedIndexPath] == NSOrderedSame) {
-        NSInteger i = 0;
-        for(i = 0;i < [expandedIndexPaths count]; i++){
-            if([indexPath compare:[expandedIndexPaths objectAtIndex:i]]){
-                [expandedIndexPaths removeObjectAtIndex:i];
-            }
-        }
-        self.expandedIndexPath = nil;
-        //retract expanded data
+    //NSInteger i = 0;
+    
+    //resent if cell is found each time a cell is clicked on
+    //expandedCellFound = FALSE;
+    
+    if([[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
         
-        LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
-        cell.leagueGD.hidden = YES;
-        cell.gdTitle.hidden = YES;
-        cell.ptsTitle.hidden = YES;
-        cell.leaguePoints.hidden = YES;
-        cell.leagueDraws.hidden = YES;
-        cell.leagueWins.hidden = YES;
-        cell.leagueLosees.hidden = YES;
-        cell.lossesTitle.hidden = YES;
-        cell.winsTitle.hidden = YES;
-        cell.drawsTitle.hidden = YES;
+        BOOL b = 0;
+        NSNumber *num = [NSNumber numberWithBool:b];
+        [cellsizeStatus replaceObjectAtIndex:indexPath.row withObject:num];
+        [self minimizeDetails:@[indexPath, tableView]];
+    }
+    else{
+        BOOL b = 1;
+        NSNumber *num = [NSNumber numberWithBool:b];
         
-    } else {
+        [cellsizeStatus replaceObjectAtIndex:indexPath.row withObject:num];
+        [self performSelector:@selector(delayedMethodExpand:) withObject:@[tableView, indexPath] afterDelay:0.25];
+    }
+        
+    /*if(!expandedCellFound) {
         //when cell not expanded, expand it and show details
         self.expandedIndexPath = indexPath;
         [expandedIndexPaths addObject:indexPath];
+        BOOL obj = TRUE;
+        obj = [cellsizeStatus objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
         //show expanded data
         [self performSelector:@selector(delayedMethodExpand:) withObject:@[tableView, indexPath] afterDelay:0.25];
         
@@ -246,7 +321,7 @@
         //keep track of the last expanded cell
         previousTableView = tableView;
         previousIndexPath = indexPath;
-    }
+    }*/
     
     [tableView endUpdates]; // tell the table you're done making your changes
 }
@@ -269,9 +344,9 @@
 }
 
 //used to hide previous cell (fixes bug)
--(void)minimizeDetails{
-    UITableView *tableView = previousTableView;
-    NSIndexPath *indexPath = previousIndexPath;
+-(void)minimizeDetails:(NSArray*)array{
+    UITableView *tableView = [array objectAtIndex:1];
+    NSIndexPath *indexPath = [array objectAtIndex:0];
     LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
     cell.leagueGD.hidden = YES;
     cell.gdTitle.hidden = YES;
