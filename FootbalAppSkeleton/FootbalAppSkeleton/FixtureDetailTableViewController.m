@@ -11,6 +11,7 @@
 #import "FixturesWales.h"
 #import "FixturesWSL1.h"
 #import "FixturesWSL2.h"
+#import "FixturesScotland.h"
 
 @interface FixtureDetailTableViewController ()
 
@@ -134,6 +135,26 @@
             [allTableData addObject:fixtureTitle];
         }
        
+        
+    }
+    if([fixtureSelected isEqualToString:@"Scottish Premier League"]){
+        NSString *returnedDataScotland = [[NSString alloc] init];
+        
+        //retrieve data from api
+        returnedDataScotland = [FixturesScotland getDataFromScotland];
+        
+        //formate data and put it in fixtures object
+        [FixturesScotland formatData:returnedDataScotland];
+        
+        NSArray *returnedFixtures = [FixturesScotland getAllFixturesScotland];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesScotland *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+        
         
     }
     
@@ -391,6 +412,38 @@
             cell.venue.text = currentFixture.venue;
         }
     }
+    if ([fixtureSelected isEqualToString:@"Scottish Premier League"]){
+        //set cell text to data
+        NSArray *returnedFixtures = [FixturesScotland getAllFixturesScotland];
+        
+        if(isFiltered){
+            NSString *awayAndHome = [[NSString alloc] init];
+            NSInteger i = 0;
+            found = FALSE;
+            for(i = 0; i < [returnedFixtures count]; i++){
+                
+                FixturesScotland *currentFixture = [returnedFixtures objectAtIndex:i];
+                awayAndHome = [NSString stringWithFormat:@"%@ VS %@", currentFixture.homeTeam, currentFixture.awayTeam];
+                
+                if([[filteredTableData objectAtIndex:indexPath.row] isEqualToString:awayAndHome] && found == FALSE){
+                    cell.homeTeam.text = currentFixture.homeTeam;
+                    cell.awayTeam.text = currentFixture.awayTeam;
+                    cell.time.text = currentFixture.timeDate;
+                    cell.venue.text = currentFixture.venue;
+                    NSLog(@"Fixture Set");
+                    found = TRUE;
+                }
+            }
+        }
+        else{
+            FixturesScotland *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+            cell.homeTeam.text = currentFixture.homeTeam;
+            cell.awayTeam.text = currentFixture.awayTeam;
+            cell.time.text = currentFixture.timeDate;
+            cell.venue.text = currentFixture.venue;
+        }
+    }
+
     
     cell.backgroundColor = [UIColor clearColor];
     return cell;

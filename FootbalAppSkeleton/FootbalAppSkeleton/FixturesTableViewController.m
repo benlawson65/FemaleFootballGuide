@@ -40,7 +40,7 @@
     //
     if (_fixtureMenu == nil)
     {
-        _fixtureMenu = [[NSArray alloc] initWithObjects:@"WSL1", @"WSL2", @"WPL: Northern Division", @"WPL: Southern Division",@"Welsh Premier League", nil];
+        _fixtureMenu = [[NSArray alloc] initWithObjects:@"WSL1", @"WSL2", @"WPL: Northern Division", @"WPL: Southern Division",@"Welsh Premier League",@"Scottish Premier League", nil];
     }
     return _fixtureMenu;
 }

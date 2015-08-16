@@ -10,6 +10,7 @@
 #import "LeagueMenuTableViewController.h"
 #import "FixturesTableViewController.h"
 #import "ClubSelection1TableController.h"
+#import "PodcastsViewController.h"
 
 
 @interface ViewController ()
@@ -77,7 +78,7 @@
     [[fixtureView navigationItem] setTitle:@"Fixtures (Choose by League)"];
     
 }
-
+/*
 - (IBAction)clubsButton:(id)sender {
     
     UITableViewController *clubView = [[ClubSelection1TableController alloc] initWithNibName:@"ClubSelection1TableController" bundle:nil];
@@ -90,5 +91,19 @@
                                     action:nil];
     
     [[clubView navigationItem] setTitle:@"Clubs (Choose by League)"];
+}
+*/
+- (IBAction)clubsButton:(id)sender {
+    
+    UIViewController *podView = [[PodcastsViewController alloc] initWithNibName:@"PodcastsViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:podView animated:YES];
+    
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    
+    [[podView navigationItem] setTitle:@"Clubs (Choose by League)"];
 }
 @end

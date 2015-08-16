@@ -23,6 +23,9 @@
 		502C61D31B7DEC8500772B78 /* fixtureCoordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D01B7DEC8500772B78 /* fixtureCoordinates.json */; };
 		502C61D41B7DEC8500772B78 /* WSL2fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D11B7DEC8500772B78 /* WSL2fixtures.json */; };
 		502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D21B7DEC8500772B78 /* WSL1fixtures.json */; };
+		5065152C1B811326001E4007 /* FixturesScotland.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065152B1B811326001E4007 /* FixturesScotland.m */; };
+		506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515321B812AD0001E4007 /* PodcastsViewController.m */; };
+		506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506515331B812AD0001E4007 /* PodcastsViewController.xib */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -94,6 +97,11 @@
 		502C61D01B7DEC8500772B78 /* fixtureCoordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fixtureCoordinates.json; sourceTree = "<group>"; };
 		502C61D11B7DEC8500772B78 /* WSL2fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WSL2fixtures.json; sourceTree = "<group>"; };
 		502C61D21B7DEC8500772B78 /* WSL1fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WSL1fixtures.json; sourceTree = "<group>"; };
+		5065152A1B811326001E4007 /* FixturesScotland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesScotland.h; sourceTree = "<group>"; };
+		5065152B1B811326001E4007 /* FixturesScotland.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesScotland.m; sourceTree = "<group>"; };
+		506515311B812AD0001E4007 /* PodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastsViewController.h; sourceTree = "<group>"; };
+		506515321B812AD0001E4007 /* PodcastsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodcastsViewController.m; sourceTree = "<group>"; };
+		506515331B812AD0001E4007 /* PodcastsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastsViewController.xib; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -201,6 +209,16 @@
 			name = Clubs;
 			sourceTree = "<group>";
 		};
+		5065152D1B8129B2001E4007 /* Podcasts */ = {
+			isa = PBXGroup;
+			children = (
+				506515311B812AD0001E4007 /* PodcastsViewController.h */,
+				506515321B812AD0001E4007 /* PodcastsViewController.m */,
+				506515331B812AD0001E4007 /* PodcastsViewController.xib */,
+			);
+			name = Podcasts;
+			sourceTree = "<group>";
+		};
 		506A66E01B62930900BF7ECF = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +242,7 @@
 		506A66EB1B62930900BF7ECF /* FootbalAppSkeleton */ = {
 			isa = PBXGroup;
 			children = (
+				5065152D1B8129B2001E4007 /* Podcasts */,
 				501C80E01B7202490009319B /* Clubs */,
 				50C2108C1B6F5A5D007DF45F /* Fixtures */,
 				50C2108B1B6F5980007DF45F /* Match Finder */,
@@ -328,6 +347,8 @@
 				501C80DE1B70C2880009319B /* FixturesWSL1.m */,
 				50C7D9A91B78A0FF00D59001 /* FixturesWSL2.h */,
 				50C7D9AA1B78A0FF00D59001 /* FixturesWSL2.m */,
+				5065152A1B811326001E4007 /* FixturesScotland.h */,
+				5065152B1B811326001E4007 /* FixturesScotland.m */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -448,6 +469,7 @@
 				501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */,
 				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
 				502C61D41B7DEC8500772B78 /* WSL2fixtures.json in Resources */,
+				506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */,
 				50C210891B6E1717007DF45F /* LeagueDetailTableViewController.xib in Resources */,
 				50C210731B68EC75007DF45F /* FixtureCustomCellView.xib in Resources */,
 				502C61D31B7DEC8500772B78 /* fixtureCoordinates.json in Resources */,
@@ -513,6 +535,7 @@
 				506A67141B62937A00BF7ECF /* TabBarController.m in Sources */,
 				501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */,
 				50C210561B667F71007DF45F /* LeagueMenuTableViewController.m in Sources */,
+				506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */,
 				501C80E41B7202BC0009319B /* ClubSelection1TableController.m in Sources */,
 				50C210701B68E1C7007DF45F /* FixtureDetailTableViewController.m in Sources */,
 				50C7D9AE1B78DDE900D59001 /* Location.m in Sources */,
@@ -525,6 +548,7 @@
 				501C80ED1B720A570009319B /* ClubsForLeagueChosen.m in Sources */,
 				506A66EF1B62930900BF7ECF /* main.m in Sources */,
 				501C80F21B721DBD0009319B /* ClubListCustomCell.m in Sources */,
+				5065152C1B811326001E4007 /* FixturesScotland.m in Sources */,
 				501C81041B73F3D50009319B /* PlayerListCustomCell.m in Sources */,
 				50C210761B6904F2007DF45F /* FixtureCustomCellView.m in Sources */,
 				50C7D9A41B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m in Sources */,
