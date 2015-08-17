@@ -26,6 +26,11 @@
 		5065152C1B811326001E4007 /* FixturesScotland.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065152B1B811326001E4007 /* FixturesScotland.m */; };
 		506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515321B812AD0001E4007 /* PodcastsViewController.m */; };
 		506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506515331B812AD0001E4007 /* PodcastsViewController.xib */; };
+		506515371B81F56D001E4007 /* Football 2-50 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 506515361B81F56D001E4007 /* Football 2-50 (1).png */; };
+		506515391B820E69001E4007 /* Football-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 506515381B820E69001E4007 /* Football-50.png */; };
+		5065153B1B821222001E4007 /* 1439834338_Podcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 5065153A1B821222001E4007 /* 1439834338_Podcast.png */; };
+		5065153D1B8213FC001E4007 /* file1001303850319.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5065153C1B8213FC001E4007 /* file1001303850319.jpg */; };
+		5065153F1B822572001E4007 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5065153E1B822572001E4007 /* background.jpg */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -102,6 +107,11 @@
 		506515311B812AD0001E4007 /* PodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastsViewController.h; sourceTree = "<group>"; };
 		506515321B812AD0001E4007 /* PodcastsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodcastsViewController.m; sourceTree = "<group>"; };
 		506515331B812AD0001E4007 /* PodcastsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastsViewController.xib; sourceTree = "<group>"; };
+		506515361B81F56D001E4007 /* Football 2-50 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Football 2-50 (1).png"; sourceTree = "<group>"; };
+		506515381B820E69001E4007 /* Football-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Football-50.png"; sourceTree = "<group>"; };
+		5065153A1B821222001E4007 /* 1439834338_Podcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1439834338_Podcast.png; sourceTree = "<group>"; };
+		5065153C1B8213FC001E4007 /* file1001303850319.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = file1001303850319.jpg; sourceTree = "<group>"; };
+		5065153E1B822572001E4007 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -269,6 +279,11 @@
 		506A66EC1B62930900BF7ECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5065153E1B822572001E4007 /* background.jpg */,
+				5065153C1B8213FC001E4007 /* file1001303850319.jpg */,
+				5065153A1B821222001E4007 /* 1439834338_Podcast.png */,
+				506515381B820E69001E4007 /* Football-50.png */,
+				506515361B81F56D001E4007 /* Football 2-50 (1).png */,
 				502C61D01B7DEC8500772B78 /* fixtureCoordinates.json */,
 				502C61D11B7DEC8500772B78 /* WSL2fixtures.json */,
 				502C61D21B7DEC8500772B78 /* WSL1fixtures.json */,
@@ -421,6 +436,7 @@
 				TargetAttributes = {
 					506A66E81B62930900BF7ECF = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 76QQFEQQ38;
 					};
 					506A66FB1B62930900BF7ECF = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -452,12 +468,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5065153F1B822572001E4007 /* background.jpg in Resources */,
 				50C2105B1B67BBD9007DF45F /* CustomCellView.xib in Resources */,
 				506A66F71B62930900BF7ECF /* LaunchScreen.xib in Resources */,
 				506A671F1B63E71E00BF7ECF /* MatchFinderViewController.xib in Resources */,
 				50C210671B68C4E6007DF45F /* CustomCellViewLeagueTable.xib in Resources */,
 				501C80EF1B721D730009319B /* ClubListCustomCell.xib in Resources */,
 				506A67151B62937A00BF7ECF /* TabBarController.xib in Resources */,
+				506515371B81F56D001E4007 /* Football 2-50 (1).png in Resources */,
 				50C210711B68E1C7007DF45F /* FixtureDetailTableViewController.xib in Resources */,
 				501C81011B73F3A90009319B /* PlayerListCustomCell.xib in Resources */,
 				502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */,
@@ -467,13 +485,16 @@
 				506A66F41B62930900BF7ECF /* Images.xcassets in Resources */,
 				50C210571B667F71007DF45F /* LeagueMenuTableViewController.xib in Resources */,
 				501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */,
+				5065153D1B8213FC001E4007 /* file1001303850319.jpg in Resources */,
 				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
+				5065153B1B821222001E4007 /* 1439834338_Podcast.png in Resources */,
 				502C61D41B7DEC8500772B78 /* WSL2fixtures.json in Resources */,
 				506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */,
 				50C210891B6E1717007DF45F /* LeagueDetailTableViewController.xib in Resources */,
 				50C210731B68EC75007DF45F /* FixtureCustomCellView.xib in Resources */,
 				502C61D31B7DEC8500772B78 /* fixtureCoordinates.json in Resources */,
 				501C80F71B7361620009319B /* PlayerTableViewController.xib in Resources */,
+				506515391B820E69001E4007 /* Football-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,10 +692,11 @@
 			baseConfigurationReference = FC3BA648CFCDD732ED0A9E09 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FootbalAppSkeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -683,10 +705,11 @@
 			baseConfigurationReference = AE62CA63292495AB9C35CCAD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FootbalAppSkeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

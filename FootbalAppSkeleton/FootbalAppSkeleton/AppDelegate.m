@@ -30,6 +30,9 @@
     UIViewController *myViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     
     UINavigationController *myNavigationController = [[UINavigationController alloc] initWithRootViewController:myViewController];
+    [myNavigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    
     
     /*[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0]}];

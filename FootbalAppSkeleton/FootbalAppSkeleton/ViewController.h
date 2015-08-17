@@ -12,6 +12,9 @@
 - (IBAction)leagueButton:(id)sender;
 - (IBAction)fixturesButton:(id)sender;
 - (IBAction)clubsButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *leagueVariable;
+@property (weak, nonatomic) IBOutlet UIButton *fixtureVariable;
+@property (weak, nonatomic) IBOutlet UIButton *podcastsVariable;
 
 
 @end

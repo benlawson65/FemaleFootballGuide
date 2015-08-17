@@ -3,10 +3,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="fixtureVariable" destination="ZvT-j4-2YB" id="Gpb-XR-17s"/>
+                <outlet property="leagueVariable" destination="23I-mr-1OP" id="TSc-3q-tE3"/>
+                <outlet property="podcastsVariable" destination="i1c-ZW-YAh" id="2eq-PO-JtF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,13 +19,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
-                    <rect key="frame" x="167" y="210" width="86" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="23I-mr-1OP" secondAttribute="height" multiplier="43:20" id="f3T-pr-eTY"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <state key="normal" title="Leagues">
+                <imageView userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Bn9-5Y-mrC">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
+                    <rect key="frame" x="68" y="210" width="346" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="     Leagues" image="Football 2-50 (1).png">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -29,26 +33,22 @@
                         <action selector="leagueButton:" destination="-1" eventType="touchUpInside" id="wce-Ee-FLx"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvT-j4-2YB">
-                    <rect key="frame" x="167" y="311" width="80" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="ZvT-j4-2YB" secondAttribute="height" multiplier="2:1" id="8dv-hv-ElD"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <state key="normal" title="Fixtures">
-                        <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvT-j4-2YB">
+                    <rect key="frame" x="68" y="311" width="346" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="     Fixtures" image="Football-50.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="fixturesButton:" destination="-1" eventType="touchUpInside" id="jJH-9F-hXJ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
                     <rect key="frame" x="68" y="92" width="285" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="8:1" id="Yvq-ed-ioC"/>
                         <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="8:1" id="fV2-WU-v98"/>
-                        <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="285:28" id="mbx-Zv-bAE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,12 +60,9 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-ZW-YAh">
-                    <rect key="frame" x="157" y="427" width="100" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="i1c-ZW-YAh" secondAttribute="height" multiplier="59:40" constant="41" id="Q1Y-R9-BMg"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-ZW-YAh">
+                    <rect key="frame" x="68" y="412" width="346" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="Podcasts">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,20 +72,28 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="23I-mr-1OP" secondAttribute="centerX" constant="-3" id="51p-lf-hov"/>
+                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="0rY-tu-AUM"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="trailing" secondItem="ZvT-j4-2YB" secondAttribute="trailing" id="1A4-sP-Nx0"/>
+                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2zm-IA-WaF"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="leading" secondItem="i1c-ZW-YAh" secondAttribute="leading" id="7bV-lX-mnY"/>
+                <constraint firstAttribute="trailing" secondItem="Bn9-5Y-mrC" secondAttribute="trailing" id="8Wd-eM-ScG"/>
                 <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="9gO-Mg-6pF"/>
                 <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-4" id="E3l-ei-ToG"/>
-                <constraint firstAttribute="centerX" secondItem="ZvT-j4-2YB" secondAttribute="centerX" id="JwC-ms-JRg"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="top" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="90" id="VW5-mN-aly"/>
-                <constraint firstAttribute="centerX" secondItem="i1c-ZW-YAh" secondAttribute="centerX" id="YQR-PE-AiV"/>
-                <constraint firstItem="i1c-ZW-YAh" firstAttribute="top" secondItem="ZvT-j4-2YB" secondAttribute="bottom" constant="76" id="cKt-pC-GFN"/>
+                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-3.5" id="Fhv-az-h7F"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="trailing" secondItem="Bn9-5Y-mrC" secondAttribute="trailing" id="Fkq-vA-J8q"/>
+                <constraint firstAttribute="bottom" secondItem="Bn9-5Y-mrC" secondAttribute="bottom" id="SOg-oF-0LB"/>
                 <constraint firstAttribute="trailing" secondItem="kkD-ei-jny" secondAttribute="trailing" constant="69" id="dr9-WY-vp2"/>
-                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="dvw-79-7HA"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="top" secondItem="ZvT-j4-2YB" secondAttribute="bottom" constant="51" id="fYF-c6-OmQ"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="leading" secondItem="ZvT-j4-2YB" secondAttribute="leading" id="kg6-DM-mH7"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" constant="8" id="l51-wn-PBN"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="top" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="90" id="mQR-wT-kcs"/>
                 <constraint firstItem="kkD-ei-jny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="69" id="o13-vJ-W2U"/>
-                <constraint firstItem="ZvT-j4-2YB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="311" id="zaz-Qa-0LL"/>
-                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-3" id="zul-no-K6z"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="leading" secondItem="kkD-ei-jny" secondAttribute="leading" id="qoe-KY-d5Z"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="top" secondItem="23I-mr-1OP" secondAttribute="bottom" constant="51" id="wWo-ei-unW"/>
+                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="y4P-HS-ha9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">
@@ -101,4 +106,9 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="Football 2-50 (1).png" width="50" height="50"/>
+        <image name="Football-50.png" width="50" height="50"/>
+        <image name="background.jpg" width="554" height="984"/>
+    </resources>
 </document>
