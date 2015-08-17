@@ -22,4 +22,5 @@
 +(void) formatData: (NSString*) returnedDataWales;
 + (NSString *) getDataFromWales;
 +(void)resetFixturesWales;
++(BOOL)compareDates:(NSDate *)fixtureDate;
 @end

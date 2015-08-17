@@ -82,15 +82,55 @@ static NSMutableArray *allFixturesWales;
             
             newFixturesWales.index = [NSString stringWithFormat:@"%ld", (long)i];
             
-            NSString *mergeDateTime = [NSString stringWithFormat:@"%@, %@",newFixturesWales.dateOnly, newFixturesWales.timeDate];
+            NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesWales.dateOnly, newFixturesWales.timeDate];
             
             newFixturesWales.timeDate = mergeDateTime;
             
-            [FixturesWales addFixturesWales:newFixturesWales];
+            //format date to check its in future
+            NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
+            
+            //[dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
+            [dateFormatFixture setDateFormat:@"EEE d MMM yy H:m"];
+            [dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+            [dateFormatFixture setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+            
+            //[dateFormatFixture setDateFormat:@"K:mm a"];
+            
+            NSDate *fixtureDate = [[NSDate alloc] init];
+            fixtureDate = [dateFormatFixture dateFromString:newFixturesWales.timeDate];
+            
+            BOOL dateCheck = [self compareDates:fixtureDate];
+            
+            //if date is in future, add fixture
+            if(dateCheck){
+                
+                [FixturesWales addFixturesWales:newFixturesWales];
+            }
         }
     }
     else{
         NSLog(@"no data found in json results");
+    }
+}
+
++(BOOL)compareDates:(NSDate *)fixtureDate{
+    //get date and time
+    
+    NSDate *realDate = [[NSDate alloc] init];
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
+    
+    [dateFormat setDateFormat:@"EEE d MMM yy HH:mm"];
+    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    
+    NSString *dateString = [dateFormat stringFromDate:realDate];
+    realDate = [dateFormat dateFromString:dateString];
+    
+    if([realDate compare:fixtureDate] == NSOrderedAscending){
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
