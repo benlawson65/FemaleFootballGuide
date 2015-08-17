@@ -22,6 +22,8 @@
 -(void) cycleThroughFixtures;
 +(NSMutableArray *)returnAllFixtures;
 +(void)resetFixtures;
+-(BOOL)compareDatesWSL:(NSDate *)fixtureDate;
+-(BOOL)compareDates:(NSDate *)fixtureDate;
 
 @property (nonatomic, retain) NSArray* fixturesSouth;
 @property (nonatomic, retain) NSArray* fixturesNorth;

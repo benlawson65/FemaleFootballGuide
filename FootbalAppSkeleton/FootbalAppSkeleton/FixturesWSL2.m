@@ -90,7 +90,27 @@ static NSMutableArray *allFixturesWSL2;
             
             newFixturesWSL2.timeDate = mergeDateTime;
             
-            [FixturesWSL2 addFixturesWSL2:newFixturesWSL2];
+            //format date to check its in future
+            NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
+            
+            //[dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
+            [dateFormatFixture setDateFormat:@"EEEE d MMMM yyyy H:m"];
+            [dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+            [dateFormatFixture setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+            
+            //[dateFormatFixture setDateFormat:@"K:mm a"];
+            
+            NSDate *fixtureDate = [[NSDate alloc] init];
+            fixtureDate = [dateFormatFixture dateFromString:newFixturesWSL2.timeDate];
+            
+            Location *obj = [[Location alloc] init];
+            BOOL dateCheck = [obj compareDatesWSL:fixtureDate];
+            
+            //if date is in future, add fixture
+            if(dateCheck){
+                
+                [FixturesWSL2 addFixturesWSL2:newFixturesWSL2];
+            }
         }
     }
     else{

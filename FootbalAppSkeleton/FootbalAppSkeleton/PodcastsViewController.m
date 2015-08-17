@@ -17,14 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    /*
-    NSString *fullURL = @"http://www.wwfshow.com/";
-    NSURL *url = [NSURL URLWithString:fullURL];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [_podcast loadRequest:requestObj];
-    // Do any additional setup after loading the view from its nib.
-    */
-    NSString *embedHTML = @"<iframe width='60%' height='1000' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;color=00cc11&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false'></iframe>";
+    NSString *embedHTML = @"<iframe width='60%' height='100%' scrolling='yes' frameborder='yes' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;font=System 23.0&amp'></iframe>";
     
     NSString *html = [NSString stringWithFormat:@"%@" ,embedHTML];
     

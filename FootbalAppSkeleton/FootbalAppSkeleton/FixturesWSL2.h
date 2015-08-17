@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Location.h"
 @interface FixturesWSL2 : NSObject
 
 @property (nonatomic, retain) NSString *index;

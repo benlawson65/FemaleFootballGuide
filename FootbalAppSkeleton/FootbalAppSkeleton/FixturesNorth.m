@@ -81,7 +81,26 @@ static NSMutableArray *allFixturesNorth;
             
             newFixturesNorth.index = [NSString stringWithFormat:@"%ld", (long)i];
             
-            [FixturesNorth addFixturesNorth:newFixturesNorth];
+            //format date to check its in future
+            NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
+            
+            //[dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
+            [dateFormatFixture setDateFormat:@"dd-MM-yy HH:mm"];
+            [dateFormatFixture setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+            
+            //[dateFormatFixture setDateFormat:@"K:mm a"];
+            
+            NSDate *fixtureDate = [[NSDate alloc] init];
+            fixtureDate = [dateFormatFixture dateFromString:newFixturesNorth.timeDate];
+            
+            Location *obj = [[Location alloc] init];
+            BOOL dateCheck = [obj compareDates:fixtureDate];
+            
+            //if date is in future, add fixture
+            if(dateCheck){
+                
+                [FixturesNorth addFixturesNorth:newFixturesNorth];
+            }
         }
     }
     else{

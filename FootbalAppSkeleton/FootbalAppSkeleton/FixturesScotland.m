@@ -78,17 +78,20 @@ static NSMutableArray *allFixturesScotland;
             
             newFixturesScotland.index = [NSString stringWithFormat:@"%ld", (long)i];
             
-            [FixturesScotland addFixturesScotland:newFixturesScotland];
             
-            NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesScotland.dateOnly, newFixturesScotland.timeDate];
-            
-            newFixturesScotland.timeDate = mergeDateTime;
+            if(![newFixturesScotland.timeDate isEqualToString:@""]){
+                NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesScotland.dateOnly, newFixturesScotland.timeDate];
+                
+                newFixturesScotland.timeDate = mergeDateTime;
+                [FixturesScotland addFixturesScotland:newFixturesScotland];
+            }
         }
     }
     else{
         NSLog(@"no data found in json results");
     }
 }
+
 
 
 @end
