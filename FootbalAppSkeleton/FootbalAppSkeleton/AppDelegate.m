@@ -43,11 +43,15 @@
     // Override point for customization after application launch.
     
     myTabBarController.viewControllers = [NSArray arrayWithObjects:myNavigationController, myMatchFinderViewController, nil];
+    
+    //[[UITabBar appearance] setBackgroundColor:[UIColor colorWithRed:(0/256.0) green:(255/256.0) blue:(0/256.0) alpha:1.0]];
 
     //root view controller
     self.window.rootViewController = myTabBarController;
     
-    [myTabBarController.tabBar setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]];
+    [myTabBarController.tabBar setBackgroundColor:[UIColor colorWithRed:0/255.0 green:75.0/255.0 blue:0/255.0 alpha:1]];
+    [myTabBarController.tabBar setTintColor:[UIColor colorWithRed:(256/256.0) green:(256/256.0) blue:(256/256.0) alpha:(1.0)]];
+    [myTabBarController.tabBar setBarTintColor:[UIColor colorWithRed:(0/256.0) green:(75/256.0) blue:(0/256.0) alpha:(1)]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
