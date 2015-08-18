@@ -31,6 +31,7 @@
 		5065153B1B821222001E4007 /* 1439834338_Podcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 5065153A1B821222001E4007 /* 1439834338_Podcast.png */; };
 		5065153D1B8213FC001E4007 /* file1001303850319.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5065153C1B8213FC001E4007 /* file1001303850319.jpg */; };
 		5065153F1B822572001E4007 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5065153E1B822572001E4007 /* background.jpg */; };
+		506515421B8282A3001E4007 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515411B8282A3001E4007 /* MBProgressHUD.m */; };
 		506A66EF1B62930900BF7ECF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66EE1B62930900BF7ECF /* main.m */; };
 		506A66F21B62930900BF7ECF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506A66F11B62930900BF7ECF /* AppDelegate.m */; };
 		506A66F41B62930900BF7ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A66F31B62930900BF7ECF /* Images.xcassets */; };
@@ -112,6 +113,8 @@
 		5065153A1B821222001E4007 /* 1439834338_Podcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1439834338_Podcast.png; sourceTree = "<group>"; };
 		5065153C1B8213FC001E4007 /* file1001303850319.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = file1001303850319.jpg; sourceTree = "<group>"; };
 		5065153E1B822572001E4007 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		506515401B8282A2001E4007 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		506515411B8282A3001E4007 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 		50C2108A1B6F590A007DF45F /* Leagues */ = {
 			isa = PBXGroup;
 			children = (
+				506515401B8282A2001E4007 /* MBProgressHUD.h */,
+				506515411B8282A3001E4007 /* MBProgressHUD.m */,
 				50C210531B667F71007DF45F /* LeagueMenuTableViewController.h */,
 				50C210541B667F71007DF45F /* LeagueMenuTableViewController.m */,
 				50C210551B667F71007DF45F /* LeagueMenuTableViewController.xib */,
@@ -552,6 +557,7 @@
 				501C80E91B72057E0009319B /* ClubSelection2TableController.m in Sources */,
 				506A671E1B63E71E00BF7ECF /* MatchFinderViewController.m in Sources */,
 				501C80FF1B739E1A0009319B /* RetrieveTeamPlayersWSL.m in Sources */,
+				506515421B8282A3001E4007 /* MBProgressHUD.m in Sources */,
 				50C210911B6F5F45007DF45F /* LeagueCustomView.m in Sources */,
 				506A67141B62937A00BF7ECF /* TabBarController.m in Sources */,
 				501C80DF1B70C2880009319B /* FixturesWSL1.m in Sources */,

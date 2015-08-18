@@ -7,6 +7,7 @@
 //
 
 #import "PodcastsViewController.h"
+#import "MBProgressHUD.h"
 
 @interface PodcastsViewController ()
 
@@ -16,13 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    NSString *embedHTML = @"<iframe width='60%' height='100%' scrolling='yes' frameborder='yes' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;font=System 23.0&amp'></iframe>";
     
-    NSString *html = [NSString stringWithFormat:@"%@" ,embedHTML];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading Podcasts";
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        NSString *embedHTML = @"<iframe width='60%' height='100%' scrolling='yes' frameborder='yes' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;font=System 23.0&amp'></iframe>";
+        
+        NSString *html = [NSString stringWithFormat:@"%@" ,embedHTML];
+        
+        [_podcast loadHTMLString:html baseURL:nil];
+        [self.view addSubview:_podcast];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
     
-    [_podcast loadHTMLString:html baseURL:nil];
-    [self.view addSubview:_podcast];
 }
 
 - (void)didReceiveMemoryWarning {

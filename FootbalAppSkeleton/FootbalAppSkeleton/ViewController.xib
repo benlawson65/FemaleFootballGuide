@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
@@ -22,51 +21,73 @@
                 <imageView userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Bn9-5Y-mrC">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
-                    <rect key="frame" x="68" y="210" width="346" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
+                    <rect key="frame" x="52" y="279" width="362" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="23I-mr-1OP" secondAttribute="height" multiplier="181:25" id="E9b-nD-pBx"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="     Leagues" image="Football 2-50 (1).png">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="E9b-nD-pBx"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="leagueButton:" destination="-1" eventType="touchUpInside" id="wce-Ee-FLx"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvT-j4-2YB">
-                    <rect key="frame" x="68" y="311" width="346" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvT-j4-2YB">
+                    <rect key="frame" x="52" y="180" width="362" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ZvT-j4-2YB" secondAttribute="height" multiplier="181:25" id="7gY-p2-Q8I"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="     Fixtures" image="Football-50.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="7gY-p2-Q8I"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="fixturesButton:" destination="-1" eventType="touchUpInside" id="jJH-9F-hXJ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
-                    <rect key="frame" x="68" y="92" width="285" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Female Football Guide" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
+                    <rect key="frame" x="65" y="70" width="285" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="8:1" id="Yvq-ed-ioC"/>
-                        <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="8:1" id="fV2-WU-v98"/>
+                        <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="285:28" id="x5M-G7-BcE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="Yvq-ed-ioC"/>
-                            <exclude reference="fV2-WU-v98"/>
+                            <exclude reference="x5M-G7-BcE"/>
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-ZW-YAh">
-                    <rect key="frame" x="68" y="412" width="346" height="38"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-ZW-YAh">
+                    <rect key="frame" x="52" y="389" width="362" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="i1c-ZW-YAh" secondAttribute="height" multiplier="181:25" id="Lf2-hU-J25"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="Podcasts">
+                    <state key="normal" title="             Podcasts">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Lf2-hU-J25"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="clubsButton:" destination="-1" eventType="touchUpInside" id="q4w-FX-L4h"/>
                     </connections>
@@ -75,33 +96,38 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="0rY-tu-AUM"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="trailing" secondItem="ZvT-j4-2YB" secondAttribute="trailing" id="1A4-sP-Nx0"/>
-                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2zm-IA-WaF"/>
-                <constraint firstItem="ZvT-j4-2YB" firstAttribute="leading" secondItem="i1c-ZW-YAh" secondAttribute="leading" id="7bV-lX-mnY"/>
-                <constraint firstAttribute="trailing" secondItem="Bn9-5Y-mrC" secondAttribute="trailing" id="8Wd-eM-ScG"/>
-                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="92" id="9gO-Mg-6pF"/>
-                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-4" id="E3l-ei-ToG"/>
-                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" constant="-3.5" id="Fhv-az-h7F"/>
-                <constraint firstItem="ZvT-j4-2YB" firstAttribute="trailing" secondItem="Bn9-5Y-mrC" secondAttribute="trailing" id="Fkq-vA-J8q"/>
-                <constraint firstAttribute="bottom" secondItem="Bn9-5Y-mrC" secondAttribute="bottom" id="SOg-oF-0LB"/>
-                <constraint firstAttribute="trailing" secondItem="kkD-ei-jny" secondAttribute="trailing" constant="69" id="dr9-WY-vp2"/>
-                <constraint firstItem="i1c-ZW-YAh" firstAttribute="top" secondItem="ZvT-j4-2YB" secondAttribute="bottom" constant="51" id="fYF-c6-OmQ"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="leading" secondItem="ZvT-j4-2YB" secondAttribute="leading" id="kg6-DM-mH7"/>
-                <constraint firstItem="i1c-ZW-YAh" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" constant="8" id="l51-wn-PBN"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="top" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="90" id="mQR-wT-kcs"/>
-                <constraint firstItem="kkD-ei-jny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="69" id="o13-vJ-W2U"/>
-                <constraint firstItem="23I-mr-1OP" firstAttribute="leading" secondItem="kkD-ei-jny" secondAttribute="leading" id="qoe-KY-d5Z"/>
-                <constraint firstItem="ZvT-j4-2YB" firstAttribute="top" secondItem="23I-mr-1OP" secondAttribute="bottom" constant="51" id="wWo-ei-unW"/>
-                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="y4P-HS-ha9"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="leading" secondItem="ZvT-j4-2YB" secondAttribute="leading" id="6Ds-aY-iEg"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="52" id="6Fc-k5-ueD"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="52" id="7XI-4g-h8p"/>
+                <constraint firstAttribute="trailing" secondItem="Bn9-5Y-mrC" secondAttribute="trailing" id="9WP-dH-dsz"/>
+                <constraint firstItem="kkD-ei-jny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="BJj-lc-6aM"/>
+                <constraint firstAttribute="trailing" secondItem="23I-mr-1OP" secondAttribute="trailing" id="DD2-eb-eMG"/>
+                <constraint firstAttribute="centerX" secondItem="Bn9-5Y-mrC" secondAttribute="centerX" id="Di8-WF-jcJ"/>
+                <constraint firstAttribute="bottom" secondItem="i1c-ZW-YAh" secondAttribute="bottom" constant="115" id="FgG-4D-1qb"/>
+                <constraint firstAttribute="bottom" secondItem="Bn9-5Y-mrC" secondAttribute="bottom" id="FqP-Ry-IRT"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="leading" secondItem="23I-mr-1OP" secondAttribute="leading" id="H6I-9S-dC3"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="52" id="Mxz-Fs-9Iv"/>
+                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="P7W-pG-M4T"/>
+                <constraint firstAttribute="trailing" secondItem="i1c-ZW-YAh" secondAttribute="trailing" id="QFx-D1-aaY"/>
+                <constraint firstAttribute="trailing" secondItem="ZvT-j4-2YB" secondAttribute="trailing" id="Rd7-1h-cYz"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZvT-j4-2YB" secondAttribute="bottom" constant="55" id="V7n-cr-koD"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="height" secondItem="ZvT-j4-2YB" secondAttribute="height" id="W6R-IB-Hrl"/>
+                <constraint firstAttribute="centerX" secondItem="kkD-ei-jny" secondAttribute="centerX" id="eMs-cZ-2nV"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="height" secondItem="i1c-ZW-YAh" secondAttribute="height" id="eqt-Dz-lWL"/>
+                <constraint firstItem="i1c-ZW-YAh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="23I-mr-1OP" secondAttribute="bottom" constant="55" id="g3J-6T-S5e"/>
+                <constraint firstAttribute="centerY" secondItem="Bn9-5Y-mrC" secondAttribute="centerY" id="hZl-15-nMa"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kkD-ei-jny" secondAttribute="bottom" constant="70" id="haP-gD-Ym5"/>
+                <constraint firstItem="ZvT-j4-2YB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="52" id="htK-sb-iXd"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="width" secondItem="ZvT-j4-2YB" secondAttribute="width" id="oux-NP-qg0"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="width" secondItem="i1c-ZW-YAh" secondAttribute="width" id="tWX-Mu-vx2"/>
+                <constraint firstItem="23I-mr-1OP" firstAttribute="height" secondItem="i1c-ZW-YAh" secondAttribute="height" id="wbg-uK-5zT"/>
+                <constraint firstItem="Bn9-5Y-mrC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zOs-x6-2Hd"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="9gO-Mg-6pF"/>
-                    <exclude reference="E3l-ei-ToG"/>
-                    <exclude reference="dr9-WY-vp2"/>
-                    <exclude reference="o13-vJ-W2U"/>
+                    <exclude reference="htK-sb-iXd"/>
+                    <exclude reference="eqt-Dz-lWL"/>
                 </mask>
             </variation>
         </view>

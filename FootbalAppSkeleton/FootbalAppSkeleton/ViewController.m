@@ -30,6 +30,10 @@
     
     self.navigationController.navigationBar.topItem.title = @"";
     
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
