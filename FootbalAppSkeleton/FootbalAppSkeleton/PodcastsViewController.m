@@ -23,7 +23,7 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         
-        NSString *embedHTML = @"<iframe width='60%' height='100%' scrolling='yes' frameborder='yes' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;font=System 23.0&amp'></iframe>";
+        NSString *embedHTML = @"<iframe width='100%' height='100%' scrolling='yes' frameborder='yes' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/68929658&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;font=System 23.0&amp'></iframe>";
         
         NSString *html = [NSString stringWithFormat:@"%@" ,embedHTML];
         

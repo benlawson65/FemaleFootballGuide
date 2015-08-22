@@ -11,6 +11,7 @@
 #import "FixturesTableViewController.h"
 #import "ClubSelection1TableController.h"
 #import "PodcastsViewController.h"
+#import <sys/sysctl.h>
 
 
 @interface ViewController ()
@@ -19,9 +20,13 @@
 
 @implementation ViewController
 
+@synthesize extraText;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //make top status bar white so it can be seen on black background
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.leagueVariable.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.7];
@@ -34,10 +39,77 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    //run method to get device model
+    NSString *model = [self platformNiceString];
+    NSLog(@"%@", model);
+    
+    //hide extra text if running on iphone 4 or ipad
+    if([model isEqualToString:@"iPhone 4"] || [model isEqualToString:@"iPad"]){
+        extraText.hidden = YES;
+    }
+    
+    //set navigation bar to translucent
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+
+//get phone model
+-(NSString *)platformRawString{
+    size_t size;
+    sysctlbyname("hw.machine",NULL,&size,NULL,0);
+    
+    char *machine = malloc(size);
+    
+    sysctlbyname("hw.machine",machine,&size,NULL,0);
+    
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    
+    free(machine);
+    
+    return platform;
+    
+}
+
+-(NSString *)platformNiceString{
+    NSString *platform = [self platformRawString];
+    
+    if([platform isEqualToString:@"iPhone3,1"]){
+        return @"iPhone 4";
+    }
+    if([platform isEqualToString:@"iPhone3,3"]){
+        return @"iPhone 4";
+    }
+    if([platform isEqualToString:@"iPhone4,1"]){
+        return @"iPhone 4";
+    }
+    if([platform isEqualToString:@"iPad1,1"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad2,1"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad2,2"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad2,3"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad3,1"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad3,2"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad3,3"]){
+        return @"iPad";
+    }
+
+    else {
+        return platform;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +121,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         self.title = NSLocalizedString(@"Stats", @"Clubs, Leagues and Fixtures");
+        self.tabBarItem.image = [UIImage imageNamed:@"Statistics-25.png"];
     }
     return self;
 }

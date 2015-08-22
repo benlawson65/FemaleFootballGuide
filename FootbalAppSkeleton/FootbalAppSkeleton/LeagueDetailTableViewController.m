@@ -22,6 +22,8 @@
 @synthesize expandedCellFound;
 @synthesize firstLoad;
 @synthesize cellsizeStatus;
+@synthesize selected;
+@synthesize selectedAgain;
 
 
 - (void)viewDidLoad {
@@ -167,6 +169,7 @@
         NSLog(firstLoad ? @"Yes" : @"No");
 
     if(firstLoad){
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.leagueWins.hidden = YES;
         cell.leagueDraws.hidden = YES;
         cell.leagueLosees.hidden = YES;
@@ -279,7 +282,9 @@
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
+    
+    
     [tableView beginUpdates]; // tell the table you're about to start making changes
     
     //set tableView so it can be accessed elsewhere
@@ -336,6 +341,8 @@
     UITableView *tableView = [array objectAtIndex:0];
     NSIndexPath *indexPath = [array objectAtIndex:1];
     LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.5];
     cell.leagueGD.hidden = NO;
     cell.gdTitle.hidden = NO;
     cell.ptsTitle.hidden = NO;
@@ -353,6 +360,8 @@
     UITableView *tableView = [array objectAtIndex:1];
     NSIndexPath *indexPath = [array objectAtIndex:0];
     LeagueCustomView *cell = (LeagueCustomView *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithWhite:0/255 alpha:0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.leagueGD.hidden = YES;
     cell.gdTitle.hidden = YES;
     cell.ptsTitle.hidden = YES;
@@ -364,7 +373,6 @@
     cell.winsTitle.hidden = YES;
     cell.drawsTitle.hidden = YES;
 }
-
 
 /*
 #pragma mark - Navigation

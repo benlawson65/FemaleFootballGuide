@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *leagueVariable;
 @property (weak, nonatomic) IBOutlet UIButton *fixtureVariable;
 @property (weak, nonatomic) IBOutlet UIButton *podcastsVariable;
+@property (weak, nonatomic) IBOutlet UILabel *extraText;
 
 
 @end

@@ -120,6 +120,7 @@
     if(self){
         self.title = NSLocalizedString(@"Match Finder", @"Google Maps UI for fixtures");
     }
+    self.tabBarItem.image = [UIImage imageNamed:@"Search-25.png"];
     return self;
 }
 

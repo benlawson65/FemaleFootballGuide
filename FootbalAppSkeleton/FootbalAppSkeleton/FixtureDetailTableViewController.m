@@ -187,7 +187,9 @@
     }
     [self.tableView reloadData];
 }
-
+-(void)searchBarTextDidEndEditing:(UISearchBar *)aSearchBar{
+    [aSearchBar resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -276,7 +278,6 @@
                     cell.awayTeam.text = currentFixture.awayTeam;
                     cell.time.text = currentFixture.timeDate;
                     cell.venue.text = currentFixture.venue;
-                    NSLog(@"Fixture Set");
                     found = TRUE;
                 }
             }

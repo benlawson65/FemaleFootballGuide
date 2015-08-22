@@ -21,6 +21,8 @@
 @property (weak, nonatomic) UITableView *currentTableView;
 @property BOOL expandedCellFound;
 @property BOOL firstLoad;
+@property BOOL selected;
+@property BOOL selectedAgain;
 -(void) minimizeDetails:(NSArray*)array;
 @property (strong, nonatomic) NSMutableArray *cellsizeStatus;
 @end

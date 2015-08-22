@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="extraText" destination="EFU-oC-Luq" id="QIq-ou-ydc"/>
                 <outlet property="fixtureVariable" destination="ZvT-j4-2YB" id="Gpb-XR-17s"/>
                 <outlet property="leagueVariable" destination="23I-mr-1OP" id="TSc-3q-tE3"/>
                 <outlet property="podcastsVariable" destination="i1c-ZW-YAh" id="2eq-PO-JtF"/>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
-                    <rect key="frame" x="52" y="279" width="362" height="50"/>
+                    <rect key="frame" x="52" y="279" width="160" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="23I-mr-1OP" secondAttribute="height" multiplier="181:25" id="E9b-nD-pBx"/>
                     </constraints>
@@ -41,7 +42,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvT-j4-2YB">
-                    <rect key="frame" x="52" y="180" width="362" height="50"/>
+                    <rect key="frame" x="52" y="180" width="160" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ZvT-j4-2YB" secondAttribute="height" multiplier="181:25" id="7gY-p2-Q8I"/>
                     </constraints>
@@ -59,8 +60,8 @@
                         <action selector="fixturesButton:" destination="-1" eventType="touchUpInside" id="jJH-9F-hXJ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Female Football Guide" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
-                    <rect key="frame" x="65" y="70" width="285" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Female Football Guide" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-ei-jny">
+                    <rect key="frame" x="65" y="35" width="285" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="kkD-ei-jny" secondAttribute="height" multiplier="285:28" id="x5M-G7-BcE"/>
                     </constraints>
@@ -74,12 +75,12 @@
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-ZW-YAh">
-                    <rect key="frame" x="52" y="389" width="362" height="50"/>
+                    <rect key="frame" x="52" y="389" width="160" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="i1c-ZW-YAh" secondAttribute="height" multiplier="181:25" id="Lf2-hU-J25"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="             Podcasts">
+                    <state key="normal" title="    Podcasts" image="Wi-Fi-50.png">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -92,8 +93,8 @@
                         <action selector="clubsButton:" destination="-1" eventType="touchUpInside" id="q4w-FX-L4h"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The ultimate guide to all your footy needs!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFU-oC-Luq">
-                    <rect key="frame" x="114" y="119" width="199" height="53"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The ultimate guide to all your football needs!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFU-oC-Luq">
+                    <rect key="frame" x="114" y="119" width="373" height="53"/>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -144,6 +145,7 @@
     <resources>
         <image name="Football 2-50 (1).png" width="50" height="50"/>
         <image name="Football-50.png" width="50" height="50"/>
+        <image name="Wi-Fi-50.png" width="50" height="50"/>
         <image name="background.jpg" width="554" height="984"/>
     </resources>
 </document>
