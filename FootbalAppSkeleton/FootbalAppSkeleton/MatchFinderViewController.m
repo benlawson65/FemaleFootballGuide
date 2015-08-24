@@ -21,7 +21,8 @@
     
 }
 @synthesize locationManager;
-@synthesize directionBar;
+
+static NSString* snippetUpdate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +30,7 @@
     
         //shows loading label on the page while view is loading
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Loading Match Finder";
+    hud.labelText = @"Loading Match Finder...";
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
        
@@ -63,6 +64,7 @@
             locationObj = [returnedFixtures objectAtIndex:i];
             
             NSString *snippet = locationObj.snippet;
+            snippetUpdate = snippet;
             
             
             
@@ -106,11 +108,6 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.myLocationEnabled = YES;
     
-    CGRect directionBarFrame = directionBar.frame;
-    directionBarFrame.origin = CGPointMake(40, 40);
-    directionBar.frame = directionBarFrame;
-    [mapView_ addSubview:directionBar];
-    [mapView_ bringSubviewToFront:directionBar];
     self.view = mapView_;
     mapView_.delegate = self;
 
@@ -123,8 +120,8 @@
 
 
 
-- (void) mapView:(GMSMapView *) mapView
-didTapInfoWindowOfMarker:(GMSMarker *) marker{
+-(BOOL) mapView:(GMSMapView *) mapView
+didTapMarker:(GMSMarker *)marker{
     //convert maker location
     CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
     
@@ -132,6 +129,17 @@ didTapInfoWindowOfMarker:(GMSMarker *) marker{
     //markerlocation
     [Location getDirections:locationManager.location toDestination:markerLocation onMap:mapView];
 
+            NSString *durationLocation = [Location getDuration];
+            NSString *distanceLocation = [Location getDistance];
+            NSString *snippetUpdateTemp = [NSString stringWithFormat:@"%@ (%@ %@)",snippetUpdate,distanceLocation,durationLocation];
+            
+            marker.snippet = snippetUpdateTemp;
+    
+    
+    
+    return NO;
+
+    
     
 }
 

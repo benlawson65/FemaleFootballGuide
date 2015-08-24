@@ -21,6 +21,10 @@
 @synthesize snippet;
 @synthesize title;
 
+static NSString *duration;
+static NSString *distance;
+static BOOL backgroundThreadFinished;
+
 static NSMutableArray *allFixtures;
 static NSMutableArray *fixtureList;
 
@@ -34,6 +38,16 @@ static NSMutableArray *fixtureList;
 
 +(void)resetFixtures{
     allFixtures = [[NSMutableArray alloc] init];
+}
+
++(NSString*)getDuration{
+    return duration;
+}
++(NSString*)getDistance{
+    return distance;
+}
++(BOOL)getBackgroundThreadStatus{
+    return backgroundThreadFinished;
 }
 
 -(void) getAllFixtures{
@@ -330,14 +344,74 @@ static NSMutableArray *fixtureList;
     
 }
 
-+ (void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_{
++(void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_{
+    
+    
+    
     NSString *baseUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false,&key=AIzaSyCaIAN-DDnSolU0EpBfcTsOhsJyrSwF76s", sourceLocation.coordinate.latitude,  sourceLocation.coordinate.longitude, destinationLocation.coordinate.latitude,  destinationLocation.coordinate.longitude];
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSLog(@"Url: %@", url);
-    
+    //NSLog(@"Url: %@", url);
+        
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSError *error = [[NSError alloc] init];
+    NSHTTPURLResponse *responseCode = nil;
+    
+    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    
+    //NSString *returnedData = [[[NSString alloc] init] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:oResponseData options:0 error:&error];
+    
+    NSArray *routes = [result objectForKey:@"routes"];
+    
+    NSDictionary *firstRoute = [routes objectAtIndex:0];
+    
+    NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
+    
+    NSArray *steps = [leg objectForKey:@"steps"];
+    
+    //variables for working out duration
+    NSString *durationTemp = [[NSString alloc] init];
+    NSNumber *durationNumber = [[NSNumber alloc] init];
+    durationNumber = [NSNumber numberWithInt:0];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    //variables for working out distance
+    NSString *distanceTemp = [[NSString alloc] init];
+    NSNumber *distanceNumber = [[NSNumber alloc] init];
+    distanceNumber = [NSNumber numberWithDouble:0];
+    NSNumberFormatter *distanceFormatter = [[NSNumberFormatter alloc] init];
+    distanceFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    for (NSDictionary *step in steps) {
+        
+        //extract duration from json
+        NSDictionary *durationObj = [step objectForKey:@"duration"];
+        durationTemp = [durationObj valueForKey:@"text"];
+        durationTemp = [durationTemp stringByReplacingOccurrencesOfString:@" mins" withString:@""];
+        
+        //convert to number and add to total
+        NSNumber *durationTempNumber = [f numberFromString:durationTemp];
+        int durationTempInt = [durationTempNumber intValue];
+        int durationTotalInt = [durationNumber intValue];
+        durationTotalInt = durationTotalInt + durationTempInt;
+        durationNumber = [NSNumber numberWithInt:durationTotalInt];
+        
+        
+        //extract distance from json
+        NSDictionary *distanceObj = [step objectForKey:@"distance"];
+        distanceTemp = [distanceObj valueForKey:@"text"];
+        distanceTemp = [distanceTemp stringByReplacingOccurrencesOfString:@" km" withString:@""];
+    }
+    distance = [[NSString alloc] init];
+    duration = [[NSString alloc] init];
+    distance = [NSString stringWithFormat:@"%@ km",distanceNumber];
+    duration = [NSString stringWithFormat:@"%@ minutes",durationNumber];
+
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
@@ -378,11 +452,13 @@ static NSMutableArray *fixtureList;
             }
         }
         
+        
         GMSPolyline *polyline = nil;
         polyline = [GMSPolyline polylineWithPath:path];
-        polyline.strokeColor = [UIColor grayColor];
-        polyline.strokeWidth = 3.f;
+        polyline.strokeColor = [UIColor redColor];
+        polyline.strokeWidth = 4.f;
         polyline.map = mapView_;
+        backgroundThreadFinished = TRUE;
     }];
 }
 

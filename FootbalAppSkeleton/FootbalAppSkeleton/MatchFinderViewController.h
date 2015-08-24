@@ -15,9 +15,8 @@
 @property(nonatomic,retain) CLLocationManager *locationManager;
 - (void)deviceLocation;
 -(void)setLocation;
-//-(BOOL) mapView:(GMSMapView *) mapView didTapMarker:(GMSMarker *)marker;
+-(BOOL) mapView:(GMSMapView *) mapView didTapMarker:(GMSMarker *)marker;
 - (void) mapView:(GMSMapView *) mapView
 didTapInfoWindowOfMarker:(GMSMarker *) marker;
-@property (strong, nonatomic) IBOutlet UILabel *directionBar;
 
 @end

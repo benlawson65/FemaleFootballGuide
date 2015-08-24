@@ -24,7 +24,10 @@
 +(void)resetFixtures;
 -(BOOL)compareDatesWSL:(NSDate *)fixtureDate;
 -(BOOL)compareDates:(NSDate *)fixtureDate;
-+ (void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_;
++(void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_;
++(NSString*)getDuration;
++(NSString*)getDistance;
++(BOOL)getBackgroundThreadStatus;
 
 @property (nonatomic, retain) NSArray* fixturesSouth;
 @property (nonatomic, retain) NSArray* fixturesNorth;
@@ -36,5 +39,6 @@
 @property (nonatomic, retain) NSString *venue;
 @property (nonatomic, retain) NSString *snippet;
 @property (nonatomic, retain) NSString *title;
+
 
 @end
