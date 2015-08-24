@@ -28,6 +28,8 @@
 +(NSString*)getDuration;
 +(NSString*)getDistance;
 +(BOOL)getBackgroundThreadStatus;
++(void)initPolyLines;
++(void)resetPolyLines;
 
 @property (nonatomic, retain) NSArray* fixturesSouth;
 @property (nonatomic, retain) NSArray* fixturesNorth;

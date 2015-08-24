@@ -24,6 +24,7 @@
 static NSString *duration;
 static NSString *distance;
 static BOOL backgroundThreadFinished;
+static NSMutableArray *polyLinesOnMap;
 
 static NSMutableArray *allFixtures;
 static NSMutableArray *fixtureList;
@@ -49,7 +50,16 @@ static NSMutableArray *fixtureList;
 +(BOOL)getBackgroundThreadStatus{
     return backgroundThreadFinished;
 }
-
++(void)initPolyLines{
+    polyLinesOnMap = [[NSMutableArray alloc] init];
+}
++(void)resetPolyLines{
+    NSInteger i = 0;
+    for(i = 0; i < [polyLinesOnMap count];i++){
+        GMSPolyline *resetPolyLine = [polyLinesOnMap objectAtIndex:i];
+        resetPolyLine.map = nil;
+    }
+}
 -(void) getAllFixtures{
     
     fixtureList = [[NSMutableArray alloc] init];
@@ -406,11 +416,20 @@ static NSMutableArray *fixtureList;
         NSDictionary *distanceObj = [step objectForKey:@"distance"];
         distanceTemp = [distanceObj valueForKey:@"text"];
         distanceTemp = [distanceTemp stringByReplacingOccurrencesOfString:@" km" withString:@""];
+        
+        //convert to number and add to total
+        NSNumber *distanceTempNumber = [distanceFormatter numberFromString:distanceTemp];
+        double distanceTempInt = [distanceTempNumber doubleValue]; /// 0.621371192;
+        double distanceTotalInt = [distanceNumber doubleValue];
+        distanceTotalInt = distanceTotalInt + distanceTempInt;
+        //distanceTotalInt = distanceTotalInt / 0.621371192;
+        distanceNumber = [NSNumber numberWithDouble:distanceTotalInt];
     }
     distance = [[NSString alloc] init];
     duration = [[NSString alloc] init];
-    distance = [NSString stringWithFormat:@"%@ km",distanceNumber];
-    duration = [NSString stringWithFormat:@"%@ minutes",durationNumber];
+    double distanceTotalMiles = ([distanceNumber doubleValue] * 0.621371192);
+    distance = [NSString stringWithFormat:@"%.1f miles,",distanceTotalMiles];
+    duration = [NSString stringWithFormat:@"%@ min",durationNumber];
 
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -458,7 +477,7 @@ static NSMutableArray *fixtureList;
         polyline.strokeColor = [UIColor redColor];
         polyline.strokeWidth = 4.f;
         polyline.map = mapView_;
-        backgroundThreadFinished = TRUE;
+        [polyLinesOnMap addObject:polyline];
     }];
 }
 

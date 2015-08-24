@@ -28,6 +28,9 @@ static NSString* snippetUpdate;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //init array for holding list of polylines for directions to fixture
+    [Location initPolyLines];
+    
         //shows loading label on the page while view is loading
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading Match Finder...";
@@ -127,6 +130,7 @@ didTapMarker:(GMSMarker *)marker{
     
     //run get directions method and send it origin and destination location from user location to
     //markerlocation
+    [Location resetPolyLines];
     [Location getDirections:locationManager.location toDestination:markerLocation onMap:mapView];
 
             NSString *durationLocation = [Location getDuration];
