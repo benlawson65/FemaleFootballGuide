@@ -2,10 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C2043" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchFinderViewController">
             <connections>
+                <outlet property="directionBar" destination="Yj9-0p-HNR" id="5jR-Jd-q4Y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,35 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj9-0p-HNR">
+                    <rect key="frame" x="0.0" y="537" width="600" height="63"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="600" id="0R3-fv-WV3"/>
+                        <constraint firstAttribute="height" constant="63" id="NMf-XD-2nZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="Yj9-0p-HNR" secondAttribute="centerY" constant="-268.5" id="1OO-Yh-16f"/>
+                <constraint firstItem="Yj9-0p-HNR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7ti-GA-AUn"/>
+                <constraint firstItem="Yj9-0p-HNR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="529" id="8PC-J7-u5j"/>
+                <constraint firstAttribute="bottom" secondItem="Yj9-0p-HNR" secondAttribute="bottom" id="9bp-fq-enS"/>
+                <constraint firstAttribute="trailing" secondItem="Yj9-0p-HNR" secondAttribute="trailing" id="Jyc-bg-ahE"/>
+                <constraint firstItem="Yj9-0p-HNR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="537" id="OTc-5w-zqm"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="1OO-Yh-16f"/>
+                    <exclude reference="9bp-fq-enS"/>
+                    <exclude reference="OTc-5w-zqm"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

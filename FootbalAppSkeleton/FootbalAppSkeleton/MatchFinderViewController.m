@@ -16,15 +16,18 @@
 
 @implementation MatchFinderViewController{
     GMSMapView *mapView_;
+    
+
+    
 }
 @synthesize locationManager;
-
+@synthesize directionBar;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //shows loading label on the page while view is loading
+        //shows loading label on the page while view is loading
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading Match Finder";
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
@@ -87,9 +90,12 @@
 
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
     });
 
 }
+
+
 
 -(void)setLocation {
     GMSCameraPosition* camera =
@@ -100,13 +106,33 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.myLocationEnabled = YES;
     
-    
+    CGRect directionBarFrame = directionBar.frame;
+    directionBarFrame.origin = CGPointMake(40, 40);
+    directionBar.frame = directionBarFrame;
+    [mapView_ addSubview:directionBar];
+    [mapView_ bringSubviewToFront:directionBar];
     self.view = mapView_;
+    mapView_.delegate = self;
+
 }
 
 - (void)deviceLocation {
     NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
     NSLog(@"location: %@", theLocation);
+}
+
+
+
+- (void) mapView:(GMSMapView *) mapView
+didTapInfoWindowOfMarker:(GMSMarker *) marker{
+    //convert maker location
+    CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
+    
+    //run get directions method and send it origin and destination location from user location to
+    //markerlocation
+    [Location getDirections:locationManager.location toDestination:markerLocation onMap:mapView];
+
+    
 }
 
 
@@ -120,7 +146,7 @@
     if(self){
         self.title = NSLocalizedString(@"Match Finder", @"Google Maps UI for fixtures");
     }
-    self.tabBarItem.image = [UIImage imageNamed:@"Search-25.png"];
+    self.tabBarItem.image = [UIImage imageNamed:@"Search-25"];
     return self;
 }
 

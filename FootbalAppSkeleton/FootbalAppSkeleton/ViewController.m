@@ -97,6 +97,9 @@
     if([platform isEqualToString:@"iPad2,3"]){
         return @"iPad";
     }
+    if([platform isEqualToString:@"iPad2,5"]){
+        return @"iPad";
+    }
     if([platform isEqualToString:@"iPad3,1"]){
         return @"iPad";
     }
@@ -121,7 +124,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         self.title = NSLocalizedString(@"Stats", @"Clubs, Leagues and Fixtures");
-        self.tabBarItem.image = [UIImage imageNamed:@"Statistics-25.png"];
+        self.tabBarItem.image = [UIImage imageNamed:@"Statistics-25"];
     }
     return self;
 }

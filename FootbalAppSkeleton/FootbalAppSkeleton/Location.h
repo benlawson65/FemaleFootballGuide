@@ -24,6 +24,7 @@
 +(void)resetFixtures;
 -(BOOL)compareDatesWSL:(NSDate *)fixtureDate;
 -(BOOL)compareDates:(NSDate *)fixtureDate;
++ (void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_;
 
 @property (nonatomic, retain) NSArray* fixturesSouth;
 @property (nonatomic, retain) NSArray* fixturesNorth;

@@ -324,9 +324,73 @@ static NSMutableArray *fixtureList;
     center.longitude = longitude;
     
     if (center.latitude == 0.000000 && center.longitude == 0.000000){
-        NSLog(addressStr);
+        NSLog(@"%@", addressStr);
     }
     return center;
     
+}
+
++ (void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_{
+    NSString *baseUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false,&key=AIzaSyCaIAN-DDnSolU0EpBfcTsOhsJyrSwF76s", sourceLocation.coordinate.latitude,  sourceLocation.coordinate.longitude, destinationLocation.coordinate.latitude,  destinationLocation.coordinate.longitude];
+    
+    NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Url: %@", url);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        GMSMutablePath *path = [GMSMutablePath path];
+        
+        NSError *error = nil;
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        
+        NSArray *routes = [result objectForKey:@"routes"];
+        
+        NSDictionary *firstRoute = [routes objectAtIndex:0];
+        
+        NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
+        
+        NSArray *steps = [leg objectForKey:@"steps"];
+        
+        int stepIndex = 0;
+        
+        CLLocationCoordinate2D stepCoordinates[1  + [steps count] + 1];
+        
+        for (NSDictionary *step in steps) {
+            
+            NSDictionary *start_location = [step objectForKey:@"start_location"];
+            stepCoordinates[++stepIndex] = [self coordinateWithLocation:start_location];
+            [path addCoordinate:[self coordinateWithLocation:start_location]];
+            
+            NSString *polyLinePoints = [[step objectForKey:@"polyline"] objectForKey:@"points"];
+            GMSPath *polyLinePath = [GMSPath pathFromEncodedPath:polyLinePoints];
+            for (int p=0; p<polyLinePath.count; p++) {
+                [path addCoordinate:[polyLinePath coordinateAtIndex:p]];
+            }
+            
+            
+            if ([steps count] == stepIndex){
+                NSDictionary *end_location = [step objectForKey:@"end_location"];
+                stepCoordinates[++stepIndex] = [self coordinateWithLocation:end_location];
+                [path addCoordinate:[self coordinateWithLocation:end_location]];
+            }
+        }
+        
+        GMSPolyline *polyline = nil;
+        polyline = [GMSPolyline polylineWithPath:path];
+        polyline.strokeColor = [UIColor grayColor];
+        polyline.strokeWidth = 3.f;
+        polyline.map = mapView_;
+    }];
+}
+
++ (CLLocationCoordinate2D)coordinateWithLocation:(NSDictionary*)location
+{
+    double latitude = [[location objectForKey:@"lat"] doubleValue];
+    double longitude = [[location objectForKey:@"lng"] doubleValue];
+    
+    return CLLocationCoordinate2DMake(latitude, longitude);
 }
 @end

@@ -45,7 +45,7 @@
     //
     if (_leagueMenu == nil)
     {
-        _leagueMenu = [[NSArray alloc] initWithObjects:@"WSL1", @"WSL2", @"WPL: Nothern Division", @"WPL: Southern Division",@"Welsh Premier League", nil];
+        _leagueMenu = [[NSArray alloc] initWithObjects:@"Welsh Premier League",@"Scottish Premier League", nil];
     }
     
     return _leagueMenu;

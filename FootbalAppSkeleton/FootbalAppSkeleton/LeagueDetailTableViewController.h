@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LeagueCustomView.h"
 #import "LeagueWales.h"
+#import "LeagueScotland.h"
 
 @interface LeagueDetailTableViewController : UITableViewController
 @property(weak, nonatomic) NSString *leagueSelected;

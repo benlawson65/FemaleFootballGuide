@@ -37,18 +37,26 @@
     
     expandedIndexPaths = [[NSMutableArray alloc] init];
     NSString *returnedDataWales = [[NSString alloc] init];
+    NSString *returnedDataScotland = [[NSString alloc] init];
     expandedCellFound = FALSE;
     firstLoad = TRUE;
     BOOL b = NO;
     cellsizeStatus = [[NSMutableArray alloc] initWithObjects:
                       [NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b],[NSNumber numberWithBool:b], nil];
+    if([leagueSelected isEqualToString:@"Welsh Premier League"]){
+        //retrieve data from api
+        returnedDataWales = [LeagueWales getDataFromWales];
     
-    //retrieve data from api
-    returnedDataWales = [LeagueWales getDataFromWales];
-    
-    //formate data and put it in fixtures object
-    [LeagueWales formatData:returnedDataWales];
-    
+        //formate data and put it in fixtures object
+        [LeagueWales formatData:returnedDataWales];
+    }
+    if([leagueSelected isEqualToString:@"Scottish Premier League"]){
+        //retrieve data from api
+        returnedDataScotland = [LeagueScotland getDataFromScotland];
+        
+        //formate data and put it in fixtures object
+        [LeagueScotland formatData:returnedDataScotland];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -69,12 +77,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if([leagueSelected isEqualToString:@"WPL: Southern Division"]){
-        NSArray *returnedFixtures = [LeagueWales getAllLeagueTeamsWales];
-        return returnedFixtures.count;
-    }
-    if([leagueSelected isEqualToString:@"WPL: Northern Division"]){
-        NSArray *returnedFixtures = [LeagueWales getAllLeagueTeamsWales];
+    if([leagueSelected isEqualToString:@"Scottish Premier League"]){
+        NSArray *returnedFixtures = [LeagueScotland getAllLeagueTeamsScotland];
         return returnedFixtures.count;
     }
     if([leagueSelected isEqualToString:@"Welsh Premier League"]){
@@ -98,32 +102,84 @@
         cell = [nib objectAtIndex:0];
     }
     
-    if ([leagueSelected isEqualToString:@"WPL: Southern Division"]){
+    if ([leagueSelected isEqualToString:@"Scottish Premier League"]){
         //set cell text to data
-        NSArray *returnedFixtures = [LeagueWales getAllLeagueTeamsWales];
-        LeagueWales *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+        NSArray *returnedLeague = [LeagueScotland getAllLeagueTeamsScotland];
+        LeagueScotland *currentLeague = [returnedLeague objectAtIndex:indexPath.row];
         
-        cell.leagueTeamName.text = currentFixture.team;
-        cell.leaguePoints.text = currentFixture.points;
-        cell.leagueGD.text = currentFixture.goalDifference;
-        cell.leagueWins.text = currentFixture.wins;
-        cell.leagueDraws.text = currentFixture.draws;
-        cell.leagueRank.text = currentFixture.index;
-        cell.leagueLosees.text = currentFixture.losses;
-    }
-    if ([leagueSelected isEqualToString:@"WPL: Northern Division"]){
-        //set cell text to data
-        NSArray *returnedFixtures = [LeagueWales getAllLeagueTeamsWales];
-        LeagueWales *currentFixture = [returnedFixtures objectAtIndex:indexPath.row];
+        if(![[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+            // [self delayedMethodExpand:@[tableView, indexPath]];
+            cell.leagueWins.hidden = YES;
+            cell.leagueDraws.hidden = YES;
+            cell.leagueLosees.hidden = YES;
+            cell.leagueGD.hidden = YES;
+            cell.leaguePoints.hidden = YES;
+            cell.gdTitle.hidden = YES;
+            cell.ptsTitle.hidden = YES;
+            cell.winsTitle.hidden = YES;
+            cell.lossesTitle.hidden = YES;
+            cell.drawsTitle.hidden = YES;
+            NSLog(@"%ld",(long)indexPath.row);
+        }
+        else{
+            //  [self minimizeDetails:@[indexPath, tableView]];
+            
+            cell.leagueGD.hidden = NO;
+            cell.gdTitle.hidden = NO;
+            cell.ptsTitle.hidden = NO;
+            cell.leaguePoints.hidden = NO;
+            cell.leagueDraws.hidden = NO;
+            cell.leagueWins.hidden = NO;
+            cell.leagueLosees.hidden = NO;
+            cell.lossesTitle.hidden = NO;
+            cell.winsTitle.hidden = NO;
+            cell.drawsTitle.hidden = NO;
+        }
         
-        cell.leagueTeamName.text = currentFixture.team;
-        cell.leaguePoints.text = currentFixture.points;
-        cell.leagueGD.text = currentFixture.goalDifference;
-        cell.leagueWins.text = currentFixture.wins;
-        cell.leagueDraws.text = currentFixture.draws;
-        cell.leagueRank.text = currentFixture.index;
-        cell.leagueLosees.text = currentFixture.losses;
+        
+        cell.leagueTeamName.text = currentLeague.team;
+        cell.leaguePoints.text = currentLeague.points;
+        cell.leagueGD.text = currentLeague.goalDifference;
+        cell.leagueWins.text = currentLeague.wins;
+        cell.leagueDraws.text = currentLeague.draws;
+        cell.leagueRank.text = currentLeague.index;
+        cell.leagueLosees.text = currentLeague.losses;
+        NSLog(firstLoad ? @"Yes" : @"No");
+        
+        if(firstLoad){
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.leagueWins.hidden = YES;
+            cell.leagueDraws.hidden = YES;
+            cell.leagueLosees.hidden = YES;
+            cell.leagueGD.hidden = YES;
+            cell.leaguePoints.hidden = YES;
+            cell.gdTitle.hidden = YES;
+            cell.ptsTitle.hidden = YES;
+            cell.winsTitle.hidden = YES;
+            cell.lossesTitle.hidden = YES;
+            cell.drawsTitle.hidden = YES;
+            
+            //if just set last cell on first load of view controller set firstLoad to false
+            if([returnedLeague count] - 1 == indexPath.row){
+                firstLoad = FALSE;
+            }
+            /*
+             NSInteger i = 0;
+             expandedCellFound = FALSE;
+             for(i = 0;i < [expandedIndexPaths count]; i++){
+             if([indexPath compare:[expandedIndexPaths objectAtIndex:i]] == NSOrderedSame){
+             [self delayedMethodExpand:@[tableView, indexPath]];
+             expandedCellFound = TRUE;
+             }
+             }
+             if(!expandedCellFound){
+             [self minimizeDetails:@[indexPath, tableView]];
+             }*/
+            
+            
+        }
     }
+    
     if ([leagueSelected isEqualToString:@"Welsh Premier League"]){
         //set cell text to data
         NSArray *returnedLeague = [LeagueWales getAllLeagueTeamsWales];

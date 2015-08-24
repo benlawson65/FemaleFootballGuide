@@ -28,7 +28,7 @@
                         <constraint firstAttribute="width" secondItem="23I-mr-1OP" secondAttribute="height" multiplier="181:25" id="E9b-nD-pBx"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="     Leagues" image="Football 2-50 (1).png">
+                    <state key="normal" title="     Leagues" image="Football2-50(1).png">
                         <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -143,8 +143,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Football 2-50 (1).png" width="50" height="50"/>
         <image name="Football-50.png" width="50" height="50"/>
+        <image name="Football2-50(1).png" width="50" height="50"/>
         <image name="Wi-Fi-50.png" width="50" height="50"/>
         <image name="background.jpg" width="554" height="984"/>
     </resources>
