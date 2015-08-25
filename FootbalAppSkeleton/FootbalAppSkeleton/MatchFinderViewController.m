@@ -21,18 +21,21 @@
 
 @implementation MatchFinderViewController{
     GMSMapView *mapView_;
+    CLLocationManager *locationManager;
     
 
     
 }
-@synthesize locationManager;
+//@synthesize locationManager;
 
 static NSString* snippetUpdate;
 static BOOL internetCheckFinished;
+@synthesize noLocationFound;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self testInternetConnection];
+    noLocationFound = TRUE;
     // Do any additional setup after loading the view from its nib.
 
     //[self testInternetConnection];
@@ -72,68 +75,32 @@ static BOOL internetCheckFinished;
         
         //shows loading label on the page while view is loading
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
-        hud.labelText = @"Loading Match Finder...";
+        hud.labelText = @"Finding Location...";
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
             locationManager = [[CLLocationManager alloc] init];
+            locationManager.delegate = weakSelf;
             locationManager.distanceFilter = kCLDistanceFilterNone;
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+            [locationManager requestWhenInUseAuthorization];
+            [locationManager startMonitoringSignificantLocationChanges];
             [locationManager startUpdatingLocation];
-            [self setLocation];
+         //   [self setLocation];
             
             NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
             
             NSLog(@"location: %@", theLocation);
-            while(locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
-                [self deviceLocation];
-            }
+            //while(locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
+            //    [self deviceLocation];
+            //}
             
-            [self setLocation];
+           // [self setLocation];
             // [self performSelector:@selector(deviceLocation) withObject:nil afterDelay:5 ];
             
             
             
-            Location *locationObj = [[Location alloc] init];
-            [locationObj getAllFixtures];
-            [locationObj cycleThroughFixtures];
-            
-            NSMutableArray *returnedFixtures = [Location returnAllFixtures];
-            NSInteger i = 0;
-            
-            
-            
-            for (i = 0; i < [returnedFixtures count]; i++){
-                
-                locationObj = [returnedFixtures objectAtIndex:i];
-                
-                NSString *snippet = locationObj.snippet;
-                snippetUpdate = snippet;
-                
-                
-                
-                CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
-                
-                if (location.longitude == 0.000000 && location.latitude == 0.000000){
-                    GMSMarker *testMarker = [[GMSMarker alloc] init];
-                    location.longitude = location.longitude + i;
-                    testMarker.position = location;
-                    testMarker.title = locationObj.venue;
-                    testMarker.snippet = snippet;
-                    testMarker.map = mapView_;
-                    
-                }
-                else if(!(location.longitude == 0.000001 && location.latitude == 0.000001)){
-                    GMSMarker *testMarker = [[GMSMarker alloc] init];
-                    testMarker.position = location;
-                    testMarker.title = locationObj.venue;
-                    testMarker.snippet = snippet;
-                    testMarker.map = mapView_;
-                }
-                
-                
-            }
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
             
         });
         
@@ -174,6 +141,99 @@ static BOOL internetCheckFinished;
     };
     
     [internetReachableFoo startNotifier];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location Not Available"
+                                                                             message:@"Please allow the app to use location"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    //ViewController myViewController = [[ViewController alloc] init];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action){
+                                                         
+                                                         //[weakSelf.navigationController popToViewController:myViewController animated:YES];
+                                                         [self.tabBarController setSelectedIndex:0];
+                                                         //[weakSelf.]
+                                                         //[weakSelf presentViewController:myViewController animated:YES completion:nil];
+                                                     }]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    
+    //[alertController dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController pushViewController:myViewController animated:YES];
+    [self presentViewController:alertController animated:YES completion:nil];
+    //[[self navigationController] pushViewController:myViewController animated:YES];
+    noLocationFound = TRUE;
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [locationManager stopUpdatingLocation];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading Match Finder...";
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+        
+    GMSCameraPosition* camera =
+    [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude zoom: 8];
+    //      [GMSCameraPosition cameraWithTarget: currentPosition zoom: 10];
+    mapView_.camera = camera;
+    
+    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView_.myLocationEnabled = YES;
+    
+    Location *locationObj = [[Location alloc] init];
+    [locationObj getAllFixtures];
+    [locationObj cycleThroughFixtures];
+    
+    NSMutableArray *returnedFixtures = [Location returnAllFixtures];
+    NSInteger i = 0;
+    
+    
+    
+    for (i = 0; i < [returnedFixtures count]; i++){
+        
+        locationObj = [returnedFixtures objectAtIndex:i];
+        
+        NSString *snippet = locationObj.snippet;
+        snippetUpdate = snippet;
+        
+        
+        
+        CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
+        
+        if (location.longitude == 0.000000 && location.latitude == 0.000000){
+            GMSMarker *testMarker = [[GMSMarker alloc] init];
+            location.longitude = location.longitude + i;
+            testMarker.position = location;
+            testMarker.title = locationObj.venue;
+            testMarker.snippet = snippet;
+            testMarker.map = mapView_;
+            
+        }
+        else if(!(location.longitude == 0.000001 && location.latitude == 0.000001)){
+            GMSMarker *testMarker = [[GMSMarker alloc] init];
+            testMarker.position = location;
+            testMarker.title = locationObj.venue;
+            testMarker.snippet = snippet;
+            testMarker.map = mapView_;
+        }
+        
+        
+    }
+
+    
+    self.view = mapView_;
+    mapView_.delegate = self;
+    noLocationFound = YES;
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+    });
+    
 }
 
 

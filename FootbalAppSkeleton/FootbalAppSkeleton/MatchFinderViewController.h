@@ -11,13 +11,15 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "Location.h"
 
-@interface MatchFinderViewController : UIViewController <GMSMapViewDelegate>
-@property(nonatomic,retain) CLLocationManager *locationManager;
+@interface MatchFinderViewController : UIViewController <GMSMapViewDelegate, CLLocationManagerDelegate>
+//@property(nonatomic,retain) CLLocationManager *locationManager;
 - (void)deviceLocation;
 -(void)setLocation;
 -(BOOL) mapView:(GMSMapView *) mapView didTapMarker:(GMSMarker *)marker;
 //- (void) mapView:(GMSMapView *) mapView
 //didTapInfoWindowOfMarker:(GMSMarker *) marker;
 -(void)noInternetAlertView;
+
+@property BOOL noLocationFound;
 
 @end

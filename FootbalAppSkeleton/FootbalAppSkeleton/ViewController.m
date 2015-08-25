@@ -48,6 +48,7 @@
     if([model isEqualToString:@"iPhone 4"] || [model isEqualToString:@"iPad"]){
         extraText.hidden = YES;
     }
+
     
     //set navigation bar to translucent
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -88,6 +89,12 @@
     if([platform isEqualToString:@"iPad1,1"]){
         return @"iPad";
     }
+    if([platform isEqualToString:@"iPad1,2"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad1,3"]){
+        return @"iPad";
+    }
     if([platform isEqualToString:@"iPad2,1"]){
         return @"iPad";
     }
@@ -97,7 +104,13 @@
     if([platform isEqualToString:@"iPad2,3"]){
         return @"iPad";
     }
+    if([platform isEqualToString:@"iPad2,4"]){
+        return @"iPad";
+    }
     if([platform isEqualToString:@"iPad2,5"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad2,6"]){
         return @"iPad";
     }
     if([platform isEqualToString:@"iPad3,1"]){
@@ -107,6 +120,9 @@
         return @"iPad";
     }
     if([platform isEqualToString:@"iPad3,3"]){
+        return @"iPad";
+    }
+    if([platform isEqualToString:@"iPad3,4"]){
         return @"iPad";
     }
 
