@@ -9,8 +9,13 @@
 #import "MatchFinderViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MBProgressHUD.h"
+#import "Reachability.h"
+#import "ViewController.h"
 
-@interface MatchFinderViewController ()
+@interface MatchFinderViewController (){
+    Reachability *internetReachableFoo;
+
+}
 
 @end
 
@@ -23,83 +28,153 @@
 @synthesize locationManager;
 
 static NSString* snippetUpdate;
+static BOOL internetCheckFinished;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self testInternetConnection];
     // Do any additional setup after loading the view from its nib.
-    
+
+    //[self testInternetConnection];
     //init array for holding list of polylines for directions to fixture
-    [Location initPolyLines];
-    
-        //shows loading label on the page while view is loading
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Loading Match Finder...";
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-       
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
-        [locationManager startUpdatingLocation];
-        [self setLocation];
-        
-        NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
-        
-        NSLog(@"location: %@", theLocation);
-        while(locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
-            [self deviceLocation];
-        }
-        
-        [self setLocation];
-        // [self performSelector:@selector(deviceLocation) withObject:nil afterDelay:5 ];
-        
-        Location *locationObj = [[Location alloc] init];
-        [locationObj getAllFixtures];
-        [locationObj cycleThroughFixtures];
-        
-        NSMutableArray *returnedFixtures = [Location returnAllFixtures];
-        NSInteger i = 0;
-        
-        
-        
-        for (i = 0; i < [returnedFixtures count]; i++){
-            
-            locationObj = [returnedFixtures objectAtIndex:i];
-            
-            NSString *snippet = locationObj.snippet;
-            snippetUpdate = snippet;
-            
-            
-            
-            CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
-            
-            if (location.longitude == 0.000000 && location.latitude == 0.000000){
-                GMSMarker *testMarker = [[GMSMarker alloc] init];
-                location.longitude = location.longitude + i;
-                testMarker.position = location;
-                testMarker.title = locationObj.venue;
-                testMarker.snippet = snippet;
-                testMarker.map = mapView_;
-                
-            }
-            else if(!(location.longitude == 0.000001 && location.latitude == 0.000001)){
-                GMSMarker *testMarker = [[GMSMarker alloc] init];
-                testMarker.position = location;
-                testMarker.title = locationObj.venue;
-                testMarker.snippet = snippet;
-                testMarker.map = mapView_;
-            }
-            
-            
-        }
+    }
+//-(void)viewWillAppear:(BOOL)animated{
+//    internetCheckFinished = FALSE;
+ //   [self testInternetConnection];
+//}
 
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-    });
-
+-(void)noInternetAlertView{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
+                                                                             message:@"Please connect to the internet or try again in a minute"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    //ViewController myViewController = [[ViewController alloc] init];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action){
+                                                         [self.navigationController popViewControllerAnimated:YES];
+                                                     }]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    __weak typeof(self) weakSelf = self;
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+       dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        [Location initPolyLines];
+        
+        //shows loading label on the page while view is loading
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+        hud.labelText = @"Loading Match Finder...";
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            locationManager = [[CLLocationManager alloc] init];
+            locationManager.distanceFilter = kCLDistanceFilterNone;
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+            [locationManager startUpdatingLocation];
+            [self setLocation];
+            
+            NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
+            
+            NSLog(@"location: %@", theLocation);
+            while(locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
+                [self deviceLocation];
+            }
+            
+            [self setLocation];
+            // [self performSelector:@selector(deviceLocation) withObject:nil afterDelay:5 ];
+            
+            
+            
+            Location *locationObj = [[Location alloc] init];
+            [locationObj getAllFixtures];
+            [locationObj cycleThroughFixtures];
+            
+            NSMutableArray *returnedFixtures = [Location returnAllFixtures];
+            NSInteger i = 0;
+            
+            
+            
+            for (i = 0; i < [returnedFixtures count]; i++){
+                
+                locationObj = [returnedFixtures objectAtIndex:i];
+                
+                NSString *snippet = locationObj.snippet;
+                snippetUpdate = snippet;
+                
+                
+                
+                CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
+                
+                if (location.longitude == 0.000000 && location.latitude == 0.000000){
+                    GMSMarker *testMarker = [[GMSMarker alloc] init];
+                    location.longitude = location.longitude + i;
+                    testMarker.position = location;
+                    testMarker.title = locationObj.venue;
+                    testMarker.snippet = snippet;
+                    testMarker.map = mapView_;
+                    
+                }
+                else if(!(location.longitude == 0.000001 && location.latitude == 0.000001)){
+                    GMSMarker *testMarker = [[GMSMarker alloc] init];
+                    testMarker.position = location;
+                    testMarker.title = locationObj.venue;
+                    testMarker.snippet = snippet;
+                    testMarker.map = mapView_;
+                }
+                
+                
+            }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+        });
+        
+        
+        
+
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
+                                                                                     message:@"Please connect to the internet or try again in a minute"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            //ViewController myViewController = [[ViewController alloc] init];
+            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action){
+
+                                                                 //[weakSelf.navigationController popToViewController:myViewController animated:YES];
+                                                                 [weakSelf.tabBarController setSelectedIndex:0];
+                                                                 //[weakSelf.]
+                                                                 //[weakSelf presentViewController:myViewController animated:YES completion:nil];
+                                                             }]; //You can use a block here to handle a press on this button
+            [alertController addAction:actionOk];
+            
+            //[alertController dismissViewControllerAnimated:YES completion:nil];
+            //[self.navigationController pushViewController:myViewController animated:YES];
+            [weakSelf presentViewController:alertController animated:YES completion:nil];
+            //[[self navigationController] pushViewController:myViewController animated:YES];
+            
+        });
+        internetCheckFinished = TRUE;
+    };
+    
+    [internetReachableFoo startNotifier];
+}
 
 
 -(void)setLocation {

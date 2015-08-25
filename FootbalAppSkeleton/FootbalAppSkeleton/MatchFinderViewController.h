@@ -16,7 +16,8 @@
 - (void)deviceLocation;
 -(void)setLocation;
 -(BOOL) mapView:(GMSMapView *) mapView didTapMarker:(GMSMarker *)marker;
-- (void) mapView:(GMSMapView *) mapView
-didTapInfoWindowOfMarker:(GMSMarker *) marker;
+//- (void) mapView:(GMSMapView *) mapView
+//didTapInfoWindowOfMarker:(GMSMarker *) marker;
+-(void)noInternetAlertView;
 
 @end

@@ -260,8 +260,22 @@
         //put this in expand and minimize methods!!!
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
+    //
+   // if(!firstLoad){
+        if(![[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+            cell.backgroundColor = [UIColor colorWithWhite:0/255 alpha:0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        else{
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.5];
+        }
+   // }
+   // }
+   //
+    //}
     
-    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

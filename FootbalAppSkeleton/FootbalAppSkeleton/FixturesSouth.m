@@ -7,6 +7,7 @@
 //
 
 #import "FixturesSouth.h"
+#import "MatchFinderViewController.h"
 
 @implementation FixturesSouth
 
@@ -36,6 +37,8 @@ static NSMutableArray *allFixturesSouth;
     
     if([responseCode statusCode] != 200){
         NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
+        MatchFinderViewController *obj = [[MatchFinderViewController alloc] init];
+        [obj noInternetAlertView];
         return nil;
     }
     
@@ -44,68 +47,71 @@ static NSMutableArray *allFixturesSouth;
 
 + (void) formatData: (NSString*) returnedDataSouth{
     NSError *error =  nil;
-    
+
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataSouth dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-    
-    NSDictionary *userinfo=[json valueForKey:@"results"];
-    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
-    NSDictionary *singleGameDetails;
-    NSDictionary *user1;
-    NSInteger i = 0;
-    NSString *skey;
-    
-    [self resetFixturesSouth];
-    
-    if(userinfo != nil){
-        for( i = 0; i < [detailedUserInfo count]; i++ ) {
-            
-            skey = [NSString stringWithFormat:@"%ld",(long)i];
-            
-            singleGameDetails = [detailedUserInfo objectAtIndex:i];
-            
-            FixturesSouth * newFixturesSouth = [[FixturesSouth alloc] init];
-            
-            user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesSouth.homeTeam = [user1 valueForKey:@"text"];
-            
-            user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesSouth.awayTeam = [user1 valueForKey:@"text"];
-            
-            user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesSouth.timeDate = [user1 valueForKey:@"text"];
-            
-            user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesSouth.venue = [user1 valueForKey:@"text"];
-            
-            newFixturesSouth.index = [NSString stringWithFormat:@"%ld", (long)i];
-            
-            //format date to check its in future
-            NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
-            
-            //[dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
-            [dateFormatFixture setDateFormat:@"dd-MM-yy HH:mm"];
-            [dateFormatFixture setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-            
-            //[dateFormatFixture setDateFormat:@"K:mm a"];
-            
-            NSDate *fixtureDate = [[NSDate alloc] init];
-            fixtureDate = [dateFormatFixture dateFromString:newFixturesSouth.timeDate];
-            
-            Location *obj = [[Location alloc] init];
-            BOOL dateCheck = [obj compareDates:fixtureDate];
-            
-            //if date is in future, add fixture
-            if(dateCheck){
+        
+        NSDictionary *userinfo=[json valueForKey:@"results"];
+        NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+        NSDictionary *singleGameDetails;
+        NSDictionary *user1;
+        NSInteger i = 0;
+        NSString *skey;
+        
+        [self resetFixturesSouth];
+        
+        if(userinfo != nil){
+            for( i = 0; i < [detailedUserInfo count]; i++ ) {
                 
-                [FixturesSouth addFixturesSouth:newFixturesSouth];
+                skey = [NSString stringWithFormat:@"%ld",(long)i];
+                
+                singleGameDetails = [detailedUserInfo objectAtIndex:i];
+                
+                FixturesSouth * newFixturesSouth = [[FixturesSouth alloc] init];
+                
+                user1 = [singleGameDetails objectForKey:@"Home Team"];
+                newFixturesSouth.homeTeam = [user1 valueForKey:@"text"];
+                
+                user1 = [singleGameDetails objectForKey:@"Away Team"];
+                newFixturesSouth.awayTeam = [user1 valueForKey:@"text"];
+                
+                user1 = [singleGameDetails objectForKey:@"Date/Time"];
+                newFixturesSouth.timeDate = [user1 valueForKey:@"text"];
+                
+                user1 = [singleGameDetails objectForKey:@"Venue"];
+                newFixturesSouth.venue = [user1 valueForKey:@"text"];
+                
+                newFixturesSouth.index = [NSString stringWithFormat:@"%ld", (long)i];
+                
+                //format date to check its in future
+                NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
+                
+                //[dateFormatFixture setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
+                [dateFormatFixture setDateFormat:@"dd-MM-yy HH:mm"];
+                [dateFormatFixture setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                
+                //[dateFormatFixture setDateFormat:@"K:mm a"];
+                
+                NSDate *fixtureDate = [[NSDate alloc] init];
+                fixtureDate = [dateFormatFixture dateFromString:newFixturesSouth.timeDate];
+                
+                Location *obj = [[Location alloc] init];
+                BOOL dateCheck = [obj compareDates:fixtureDate];
+                
+                //if date is in future, add fixture
+                if(dateCheck){
+                    
+                    [FixturesSouth addFixturesSouth:newFixturesSouth];
+                }
+                
+                
             }
-            
-            
         }
-    }
-    else{
-        NSLog(@"no data found in json results");
-    }
-}
+        else{
+            NSLog(@"no data found in json results");
+        }
+
+
+
+   }
 
 @end

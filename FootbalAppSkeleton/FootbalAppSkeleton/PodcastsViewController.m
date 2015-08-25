@@ -8,8 +8,11 @@
 
 #import "PodcastsViewController.h"
 #import "MBProgressHUD.h"
+#import "Reachability.h"
 
-@interface PodcastsViewController ()
+@interface PodcastsViewController (){
+    Reachability *internetReachableFoo;
+}
 
 @end
 
@@ -17,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self testInternetConnection];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
@@ -38,6 +41,48 @@
     });
     
 }
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    __weak typeof(self) weakSelf = self;
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        //dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        //});
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        //dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
+                                                                                     message:@"Please connect to the internet or try again in a minute"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action){
+                                                                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                                             }]; //You can use a block here to handle a press on this button
+            [alertController addAction:actionOk];
+            
+            //[alertController dismissViewControllerAnimated:YES completion:nil];
+            //[self.navigationController pushViewController:myViewController animated:YES];
+            [weakSelf presentViewController:alertController animated:YES completion:nil];
+            //[[self navigationController] pushViewController:myViewController animated:YES];
+            
+       // });
+    };
+    
+    [internetReachableFoo startNotifier];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

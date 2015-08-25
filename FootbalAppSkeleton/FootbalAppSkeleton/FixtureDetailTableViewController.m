@@ -253,8 +253,12 @@
     }
     [self.tableView reloadData];
 }
--(void)searchBarTextDidEndEditing:(UISearchBar *)aSearchBar{
-    [aSearchBar resignFirstResponder];
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
