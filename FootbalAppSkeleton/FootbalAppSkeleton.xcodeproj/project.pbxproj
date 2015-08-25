@@ -79,6 +79,7 @@
 		50CB6A991B8BA63D0089F967 /* FixturesSouthEast.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB6A981B8BA63D0089F967 /* FixturesSouthEast.m */; };
 		50CB6A9C1B8BA6580089F967 /* FixturesSouthWest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB6A9B1B8BA6580089F967 /* FixturesSouthWest.m */; };
 		50CB6A9F1B8BA67D0089F967 /* FixturesMidlands.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB6A9E1B8BA67D0089F967 /* FixturesMidlands.m */; };
+		50CB6AA21B8C5BE60089F967 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB6AA11B8C5BE60089F967 /* Reachability.m */; };
 		CAA0FFD3BA285F754D670913 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721F5A1BD8D490C162AB90FE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +204,8 @@
 		50CB6A9B1B8BA6580089F967 /* FixturesSouthWest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesSouthWest.m; sourceTree = "<group>"; };
 		50CB6A9D1B8BA67D0089F967 /* FixturesMidlands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesMidlands.h; sourceTree = "<group>"; };
 		50CB6A9E1B8BA67D0089F967 /* FixturesMidlands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesMidlands.m; sourceTree = "<group>"; };
+		50CB6AA01B8C5BE60089F967 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		50CB6AA11B8C5BE60089F967 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		721F5A1BD8D490C162AB90FE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE62CA63292495AB9C35CCAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC3BA648CFCDD732ED0A9E09 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -295,6 +298,10 @@
 				50C2108A1B6F590A007DF45F /* Leagues */,
 				506A66F01B62930900BF7ECF /* AppDelegate.h */,
 				506A66F11B62930900BF7ECF /* AppDelegate.m */,
+				50CB6AA01B8C5BE60089F967 /* Reachability.h */,
+				50CB6AA11B8C5BE60089F967 /* Reachability.m */,
+				506515401B8282A2001E4007 /* MBProgressHUD.h */,
+				506515411B8282A3001E4007 /* MBProgressHUD.m */,
 				506A67111B62937A00BF7ECF /* TabBarController.h */,
 				506A67121B62937A00BF7ECF /* TabBarController.m */,
 				506A67131B62937A00BF7ECF /* TabBarController.xib */,
@@ -358,8 +365,6 @@
 		50C2108A1B6F590A007DF45F /* Leagues */ = {
 			isa = PBXGroup;
 			children = (
-				506515401B8282A2001E4007 /* MBProgressHUD.h */,
-				506515411B8282A3001E4007 /* MBProgressHUD.m */,
 				50C210531B667F71007DF45F /* LeagueMenuTableViewController.h */,
 				50C210541B667F71007DF45F /* LeagueMenuTableViewController.m */,
 				50C210551B667F71007DF45F /* LeagueMenuTableViewController.xib */,
@@ -645,6 +650,7 @@
 				50CB6A961B8BA6210089F967 /* FixturesNorthernOne.m in Sources */,
 				50C210761B6904F2007DF45F /* FixtureCustomCellView.m in Sources */,
 				50C7D9A41B765F4400D59001 /* RetrieveTeamPlayersPremierLeague.m in Sources */,
+				50CB6AA21B8C5BE60089F967 /* Reachability.m in Sources */,
 				50C210791B690D7E007DF45F /* FixturesSouth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

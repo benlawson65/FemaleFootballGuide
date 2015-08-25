@@ -8,8 +8,14 @@
 
 #import "FixturesTableViewController.h"
 #import "FixtureDetailTableViewController.h"
+#import "Reachability.h"
+#import "ViewController.h"
 
-@interface FixturesTableViewController ()
+// Add this to the interface in the .m file of your view controller
+
+@interface FixturesTableViewController (){
+    Reachability *internetReachableFoo;
+}
 
 @end
 
@@ -35,7 +41,54 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
      fixtureMenu = [self populateFixtureMenu];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [self testInternetConnection];
+}
+
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
+                                                                                     message:@"Please connect to the internet and try again"
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+            ViewController *myViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+
+            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action){
+                                       [self.navigationController popToRootViewControllerAnimated:YES];
+                                                             }]; //You can use a block here to handle a press on this button
+            [alertController addAction:actionOk];
+            
+            //[alertController dismissViewControllerAnimated:YES completion:nil];
+            //[self.navigationController pushViewController:myViewController animated:YES];
+            //[alertController presentViewController:myNavController animated:YES completion:nil];
+            //[[self navigationController] pushViewController:myViewController animated:YES];
+
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (NSArray *)populateFixtureMenu
