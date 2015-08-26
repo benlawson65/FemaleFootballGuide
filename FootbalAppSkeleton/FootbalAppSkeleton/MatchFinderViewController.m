@@ -31,9 +31,13 @@
 static NSString* snippetUpdate;
 static BOOL internetCheckFinished;
 @synthesize noLocationFound;
+static BOOL locationWorks;
+static BOOL firstLoad;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    firstLoad = TRUE;
+    locationWorks = FALSE;
     [self testInternetConnection];
     noLocationFound = TRUE;
     // Do any additional setup after loading the view from its nib.
@@ -41,10 +45,16 @@ static BOOL internetCheckFinished;
     //[self testInternetConnection];
     //init array for holding list of polylines for directions to fixture
     }
-//-(void)viewWillAppear:(BOOL)animated{
-//    internetCheckFinished = FALSE;
- //   [self testInternetConnection];
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    if(!firstLoad){
+        if(!locationWorks){
+            [self testInternetConnection];
+        }
+    }
+}
+
+
 
 -(void)noInternetAlertView{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
@@ -54,6 +64,7 @@ static BOOL internetCheckFinished;
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action){
+                                                         locationWorks = FALSE;
                                                          [self.navigationController popViewControllerAnimated:YES];
                                                      }]; //You can use a block here to handle a press on this button
     [alertController addAction:actionOk];
@@ -123,9 +134,10 @@ static BOOL internetCheckFinished;
             UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * action){
-
+                                                                locationWorks = FALSE;
                                                                  //[weakSelf.navigationController popToViewController:myViewController animated:YES];
                                                                  [weakSelf.tabBarController setSelectedIndex:0];
+                                                                 firstLoad = FALSE;
                                                                  //[weakSelf.]
                                                                  //[weakSelf presentViewController:myViewController animated:YES completion:nil];
                                                              }]; //You can use a block here to handle a press on this button
@@ -153,7 +165,8 @@ static BOOL internetCheckFinished;
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action){
-                                                         
+                                                         firstLoad = FALSE;
+                                                         locationWorks = FALSE;
                                                          //[weakSelf.navigationController popToViewController:myViewController animated:YES];
                                                          [self.tabBarController setSelectedIndex:0];
                                                          //[weakSelf.]
@@ -229,6 +242,8 @@ static BOOL internetCheckFinished;
     self.view = mapView_;
     mapView_.delegate = self;
     noLocationFound = YES;
+        locationWorks = TRUE;
+        firstLoad = FALSE;
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -270,9 +285,11 @@ didTapMarker:(GMSMarker *)marker{
 
             NSString *durationLocation = [Location getDuration];
             NSString *distanceLocation = [Location getDistance];
-            NSString *snippetUpdateTemp = [NSString stringWithFormat:@"%@ (%@ %@)",snippetUpdate,distanceLocation,durationLocation];
+            //NSString *snippetUpdateTemp = [NSString stringWithFormat:@"%@ (%@ %@)",snippetUpdate,distanceLocation,durationLocation];
             
-            marker.snippet = snippetUpdateTemp;
+        NSString *currentSnippet = [NSString stringWithFormat:@"%@ (%@ %@)",marker.snippet,distanceLocation,durationLocation];
+
+        marker.snippet = currentSnippet;
     
     
     

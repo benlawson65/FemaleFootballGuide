@@ -39,7 +39,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     //run method to get device model
     NSString *model = [self platformNiceString];
     NSLog(@"%@", model);

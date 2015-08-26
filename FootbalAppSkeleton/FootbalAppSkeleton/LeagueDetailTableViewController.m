@@ -258,8 +258,9 @@
     }
         
         //put this in expand and minimize methods!!!
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //
    // if(!firstLoad){
         if(![[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){

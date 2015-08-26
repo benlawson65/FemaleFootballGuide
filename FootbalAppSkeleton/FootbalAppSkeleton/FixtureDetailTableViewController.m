@@ -65,7 +65,7 @@
       
 
     }
-    if([fixtureSelected isEqualToString:@"WPL: Northern Division One"]){
+    if([fixtureSelected isEqualToString:@"WPL: Northern One"]){
         NSString *returnedDataNorthernOne = [[NSString alloc] init];
         
         //retrieve data from api
@@ -86,7 +86,7 @@
         
     }
     
-    if([fixtureSelected isEqualToString:@"WPL: South West Division One"]){
+    if([fixtureSelected isEqualToString:@"WPL: South West One"]){
         NSString *returnedDataSouthWest = [[NSString alloc] init];
         
         //retrieve data from api
@@ -107,7 +107,7 @@
         
     }
     
-    if([fixtureSelected isEqualToString:@"WPL: South East Division One"]){
+    if([fixtureSelected isEqualToString:@"WPL: South East One"]){
         NSString *returnedDataSouthEast = [[NSString alloc] init];
         
         //retrieve data from api
@@ -128,7 +128,7 @@
         
     }
     
-    if([fixtureSelected isEqualToString:@"WPL: Midlands Division One"]){
+    if([fixtureSelected isEqualToString:@"WPL: Midlands One"]){
         NSString *returnedDataMidlands = [[NSString alloc] init];
         
         //retrieve data from api
@@ -222,6 +222,26 @@
         NSInteger i = 0;
         for(i = 0; i < arrayAmount; i++){
             FixturesScotland *currentFixture = [returnedFixtures objectAtIndex:i];
+            NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
+            [allTableData addObject:fixtureTitle];
+        }
+        
+        
+    }
+    if([fixtureSelected isEqualToString:@"WPL: Northern Division"]){
+        NSString *returnedDataNorth = [[NSString alloc] init];
+        
+        //retrieve data from api
+        returnedDataNorth = [FixturesNorth getDataFromNorth];
+        
+        //formate data and put it in fixtures object
+        [FixturesNorth formatData:returnedDataNorth];
+        
+        NSArray *returnedFixtures = [FixturesNorth getAllFixturesNorth];
+        NSInteger arrayAmount = [returnedFixtures count];
+        NSInteger i = 0;
+        for(i = 0; i < arrayAmount; i++){
+            FixturesNorth *currentFixture = [returnedFixtures objectAtIndex:i];
             NSString *fixtureTitle = [NSString stringWithFormat:@"%@ VS %@",currentFixture.homeTeam,currentFixture.awayTeam];
             [allTableData addObject:fixtureTitle];
         }
@@ -362,7 +382,7 @@
         }
         
     }
-    if ([fixtureSelected isEqualToString:@"WPL: South East Division One"]){
+    if ([fixtureSelected isEqualToString:@"WPL: South East One"]){
         
         
         //set cell text to data
@@ -395,7 +415,7 @@
         }
     }
         
-    if ([fixtureSelected isEqualToString:@"WPL: South West Division One"]){
+    if ([fixtureSelected isEqualToString:@"WPL: South West One"]){
         
         
         //set cell text to data
@@ -427,7 +447,7 @@
             cell.venue.text = currentFixture.venue;
         }
     }
-    if ([fixtureSelected isEqualToString:@"WPL: Northern Division One"]){
+    if ([fixtureSelected isEqualToString:@"WPL: Northern One"]){
         
         
         //set cell text to data
@@ -460,7 +480,7 @@
         }
     }
     
-    if ([fixtureSelected isEqualToString:@"WPL: Midlands Division One"]){
+    if ([fixtureSelected isEqualToString:@"WPL: Midlands One"]){
         
         
         //set cell text to data

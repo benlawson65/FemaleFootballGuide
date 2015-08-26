@@ -402,10 +402,39 @@ static NSMutableArray *fixtureList;
         //extract duration from json
         NSDictionary *durationObj = [step objectForKey:@"duration"];
         durationTemp = [durationObj valueForKey:@"text"];
-        durationTemp = [durationTemp stringByReplacingOccurrencesOfString:@" mins" withString:@""];
+        NSString *durationTempEdited = [[NSString alloc] init];
+        durationTempEdited = [durationTemp stringByReplacingOccurrencesOfString:@" mins" withString:@""];
+        durationTempEdited = [durationTempEdited stringByReplacingOccurrencesOfString:@" min" withString:@""];
         
+        if([durationTempEdited containsString:@"hour"]){
+            
+            NSArray *splitString = [[NSArray alloc] init];
+            splitString = [durationTempEdited componentsSeparatedByString:@" "];
+            
+            
+            NSString *minutesOfHours = [[NSString alloc] init];
+            minutesOfHours = [splitString objectAtIndex:2];
+            
+            //[durationTempEdited stringByReplacingOccurrencesOfString:@"#number hour " withString:@""];
+            NSNumber *minutesOfHoursNumber = [[NSNumber alloc] init];
+            minutesOfHoursNumber = [f numberFromString:minutesOfHours];
+            int minutesOfHoursInt = [minutesOfHoursNumber intValue];
+        
+        
+            NSString *hour = [[NSString alloc] init];
+            hour = [splitString objectAtIndex:0];
+            //[durationTempEdited stringByReplacingOccurrencesOfString:@" hour #number" withString:@""];
+            NSNumber *hourToMinutes = [[NSNumber alloc] init];
+            hourToMinutes = [f numberFromString:hour];
+            int hoursToMinutesConversion = [hourToMinutes intValue];
+            hoursToMinutesConversion = hoursToMinutesConversion * 60;
+            hoursToMinutesConversion = hoursToMinutesConversion + minutesOfHoursInt;
+            durationTempEdited = [NSString stringWithFormat:@"%d", hoursToMinutesConversion];
+        
+        }
+        NSLog(@"%@",durationTempEdited);
         //convert to number and add to total
-        NSNumber *durationTempNumber = [f numberFromString:durationTemp];
+        NSNumber *durationTempNumber = [f numberFromString:durationTempEdited];
         int durationTempInt = [durationTempNumber intValue];
         int durationTotalInt = [durationNumber intValue];
         durationTotalInt = durationTotalInt + durationTempInt;
