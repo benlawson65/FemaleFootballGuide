@@ -23,6 +23,8 @@
 		502C61D31B7DEC8500772B78 /* fixtureCoordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D01B7DEC8500772B78 /* fixtureCoordinates.json */; };
 		502C61D41B7DEC8500772B78 /* WSL2fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D11B7DEC8500772B78 /* WSL2fixtures.json */; };
 		502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 502C61D21B7DEC8500772B78 /* WSL1fixtures.json */; };
+		502C6E881B8DFB8F0019982F /* ViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E871B8DFB8F0019982F /* ViewController~ipad.xib */; };
+		502C6E8C1B8E124A0019982F /* backgroud.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E8B1B8E124A0019982F /* backgroud.pdf */; };
 		5065152C1B811326001E4007 /* FixturesScotland.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065152B1B811326001E4007 /* FixturesScotland.m */; };
 		506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515321B812AD0001E4007 /* PodcastsViewController.m */; };
 		506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506515331B812AD0001E4007 /* PodcastsViewController.xib */; };
@@ -118,6 +120,8 @@
 		502C61D01B7DEC8500772B78 /* fixtureCoordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fixtureCoordinates.json; sourceTree = "<group>"; };
 		502C61D11B7DEC8500772B78 /* WSL2fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WSL2fixtures.json; sourceTree = "<group>"; };
 		502C61D21B7DEC8500772B78 /* WSL1fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WSL1fixtures.json; sourceTree = "<group>"; };
+		502C6E871B8DFB8F0019982F /* ViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ViewController~ipad.xib"; sourceTree = "<group>"; };
+		502C6E8B1B8E124A0019982F /* backgroud.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = backgroud.pdf; sourceTree = "<group>"; };
 		5065152A1B811326001E4007 /* FixturesScotland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesScotland.h; sourceTree = "<group>"; };
 		5065152B1B811326001E4007 /* FixturesScotland.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesScotland.m; sourceTree = "<group>"; };
 		506515311B812AD0001E4007 /* PodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastsViewController.h; sourceTree = "<group>"; };
@@ -141,7 +145,7 @@
 		506515521B8B1FA6001E4007 /* Wi-Fi-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wi-Fi-50@2x.png"; sourceTree = "<group>"; };
 		506515541B8B1FAF001E4007 /* Football2-50(1)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Football2-50(1)@2x.png"; sourceTree = "<group>"; };
 		506515561B8B1FB5001E4007 /* Football-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Football-50@2x.png"; sourceTree = "<group>"; };
-		506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootbalAppSkeleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		506A66E91B62930900BF7ECF /* The Female Football Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Female Football Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		506A66ED1B62930900BF7ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506A66EE1B62930900BF7ECF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		506A66F01B62930900BF7ECF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -282,7 +286,7 @@
 		506A66EA1B62930900BF7ECF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */,
+				506A66E91B62930900BF7ECF /* The Female Football Guide.app */,
 				506A66FC1B62930900BF7ECF /* FootbalAppSkeletonTests.xctest */,
 			);
 			name = Products;
@@ -311,6 +315,7 @@
 				50C210581B6776F0007DF45F /* ViewController.m */,
 				506A670C1B62932900BF7ECF /* ViewController.h */,
 				506A670E1B62932900BF7ECF /* ViewController.xib */,
+				502C6E871B8DFB8F0019982F /* ViewController~ipad.xib */,
 				50C210661B68C4E6007DF45F /* CustomCellViewLeagueTable.xib */,
 				506A66F31B62930900BF7ECF /* Images.xcassets */,
 				506A66F51B62930900BF7ECF /* LaunchScreen.xib */,
@@ -322,6 +327,7 @@
 		506A66EC1B62930900BF7ECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				502C6E8B1B8E124A0019982F /* backgroud.pdf */,
 				506515561B8B1FB5001E4007 /* Football-50@2x.png */,
 				506515541B8B1FAF001E4007 /* Football2-50(1)@2x.png */,
 				506515521B8B1FA6001E4007 /* Wi-Fi-50@2x.png */,
@@ -466,7 +472,7 @@
 			);
 			name = FootbalAppSkeleton;
 			productName = FootbalAppSkeleton;
-			productReference = 506A66E91B62930900BF7ECF /* FootbalAppSkeleton.app */;
+			productReference = 506A66E91B62930900BF7ECF /* The Female Football Guide.app */;
 			productType = "com.apple.product-type.application";
 		};
 		506A66FB1B62930900BF7ECF /* FootbalAppSkeletonTests */ = {
@@ -546,6 +552,7 @@
 				501C81011B73F3A90009319B /* PlayerListCustomCell.xib in Resources */,
 				502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */,
 				506515551B8B1FAF001E4007 /* Football2-50(1)@2x.png in Resources */,
+				502C6E8C1B8E124A0019982F /* backgroud.pdf in Resources */,
 				5065154E1B88A78C001E4007 /* Statistics-25.png in Resources */,
 				506A67101B62932900BF7ECF /* ViewController.xib in Resources */,
 				50C2108E1B6F5C42007DF45F /* LeagueCustomView.xib in Resources */,
@@ -566,6 +573,7 @@
 				502C61D31B7DEC8500772B78 /* fixtureCoordinates.json in Resources */,
 				501C80F71B7361620009319B /* PlayerTableViewController.xib in Resources */,
 				506515391B820E69001E4007 /* Football-50.png in Resources */,
+				502C6E881B8DFB8F0019982F /* ViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,8 +781,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FootbalAppSkeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				PRODUCT_NAME = "The Female Football Guide";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -786,8 +794,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FootbalAppSkeleton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				PRODUCT_NAME = "The Female Football Guide";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
