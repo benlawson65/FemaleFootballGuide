@@ -32,10 +32,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{
+                                                                                                 NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                                                                 NSFontAttributeName : [UIFont systemFontOfSize:15]
+                                                                                                 }];
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"backgroud"]];
+    [tempImageView setFrame:self.tableView.frame];
+    _searchbarFixtures.searchBarStyle = UISearchBarStyleMinimal;
+    _searchbarFixtures.tintColor = [UIColor whiteColor];
+    
+    self.tableView.backgroundView = tempImageView;
+    
+    //self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = NO;
+    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
     self.navigationController.view.backgroundColor = [UIColor clearColor];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     
     //searchBarFixtures.delegate = (id)self;
     allTableData = [[NSMutableArray alloc] init];
@@ -255,6 +273,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+}
 
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString *)searchText{
@@ -346,7 +368,9 @@
         cell = [nib objectAtIndex:0];
     }
     
-    
+    UIView * selectedBackgroundViewForCell = [[UIView alloc] init];
+    [selectedBackgroundViewForCell setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.3]];
+    cell.selectedBackgroundView = selectedBackgroundViewForCell;
     
     if ([fixtureSelected isEqualToString:@"WPL: Southern Division"]){
         

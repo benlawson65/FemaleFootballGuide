@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Bn9-5Y-mrC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroud" translatesAutoresizingMaskIntoConstraints="NO" id="Bn9-5Y-mrC">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23I-mr-1OP">
@@ -146,6 +146,6 @@
         <image name="Football-50.png" width="50" height="50"/>
         <image name="Football2-50(1).png" width="50" height="50"/>
         <image name="Wi-Fi-50.png" width="50" height="50"/>
-        <image name="background.jpg" width="554" height="984"/>
+        <image name="backgroud" width="320" height="540"/>
     </resources>
 </document>

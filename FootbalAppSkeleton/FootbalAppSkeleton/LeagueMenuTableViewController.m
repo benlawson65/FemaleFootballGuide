@@ -22,13 +22,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self testInternetConnection];
-    self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"backgroud"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
+    
+    [self testInternetConnection];
+    //self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
+    
+    //self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = NO;
+    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
     self.navigationController.view.backgroundColor = [UIColor clearColor];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -38,6 +50,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     
     leagueMenu = [self populateLeagueMenu];
 }
@@ -122,6 +136,8 @@
     
     CustomCellView *cell = (CustomCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+
+    
     if(cell == nil){
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCellView" owner:self options:nil];
@@ -136,6 +152,9 @@
     cell.cellLabel.text = leagueMenu[indexPath.row];
     
     cell.backgroundColor = [UIColor clearColor];
+    UIView * selectedBackgroundViewForCell = [[UIView alloc] init];
+    [selectedBackgroundViewForCell setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.3]];
+    cell.selectedBackgroundView = selectedBackgroundViewForCell;
     
     return cell;
 }

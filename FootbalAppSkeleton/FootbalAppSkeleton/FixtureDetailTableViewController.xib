@@ -20,6 +20,7 @@
             <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search by Club" id="x4O-Xe-1R9">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <textInputTraits key="textInputTraits"/>
                 <connections>
                     <outlet property="delegate" destination="-1" id="KOh-mp-S3a"/>
