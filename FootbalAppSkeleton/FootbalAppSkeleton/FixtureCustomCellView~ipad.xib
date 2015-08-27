@@ -43,9 +43,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-QL-qif">
-                        <rect key="frame" x="182" y="312" width="422" height="31"/>
+                        <rect key="frame" x="165" y="312" width="458" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="422" id="ONA-As-1OH"/>
+                            <constraint firstAttribute="width" constant="458" id="ONA-As-1OH"/>
                             <constraint firstAttribute="height" constant="31" id="VmF-Fc-Cjb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -68,14 +68,14 @@
                     <constraint firstItem="VwO-L7-fHG" firstAttribute="top" secondItem="8Gx-6G-XXK" secondAttribute="topMargin" constant="11" id="6iI-Eq-6HE"/>
                     <constraint firstItem="VwO-L7-fHG" firstAttribute="centerX" secondItem="EOc-6w-ss9" secondAttribute="centerX" constant="-6.5" id="BkM-7T-kAa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VJl-QL-qif" secondAttribute="bottom" constant="10" id="LDx-AH-g88"/>
-                    <constraint firstItem="VJl-QL-qif" firstAttribute="leading" secondItem="8Gx-6G-XXK" secondAttribute="leadingMargin" constant="174" id="OnY-t0-tM9"/>
+                    <constraint firstItem="VJl-QL-qif" firstAttribute="leading" secondItem="8Gx-6G-XXK" secondAttribute="leadingMargin" constant="157" id="OnY-t0-tM9"/>
                     <constraint firstItem="SRr-Bs-fNv" firstAttribute="top" secondItem="EOc-6w-ss9" secondAttribute="bottom" constant="8" symbolic="YES" id="Pv5-zC-gYE"/>
                     <constraint firstItem="EOc-6w-ss9" firstAttribute="top" secondItem="VwO-L7-fHG" secondAttribute="bottom" constant="26" id="Rhy-qH-SDf"/>
                     <constraint firstItem="VJl-QL-qif" firstAttribute="top" secondItem="OFM-TS-hHz" secondAttribute="bottom" constant="23" id="Tr9-od-gpG"/>
                     <constraint firstItem="OFM-TS-hHz" firstAttribute="top" secondItem="SRr-Bs-fNv" secondAttribute="bottom" constant="53" id="Wm9-Kt-VMY"/>
                     <constraint firstItem="SRr-Bs-fNv" firstAttribute="leading" secondItem="8Gx-6G-XXK" secondAttribute="leading" constant="182" id="cnu-ct-uSY"/>
                     <constraint firstItem="SRr-Bs-fNv" firstAttribute="centerX" secondItem="EOc-6w-ss9" secondAttribute="centerX" constant="-6.5" id="lz2-9R-6K1"/>
-                    <constraint firstItem="OFM-TS-hHz" firstAttribute="centerX" secondItem="VJl-QL-qif" secondAttribute="centerX" id="tNR-YA-Kfp"/>
+                    <constraint firstItem="OFM-TS-hHz" firstAttribute="centerX" secondItem="VJl-QL-qif" secondAttribute="centerX" constant="-1" id="tNR-YA-Kfp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

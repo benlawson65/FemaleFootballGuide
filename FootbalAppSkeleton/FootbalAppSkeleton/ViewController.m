@@ -221,6 +221,6 @@
                                     target:nil
                                     action:nil];
     
-    [[podView navigationItem] setTitle:@"Clubs (Choose by League)"];
+    [[podView navigationItem] setTitle:@"Podcasts"];
 }
 @end

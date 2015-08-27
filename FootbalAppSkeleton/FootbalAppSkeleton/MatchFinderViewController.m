@@ -47,6 +47,7 @@ static BOOL firstLoad;
     }
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController setNavigationBarHidden: YES animated:YES];
     if(!firstLoad){
         if(!locationWorks){

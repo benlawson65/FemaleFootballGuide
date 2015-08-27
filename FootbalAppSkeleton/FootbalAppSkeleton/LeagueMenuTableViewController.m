@@ -53,6 +53,8 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     
     leagueMenu = [self populateLeagueMenu];
