@@ -32,15 +32,7 @@
     [self testInternetConnection];
     //self.tableView.backgroundColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     
-    //self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = NO;
-    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    //self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+ 
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -51,7 +43,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
+    //self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
     
     leagueMenu = [self populateLeagueMenu];
 }
@@ -178,7 +180,15 @@
  */
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 86;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        return 142;
+    }
+    else {
+        
+        return 86;
+    }
 }
 /*
 // Override to support conditional editing of the table view.

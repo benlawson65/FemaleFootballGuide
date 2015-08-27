@@ -76,6 +76,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -297,11 +298,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
-        return 129.0;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+    
+        if ([[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+            return 307;
+        }
+        else{
+            return 90;
+        }
     }
     else{
-        return 42.0;
+        if ([[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
+            return 129.0;
+        }
+        else{
+            return 42.0;
+        }
     }
     
     /*//if this indx path has been clicked expand

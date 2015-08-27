@@ -52,9 +52,20 @@
     
     //set navigation bar to translucent
     self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
+    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
     self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController setNavigationBarHidden: YES animated:YES];
+    
+    //[self performSelector:@selector(hideNavbar) withObject:(nil)
+//afterDelay:(0.3)];
+}
+-(void)hideNavbar{
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.translucent = YES;
+    
 }
 
 //get phone model

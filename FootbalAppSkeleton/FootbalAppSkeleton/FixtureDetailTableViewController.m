@@ -275,6 +275,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
 
 }
 
@@ -703,7 +704,14 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 204;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        return 362;
+    }
+    else {
+        
+        return 204;
+    }
 }
 
 

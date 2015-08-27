@@ -21,15 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = NO;
-    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    //self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+
     
     [self testInternetConnection];
     
@@ -47,6 +39,20 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
+    //self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0/255.0 green:60.0/255.0 blue:0/255.0 alpha:1];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:35/255.0 green:70.0/255.0 blue:35/255.0 alpha:1];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
 }
 // Checks if we have an internet connection or not
 - (void)testInternetConnection

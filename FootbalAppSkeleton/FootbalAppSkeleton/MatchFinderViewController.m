@@ -47,6 +47,7 @@ static BOOL firstLoad;
     }
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [self.navigationController setNavigationBarHidden: YES animated:YES];
     if(!firstLoad){
         if(!locationWorks){
             [self testInternetConnection];
