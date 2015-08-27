@@ -16,6 +16,7 @@
 #import "FixturesNorthernOne.h"
 #import "FixturesSouthEast.h"
 #import "FixturesSouthWest.h"
+#import "ViewController.h"
 
 @interface FixtureDetailTableViewController ()
 
@@ -298,6 +299,8 @@
     }
     [self.tableView reloadData];
 }
+
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
 

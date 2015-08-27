@@ -30,6 +30,7 @@
 		502C6E981B8F1EAA0019982F /* CustomCellView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E971B8F1EAA0019982F /* CustomCellView~ipad.xib */; };
 		502C6E9A1B8F213B0019982F /* FixtureCustomCellView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E991B8F213B0019982F /* FixtureCustomCellView~ipad.xib */; };
 		502C6E9C1B8F24390019982F /* LeagueCustomView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E9B1B8F24390019982F /* LeagueCustomView~ipad.xib */; };
+		502C6E9E1B8F8C660019982F /* LaunchScreen~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E9D1B8F8C660019982F /* LaunchScreen~ipad.xib */; };
 		5065152C1B811326001E4007 /* FixturesScotland.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065152B1B811326001E4007 /* FixturesScotland.m */; };
 		506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515321B812AD0001E4007 /* PodcastsViewController.m */; };
 		506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506515331B812AD0001E4007 /* PodcastsViewController.xib */; };
@@ -132,6 +133,7 @@
 		502C6E971B8F1EAA0019982F /* CustomCellView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomCellView~ipad.xib"; sourceTree = "<group>"; };
 		502C6E991B8F213B0019982F /* FixtureCustomCellView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FixtureCustomCellView~ipad.xib"; sourceTree = "<group>"; };
 		502C6E9B1B8F24390019982F /* LeagueCustomView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LeagueCustomView~ipad.xib"; sourceTree = "<group>"; };
+		502C6E9D1B8F8C660019982F /* LaunchScreen~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LaunchScreen~ipad.xib"; sourceTree = "<group>"; };
 		5065152A1B811326001E4007 /* FixturesScotland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesScotland.h; sourceTree = "<group>"; };
 		5065152B1B811326001E4007 /* FixturesScotland.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesScotland.m; sourceTree = "<group>"; };
 		506515311B812AD0001E4007 /* PodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastsViewController.h; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				50C210661B68C4E6007DF45F /* CustomCellViewLeagueTable.xib */,
 				506A66F31B62930900BF7ECF /* Images.xcassets */,
 				506A66F51B62930900BF7ECF /* LaunchScreen.xib */,
+				502C6E9D1B8F8C660019982F /* LaunchScreen~ipad.xib */,
 				506A66EC1B62930900BF7ECF /* Supporting Files */,
 			);
 			path = FootbalAppSkeleton;
@@ -572,6 +575,7 @@
 				502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */,
 				506515551B8B1FAF001E4007 /* Football2-50(1)@2x.png in Resources */,
 				5065154E1B88A78C001E4007 /* Statistics-25.png in Resources */,
+				502C6E9E1B8F8C660019982F /* LaunchScreen~ipad.xib in Resources */,
 				502C6E921B8F096B0019982F /* splashscreen.pdf in Resources */,
 				506A67101B62932900BF7ECF /* ViewController.xib in Resources */,
 				50C2108E1B6F5C42007DF45F /* LeagueCustomView.xib in Resources */,

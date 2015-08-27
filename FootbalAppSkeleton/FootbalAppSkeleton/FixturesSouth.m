@@ -8,6 +8,7 @@
 
 #import "FixturesSouth.h"
 #import "MatchFinderViewController.h"
+#import "FixturesTableViewController.h"
 
 @implementation FixturesSouth
 
@@ -28,7 +29,7 @@ static NSMutableArray *allFixturesSouth;
 + (NSString *) getDataFromSouth{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
+    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/55cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
     NSError *error = [[NSError alloc] init];
     NSHTTPURLResponse *responseCode = nil;
@@ -36,9 +37,11 @@ static NSMutableArray *allFixturesSouth;
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
     if([responseCode statusCode] != 200){
+        FixturesTableViewController *objData = [[FixturesTableViewController alloc] init];
+         [objData dataUnreachable];
         NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        MatchFinderViewController *obj = [[MatchFinderViewController alloc] init];
-        [obj noInternetAlertView];
+        //MatchFinderViewController *obj = [[MatchFinderViewController alloc] init];
+        //[obj noInternetAlertView];
         return nil;
     }
     

@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CustomCellView.h"
 #import "FixtureDetailTableViewController.h"
+#import "FixturesSouth.h"
 
 @interface FixturesTableViewController : UITableViewController <UIAlertViewDelegate>
 @property (weak, nonatomic) NSArray* fixtureMenu;
 - (NSArray *)populateFixtureMenu;
 @property (weak, nonatomic) NSString* fixtureChosen;
 - (void)testInternetConnection;
+-(void)dataUnreachable;
 @end

@@ -59,6 +59,7 @@ static BOOL firstLoad;
 
 
 -(void)noInternetAlertView{
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Internet Connection"
                                                                              message:@"Please connect to the internet or try again in a minute"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
