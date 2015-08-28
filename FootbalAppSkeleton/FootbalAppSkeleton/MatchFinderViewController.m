@@ -151,6 +151,7 @@ static BOOL firstLoad;
             [weakSelf presentViewController:alertController animated:YES completion:nil];
             //[[self navigationController] pushViewController:myViewController animated:YES];
             
+            
         });
         internetCheckFinished = TRUE;
     };
@@ -279,7 +280,14 @@ static BOOL firstLoad;
 -(BOOL) mapView:(GMSMapView *) mapView
 didTapMarker:(GMSMarker *)marker{
     //convert maker location
-    CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
+    
+    if (locationManager.location.coordinate.latitude == 0 && locationManager.location.coordinate.longitude == 0){
+        locationWorks = FALSE;
+    }
+
+    
+
+CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
     
     //run get directions method and send it origin and destination location from user location to
     //markerlocation

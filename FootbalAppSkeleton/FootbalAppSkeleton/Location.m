@@ -356,9 +356,17 @@ static NSMutableArray *fixtureList;
 
 +(void)getDirections:(CLLocation *)sourceLocation toDestination:(CLLocation *)destinationLocation onMap:(GMSMapView *)mapView_{
     
+    NSString *baseUrl = [[NSString alloc] init];
     
+    if (sourceLocation.coordinate.latitude == 0 && sourceLocation.coordinate.longitude == 0){
+        
+        baseUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false,&key=AIzaSyCaIAN-DDnSolU0EpBfcTsOhsJyrSwF76s", 51.528837,  -0.165653, destinationLocation.coordinate.latitude,  destinationLocation.coordinate.longitude];
+        
+    }
     
-    NSString *baseUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false,&key=AIzaSyCaIAN-DDnSolU0EpBfcTsOhsJyrSwF76s", sourceLocation.coordinate.latitude,  sourceLocation.coordinate.longitude, destinationLocation.coordinate.latitude,  destinationLocation.coordinate.longitude];
+    else {
+        baseUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false,&key=AIzaSyCaIAN-DDnSolU0EpBfcTsOhsJyrSwF76s", sourceLocation.coordinate.latitude,  sourceLocation.coordinate.longitude, destinationLocation.coordinate.latitude,  destinationLocation.coordinate.longitude];
+    }
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
