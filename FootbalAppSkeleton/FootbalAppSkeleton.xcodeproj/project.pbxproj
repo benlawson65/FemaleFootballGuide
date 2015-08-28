@@ -31,6 +31,8 @@
 		502C6E9A1B8F213B0019982F /* FixtureCustomCellView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E991B8F213B0019982F /* FixtureCustomCellView~ipad.xib */; };
 		502C6E9C1B8F24390019982F /* LeagueCustomView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E9B1B8F24390019982F /* LeagueCustomView~ipad.xib */; };
 		502C6E9E1B8F8C660019982F /* LaunchScreen~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E9D1B8F8C660019982F /* LaunchScreen~ipad.xib */; };
+		502C6EA01B9057F50019982F /* gradient_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 502C6E9F1B9057F50019982F /* gradient_background.pdf */; };
+		502C6EA21B9057FA0019982F /* iconplain.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 502C6EA11B9057FA0019982F /* iconplain.pdf */; };
 		5065152C1B811326001E4007 /* FixturesScotland.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065152B1B811326001E4007 /* FixturesScotland.m */; };
 		506515341B812AD0001E4007 /* PodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506515321B812AD0001E4007 /* PodcastsViewController.m */; };
 		506515351B812AD0001E4007 /* PodcastsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506515331B812AD0001E4007 /* PodcastsViewController.xib */; };
@@ -134,6 +136,8 @@
 		502C6E991B8F213B0019982F /* FixtureCustomCellView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FixtureCustomCellView~ipad.xib"; sourceTree = "<group>"; };
 		502C6E9B1B8F24390019982F /* LeagueCustomView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LeagueCustomView~ipad.xib"; sourceTree = "<group>"; };
 		502C6E9D1B8F8C660019982F /* LaunchScreen~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LaunchScreen~ipad.xib"; sourceTree = "<group>"; };
+		502C6E9F1B9057F50019982F /* gradient_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = gradient_background.pdf; sourceTree = "<group>"; };
+		502C6EA11B9057FA0019982F /* iconplain.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = iconplain.pdf; sourceTree = "<group>"; };
 		5065152A1B811326001E4007 /* FixturesScotland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixturesScotland.h; sourceTree = "<group>"; };
 		5065152B1B811326001E4007 /* FixturesScotland.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixturesScotland.m; sourceTree = "<group>"; };
 		506515311B812AD0001E4007 /* PodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastsViewController.h; sourceTree = "<group>"; };
@@ -341,6 +345,8 @@
 		506A66EC1B62930900BF7ECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				502C6EA11B9057FA0019982F /* iconplain.pdf */,
+				502C6E9F1B9057F50019982F /* gradient_background.pdf */,
 				502C6E911B8F096B0019982F /* splashscreen.pdf */,
 				502C6E8F1B8E3D060019982F /* greenbox.pdf */,
 				502C6E8D1B8E34C10019982F /* backgroud.pdf */,
@@ -570,6 +576,7 @@
 				506515441B85CC08001E4007 /* podcast.png in Resources */,
 				5065154C1B88A77A001E4007 /* Search-25.png in Resources */,
 				50C210711B68E1C7007DF45F /* FixtureDetailTableViewController.xib in Resources */,
+				502C6EA01B9057F50019982F /* gradient_background.pdf in Resources */,
 				502C6E9C1B8F24390019982F /* LeagueCustomView~ipad.xib in Resources */,
 				501C81011B73F3A90009319B /* PlayerListCustomCell.xib in Resources */,
 				502C61D51B7DEC8500772B78 /* WSL1fixtures.json in Resources */,
@@ -587,6 +594,7 @@
 				501C80EA1B72057E0009319B /* ClubSelection2TableController.xib in Resources */,
 				5065153D1B8213FC001E4007 /* file1001303850319.jpg in Resources */,
 				5065154A1B88A134001E4007 /* Statistics-25@2x.png in Resources */,
+				502C6EA21B9057FA0019982F /* iconplain.pdf in Resources */,
 				501C80E51B7202BC0009319B /* ClubSelection1TableController.xib in Resources */,
 				5065153B1B821222001E4007 /* 1439834338_Podcast.png in Resources */,
 				502C61D41B7DEC8500772B78 /* WSL2fixtures.json in Resources */,

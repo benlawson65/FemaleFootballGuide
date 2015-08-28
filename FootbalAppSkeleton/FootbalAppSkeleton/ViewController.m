@@ -45,7 +45,7 @@
     NSLog(@"%@", model);
     
     //hide extra text if running on iphone 4 or ipad
-    if([model isEqualToString:@"iPhone 4"] || [model isEqualToString:@"iPad"]){
+    if([model isEqualToString:@"iPhone 4"]){
         extraText.hidden = YES;
     }
 
@@ -88,6 +88,11 @@
 -(NSString *)platformNiceString{
     NSString *platform = [self platformRawString];
     
+    if ([platform isEqualToString:@"iPhone1,1"]){    return @"iPhone 4";}
+    if ([platform isEqualToString:@"iPhone1,2"]){    return @"iPhone 4";}
+    if ([platform isEqualToString:@"iPhone2,1"]) {   return @"iPhone 4"; }
+    
+    
     if([platform isEqualToString:@"iPhone3,1"]){
         return @"iPhone 4";
     }
@@ -97,46 +102,28 @@
     if([platform isEqualToString:@"iPhone4,1"]){
         return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad1,1"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,2"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad1,2"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,3"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad1,3"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,5"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad2,1"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,6"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad2,2"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,7"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad2,3"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,8"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad2,4"]){
-        return @"iPad";
+    if([platform isEqualToString:@"iPhone4,9"]){
+        return @"iPhone 4";
     }
-    if([platform isEqualToString:@"iPad2,5"]){
-        return @"iPad";
-    }
-    if([platform isEqualToString:@"iPad2,6"]){
-        return @"iPad";
-    }
-    if([platform isEqualToString:@"iPad3,1"]){
-        return @"iPad";
-    }
-    if([platform isEqualToString:@"iPad3,2"]){
-        return @"iPad";
-    }
-    if([platform isEqualToString:@"iPad3,3"]){
-        return @"iPad";
-    }
-    if([platform isEqualToString:@"iPad3,4"]){
-        return @"iPad";
-    }
-
+    
     else {
         return platform;
     }
