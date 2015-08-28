@@ -17,10 +17,12 @@
 @property (nonatomic, retain) NSString *timeDate;
 @property (nonatomic, retain) NSString *venue;
 
+
 +(void) addFixturesSouth: (FixturesSouth *)objectToAdd;
 +(NSMutableArray*) getAllFixturesSouth;
 +(void) formatData: (NSString*) returnedDataSouth;
 + (NSString *) getDataFromSouth;
 +(void)resetFixturesSouth;
++(NSString*)getStatusCodeString;
 
 @end

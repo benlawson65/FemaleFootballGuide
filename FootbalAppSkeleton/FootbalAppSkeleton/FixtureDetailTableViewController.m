@@ -72,6 +72,10 @@
         //retrieve data from api
         returnedDataSouth = [FixturesSouth getDataFromSouth];
         
+        if(![[FixturesSouth getStatusCodeString] isEqualToString:@"200"]){
+            [self dataUnreachable];
+        }
+        
         //formate data and put it in fixtures object
         [FixturesSouth formatData:returnedDataSouth];
      
@@ -299,6 +303,27 @@
     }
     [self.tableView reloadData];
 }
+
+-(void)dataUnreachable{
+    NSLog(@"data unreachable method");
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Data Unavailable"
+                                                                             message:@"We are sorry the data is not available at this time, please let us know and we will fix it as soon as possible"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action){
+                                                         [self.navigationController popToRootViewControllerAnimated:YES];
+                                                     }]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    
+    //[alertController dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController pushViewController:myViewController animated:YES];
+    [self presentViewController:alertController animated:YES completion:nil];
+    // [[UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController presentViewController:alertController animated:YES completion:^{}];
+}
+
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{

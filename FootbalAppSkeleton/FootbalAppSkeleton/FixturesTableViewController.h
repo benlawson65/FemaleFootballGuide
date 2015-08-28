@@ -16,5 +16,4 @@
 - (NSArray *)populateFixtureMenu;
 @property (weak, nonatomic) NSString* fixtureChosen;
 - (void)testInternetConnection;
--(void)dataUnreachable;
 @end
