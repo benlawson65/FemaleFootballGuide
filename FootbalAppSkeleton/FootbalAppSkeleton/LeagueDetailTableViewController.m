@@ -283,11 +283,13 @@
         if(![[cellsizeStatus objectAtIndex:indexPath.row] boolValue]){
             cell.backgroundColor = [UIColor colorWithWhite:0/255 alpha:0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         }
         
         else{
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.4];
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         }
    // }
    // }
@@ -454,6 +456,7 @@
     cell.lossesTitle.hidden = NO;
     cell.winsTitle.hidden = NO;
     cell.drawsTitle.hidden = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 //used to hide previous cell (fixes bug)
@@ -473,6 +476,7 @@
     cell.lossesTitle.hidden = YES;
     cell.winsTitle.hidden = YES;
     cell.drawsTitle.hidden = YES;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 /*
