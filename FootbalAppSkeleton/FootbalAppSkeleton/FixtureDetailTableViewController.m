@@ -72,9 +72,9 @@
         //retrieve data from api
         returnedDataSouth = [FixturesSouth getDataFromSouth];
         
-        if(![[FixturesSouth getStatusCodeString] isEqualToString:@"200"]){
-            [self dataUnreachable];
-        }
+        //if(![[FixturesSouth getStatusCodeString] isEqualToString:@"200"]){
+         //   [self dataUnreachable];
+        //}
         
         //formate data and put it in fixtures object
         [FixturesSouth formatData:returnedDataSouth];
@@ -320,8 +320,8 @@
     
     //[alertController dismissViewControllerAnimated:YES completion:nil];
     //[self.navigationController pushViewController:myViewController animated:YES];
-    [self presentViewController:alertController animated:YES completion:nil];
-    // [[UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController presentViewController:alertController animated:YES completion:^{}];
+    //[self presentViewController:alertController animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController presentViewController:alertController animated:YES completion:^{}];
 }
 
 

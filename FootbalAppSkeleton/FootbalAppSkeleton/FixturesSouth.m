@@ -33,7 +33,7 @@ static NSString *statusCodeString;
 + (NSString *) getDataFromSouth{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/55cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
+    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
     NSError *error = [[NSError alloc] init];
     NSHTTPURLResponse *responseCode = nil;
