@@ -69,8 +69,8 @@ static NSMutableArray *allLeaguesWales;
             LeagueWales * newLeaguesWales
             = [[LeagueWales alloc] init];
             
-            user1 = [singleGameDetails objectForKey:@"Team"];
-            newLeaguesWales.team = [user1 valueForKey:@"text"];
+            newLeaguesWales.team = [singleGameDetails objectForKey:@"Team"];
+            //newLeaguesWales.team = [user1 valueForKey:@"text"];
             
             newLeaguesWales.points = [singleGameDetails objectForKey:@"Points"];
             
