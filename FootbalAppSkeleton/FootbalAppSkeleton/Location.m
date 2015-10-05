@@ -324,8 +324,8 @@ static NSMutableArray *fixtureList;
     latitude = [[coordinates objectAtIndex:0] doubleValue];
     longitude = [[coordinates objectAtIndex:1] doubleValue];
     
-    //if cant find already specified location, find it now
-    if ([coordinates isEqualToArray:nil]){
+    //if cant find already specified location in manual json file, find it now using google geolocation coding
+    if ([coordinates count] == 0){
         //encode address
         NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
