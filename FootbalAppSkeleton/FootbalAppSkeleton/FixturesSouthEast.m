@@ -65,35 +65,20 @@ static NSMutableArray *allFixturesSouthEast;
             FixturesSouthEast * newFixturesSouthEast = [[FixturesSouthEast alloc] init];
             
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            if ([user1 isKindOfClass:[NSDictionary class]]){
-                newFixturesSouthEast.homeTeam = [user1 valueForKey:@"text"];
-                
-            }
-            else{
-                newFixturesSouthEast.homeTeam = [singleGameDetails objectForKey:@"Home Team"];
-            }
-            
+            NSString *strWithDataHome = [FixturesSouthEast checkDataLocation:user1];
+            newFixturesSouthEast.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            if ([user1 isKindOfClass:[NSDictionary class]]){
-                newFixturesSouthEast.awayTeam = [user1 valueForKey:@"text"];
-                
-            }
-            else{
-                newFixturesSouthEast.awayTeam = [singleGameDetails objectForKey:@"Away Team"];
-            }
+            NSString *strWithDataAway = [FixturesSouthEast checkDataLocation:user1];
+            newFixturesSouthEast.awayTeam = strWithDataAway;
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesSouthEast.timeDate = [user1 valueForKey:@"text"];
+            NSString *strWithDataDate = [FixturesSouthEast checkDataLocation:user1];
+            newFixturesSouthEast.timeDate = strWithDataDate;
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            if ([user1 isKindOfClass:[NSDictionary class]]){
-                newFixturesSouthEast.venue = [user1 valueForKey:@"text"];
-                
-            }
-            else{
-                newFixturesSouthEast.venue = [singleGameDetails objectForKey:@"Venue"];
-            }
+            NSString *strWithDataVenue = [FixturesSouthEast checkDataLocation:user1];
+            newFixturesSouthEast.venue = strWithDataVenue;
             
             newFixturesSouthEast.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -124,6 +109,21 @@ static NSMutableArray *allFixturesSouthEast;
     else{
         NSLog(@"no data found in json results");
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 

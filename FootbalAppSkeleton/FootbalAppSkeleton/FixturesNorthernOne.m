@@ -65,27 +65,21 @@ static NSMutableArray *allFixturesNorthernOne;
             
             FixturesNorthernOne * newFixturesNorthernOne = [[FixturesNorthernOne alloc] init];
             
-            //implement this if statement everywhere!!
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            if ([user1 isKindOfClass:[NSDictionary class]]){
-                newFixturesNorthernOne.homeTeam = [user1 valueForKey:@"text"];
-
-            }
-            else{
-                newFixturesNorthernOne.homeTeam = [singleGameDetails objectForKey:@"Home Team"];
-            }
+            NSString *strWithDataHome = [FixturesNorthernOne checkDataLocation:user1];
+            newFixturesNorthernOne.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            NSString *strWithData = [FixturesNorthernOne checkDataLocation:user1];
-            newFixturesNorthernOne.awayTeam = strWithData;
-            
-            //newFixturesNorthernOne.awayTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataAway = [FixturesNorthernOne checkDataLocation:user1];
+            newFixturesNorthernOne.awayTeam = strWithDataAway;
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesNorthernOne.timeDate = [user1 valueForKey:@"text"];
+            NSString *strWithDataDate = [FixturesNorthernOne checkDataLocation:user1];
+            newFixturesNorthernOne.timeDate = strWithDataDate;
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesNorthernOne.venue = [user1 valueForKey:@"text"];
+            NSString *strWithDataVenue = [FixturesNorthernOne checkDataLocation:user1];
+            newFixturesNorthernOne.venue = strWithDataVenue;
             
             newFixturesNorthernOne.index = [NSString stringWithFormat:@"%ld", (long)i];
             

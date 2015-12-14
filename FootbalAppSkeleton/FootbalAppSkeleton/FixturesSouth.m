@@ -79,16 +79,20 @@ static NSString *statusCodeString;
                 FixturesSouth * newFixturesSouth = [[FixturesSouth alloc] init];
                 
                 user1 = [singleGameDetails objectForKey:@"Home Team"];
-                newFixturesSouth.homeTeam = [user1 valueForKey:@"text"];
+                NSString *strWithDataHome = [FixturesSouth checkDataLocation:user1];
+                newFixturesSouth.homeTeam = strWithDataHome;
                 
                 user1 = [singleGameDetails objectForKey:@"Away Team"];
-                newFixturesSouth.awayTeam = [user1 valueForKey:@"text"];
+                NSString *strWithDataAway = [FixturesSouth checkDataLocation:user1];
+                newFixturesSouth.awayTeam = strWithDataAway;
                 
                 user1 = [singleGameDetails objectForKey:@"Date/Time"];
-                newFixturesSouth.timeDate = [user1 valueForKey:@"text"];
+                NSString *strWithDataDate = [FixturesSouth checkDataLocation:user1];
+                newFixturesSouth.timeDate = strWithDataDate;
                 
                 user1 = [singleGameDetails objectForKey:@"Venue"];
-                newFixturesSouth.venue = [user1 valueForKey:@"text"];
+                NSString *strWithDataVenue = [FixturesSouth checkDataLocation:user1];
+                newFixturesSouth.venue = strWithDataVenue;
                 
                 newFixturesSouth.index = [NSString stringWithFormat:@"%ld", (long)i];
                 
@@ -123,5 +127,20 @@ static NSString *statusCodeString;
 
 
    }
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
+}
 
 @end

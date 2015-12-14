@@ -66,16 +66,20 @@ static NSMutableArray *allFixturesSouthWest;
             FixturesSouthWest * newFixturesSouthWest = [[FixturesSouthWest alloc] init];
             
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesSouthWest.homeTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataHome = [FixturesSouthWest checkDataLocation:user1];
+            newFixturesSouthWest.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesSouthWest.awayTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataAway = [FixturesSouthWest checkDataLocation:user1];
+            newFixturesSouthWest.awayTeam = strWithDataAway;
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesSouthWest.timeDate = [user1 valueForKey:@"text"];
+            NSString *strWithDataDate = [FixturesSouthWest checkDataLocation:user1];
+            newFixturesSouthWest.timeDate = strWithDataDate;
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesSouthWest.venue = [user1 valueForKey:@"text"];
+            NSString *strWithDataVenue = [FixturesSouthWest checkDataLocation:user1];
+            newFixturesSouthWest.venue = strWithDataVenue;
             
             newFixturesSouthWest.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -106,6 +110,21 @@ static NSMutableArray *allFixturesSouthWest;
     else{
         NSLog(@"no data found in json results");
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 @end

@@ -66,16 +66,20 @@ static NSMutableArray *allFixturesMidlands;
             FixturesMidlands * newFixturesMidlands = [[FixturesMidlands alloc] init];
             
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesMidlands.homeTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataHome = [FixturesMidlands checkDataLocation:user1];
+            newFixturesMidlands.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesMidlands.awayTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataAway = [FixturesMidlands checkDataLocation:user1];
+            newFixturesMidlands.awayTeam = strWithDataAway;
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesMidlands.timeDate = [user1 valueForKey:@"text"];
+            NSString *strWithDataDate = [FixturesMidlands checkDataLocation:user1];
+            newFixturesMidlands.timeDate = strWithDataDate;
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesMidlands.venue = [user1 valueForKey:@"text"];
+            NSString *strWithDataVenue = [FixturesMidlands checkDataLocation:user1];
+            newFixturesMidlands.venue = strWithDataVenue;
             
             newFixturesMidlands.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -106,6 +110,21 @@ static NSMutableArray *allFixturesMidlands;
     else{
         NSLog(@"no data found in json results");
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 @end

@@ -24,5 +24,6 @@
 + (NSString *) getDataFromSouth;
 +(void)resetFixturesSouth;
 +(NSString*)getStatusCodeString;
++(NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData;
 
 @end

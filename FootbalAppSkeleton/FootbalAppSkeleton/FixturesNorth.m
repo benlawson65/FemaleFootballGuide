@@ -68,16 +68,20 @@ static NSMutableArray *allFixturesNorth;
             FixturesNorth * newFixturesNorth = [[FixturesNorth alloc] init];
             
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesNorth.homeTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataHome = [FixturesNorth checkDataLocation:user1];
+            newFixturesNorth.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesNorth.awayTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataAway = [FixturesNorth checkDataLocation:user1];
+            newFixturesNorth.awayTeam = strWithDataAway;
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
-            newFixturesNorth.timeDate = [user1 valueForKey:@"text"];
+            NSString *strWithDataDate = [FixturesNorth checkDataLocation:user1];
+            newFixturesNorth.timeDate = strWithDataDate;
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesNorth.venue = [user1 valueForKey:@"text"];
+            NSString *strWithDataVenue = [FixturesNorth checkDataLocation:user1];
+            newFixturesNorth.venue = strWithDataVenue;
             
             newFixturesNorth.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -106,6 +110,21 @@ static NSMutableArray *allFixturesNorth;
     else{
         NSLog(@"no data found in json results");
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 @end

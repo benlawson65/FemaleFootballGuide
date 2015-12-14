@@ -42,10 +42,10 @@ static NSMutableArray *allFixturesWales;
     
     return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
 }
-+ (void) formatData: (NSString*) returnedDataNorth{
++ (void) formatData: (NSString*) returnedDataWales{
     NSError *error =  nil;
     
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataNorth dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataWales dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
     NSDictionary *userinfo=[json valueForKey:@"results"];
     NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
@@ -65,27 +65,22 @@ static NSMutableArray *allFixturesWales;
             
             FixturesWales * newFixturesWales
             = [[FixturesWales alloc] init];
-            
+           
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesWales.homeTeam = [user1 valueForKey:@"text"];
+            NSString *strWithDataHome = [FixturesWales checkDataLocation:user1];
+            newFixturesWales.homeTeam = strWithDataHome;
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            if ([user1 isKindOfClass:[NSDictionary class]]){
-                newFixturesWales.awayTeam = [user1 valueForKey:@"text"];
-                
-            }
-            else{
-                newFixturesWales.awayTeam = [singleGameDetails objectForKey:@"Away Team"];
-            }
+            NSString *strWithDataAway = [FixturesWales checkDataLocation:user1];
+            newFixturesWales.awayTeam = strWithDataAway;
             
+            user1 = [singleGameDetails objectForKey:@"Time"];
+            NSString *strWithDataTime = [FixturesWales checkDataLocation:user1];
+            newFixturesWales.timeDate = strWithDataTime;
             
-            newFixturesWales.timeDate = [singleGameDetails objectForKey:@"Time"];
-            //newFixturesWales.timeDate = user1;
-            //[user1 valueForKey:@"Time"];
-            
-            newFixturesWales.dateOnly = [singleGameDetails objectForKey:@"Date"];
-            
-            newFixturesWales.venue = [singleGameDetails objectForKey:@"Venue"];
+            user1 = [singleGameDetails objectForKey:@"Date"];
+            NSString *strWithDataDate = [FixturesWales checkDataLocation:user1];
+            newFixturesWales.dateOnly = strWithDataDate;
             
             newFixturesWales.index = [NSString stringWithFormat:@"%ld", (long)i];
             
@@ -139,6 +134,21 @@ static NSMutableArray *allFixturesWales;
     else {
         return false;
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 @end
