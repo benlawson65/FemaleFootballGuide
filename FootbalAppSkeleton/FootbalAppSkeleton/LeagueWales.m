@@ -52,7 +52,7 @@ static NSMutableArray *allLeaguesWales;
     NSDictionary *userinfo=[json valueForKey:@"results"];
     NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
     NSDictionary *singleGameDetails;
-    NSDictionary *user1;
+    //NSDictionary *user1;
     NSInteger i = 0;
     NSString *skey;
     NSInteger index = 1;

@@ -70,7 +70,14 @@ static NSMutableArray *allFixturesWales;
             newFixturesWales.homeTeam = [user1 valueForKey:@"text"];
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesWales.awayTeam = [user1 valueForKey:@"text"];
+            if ([user1 isKindOfClass:[NSDictionary class]]){
+                newFixturesWales.awayTeam = [user1 valueForKey:@"text"];
+                
+            }
+            else{
+                newFixturesWales.awayTeam = [singleGameDetails objectForKey:@"Away Team"];
+            }
+            
             
             newFixturesWales.timeDate = [singleGameDetails objectForKey:@"Time"];
             //newFixturesWales.timeDate = user1;

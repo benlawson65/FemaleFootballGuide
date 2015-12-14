@@ -65,8 +65,15 @@ static NSMutableArray *allFixturesNorthernOne;
             
             FixturesNorthernOne * newFixturesNorthernOne = [[FixturesNorthernOne alloc] init];
             
+            //implement this if statement everywhere!!
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesNorthernOne.homeTeam = [user1 valueForKey:@"text"];
+            if ([user1 isKindOfClass:[NSDictionary class]]){
+                newFixturesNorthernOne.homeTeam = [user1 valueForKey:@"text"];
+
+            }
+            else{
+                newFixturesNorthernOne.homeTeam = [singleGameDetails objectForKey:@"Home Team"];
+            }
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
             newFixturesNorthernOne.awayTeam = [user1 valueForKey:@"text"];

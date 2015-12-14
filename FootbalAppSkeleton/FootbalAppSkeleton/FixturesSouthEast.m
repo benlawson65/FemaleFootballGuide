@@ -34,7 +34,7 @@ static NSMutableArray *allFixturesSouthEast;
     NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
     if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
+        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/8ch3kjwo?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
         return nil;
     }
     
@@ -65,16 +65,35 @@ static NSMutableArray *allFixturesSouthEast;
             FixturesSouthEast * newFixturesSouthEast = [[FixturesSouthEast alloc] init];
             
             user1 = [singleGameDetails objectForKey:@"Home Team"];
-            newFixturesSouthEast.homeTeam = [user1 valueForKey:@"text"];
+            if ([user1 isKindOfClass:[NSDictionary class]]){
+                newFixturesSouthEast.homeTeam = [user1 valueForKey:@"text"];
+                
+            }
+            else{
+                newFixturesSouthEast.homeTeam = [singleGameDetails objectForKey:@"Home Team"];
+            }
+            
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesSouthEast.awayTeam = [user1 valueForKey:@"text"];
+            if ([user1 isKindOfClass:[NSDictionary class]]){
+                newFixturesSouthEast.awayTeam = [user1 valueForKey:@"text"];
+                
+            }
+            else{
+                newFixturesSouthEast.awayTeam = [singleGameDetails objectForKey:@"Away Team"];
+            }
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
             newFixturesSouthEast.timeDate = [user1 valueForKey:@"text"];
             
             user1 = [singleGameDetails objectForKey:@"Venue"];
-            newFixturesSouthEast.venue = [user1 valueForKey:@"text"];
+            if ([user1 isKindOfClass:[NSDictionary class]]){
+                newFixturesSouthEast.venue = [user1 valueForKey:@"text"];
+                
+            }
+            else{
+                newFixturesSouthEast.venue = [singleGameDetails objectForKey:@"Venue"];
+            }
             
             newFixturesSouthEast.index = [NSString stringWithFormat:@"%ld", (long)i];
             
