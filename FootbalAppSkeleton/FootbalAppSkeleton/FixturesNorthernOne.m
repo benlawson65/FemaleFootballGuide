@@ -76,7 +76,10 @@ static NSMutableArray *allFixturesNorthernOne;
             }
             
             user1 = [singleGameDetails objectForKey:@"Away Team"];
-            newFixturesNorthernOne.awayTeam = [user1 valueForKey:@"text"];
+            NSString *strWithData = [FixturesNorthernOne checkDataLocation:user1];
+            newFixturesNorthernOne.awayTeam = strWithData;
+            
+            //newFixturesNorthernOne.awayTeam = [user1 valueForKey:@"text"];
             
             user1 = [singleGameDetails objectForKey:@"Date/Time"];
             newFixturesNorthernOne.timeDate = [user1 valueForKey:@"text"];
@@ -113,6 +116,21 @@ static NSMutableArray *allFixturesNorthernOne;
     else{
         NSLog(@"no data found in json results");
     }
+}
+
++ (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
+    NSString *strContainingWantedData;
+    
+    //user1 = [singleGameDetails objectForKey:@"Home Team"];
+    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
+        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+        
+    }
+    else{
+        strContainingWantedData = [NSString stringWithFormat:@"%@", dictionaryContainingData];
+    }
+    
+    return strContainingWantedData;
 }
 
 

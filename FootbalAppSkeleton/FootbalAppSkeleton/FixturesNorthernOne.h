@@ -22,6 +22,7 @@
 +(void) addFixturesNorthernOne: (FixturesNorthernOne*)objectToAdd;
 +(NSMutableArray*) getAllFixturesNorthernOne;
 +(void) formatData: (NSString*) returnedDataNorthernOne;
++(NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData;
 + (NSString *) getDataFromNorthernOne;
 +(void)resetFixturesNorthernOne;
 
