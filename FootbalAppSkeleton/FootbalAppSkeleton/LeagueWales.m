@@ -26,23 +26,36 @@ static NSMutableArray *allLeaguesWales;
 
 //take data from api and format the json into a string
 + (NSString *) getDataFromWales{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    //[request setHTTPMethod:@"GET"];
     //[request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/5tfl53ne?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
-    [request setURL:[NSURL URLWithString:@"https://api.import.io/store/connector/4197fd3b-7c91-403c-9e76-95a61b149aeb/_query?format=JSON&input=%7Bteams%7D%3A%7Bpoints%7D%3A%7Bwins%7D%3A%7Bdraws%7D%3A%7Blosses%7D&_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
+    //[request setURL:[NSURL URLWithString:@"https://data.import.io/extractor/b8c451d0-ba9e-4d67-9066-0b2b96189c78/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
+    
+    
    
     NSError *error = [[NSError alloc] init];
     NSHTTPURLResponse *responseCode = nil;
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    //NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     
-    if([responseCode statusCode] != 200){
+    /*if([responseCode statusCode] != 200){
         NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/5tfl53ne?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
         return nil;
     }
+    */
     
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://data.import.io/extractor/b8c451d0-ba9e-4d67-9066-0b2b96189c78/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
+    
+    //get raw data from url
+    NSData *theData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
+    
+    //return newJSON;
+    return [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
+    
+    //return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
 }
 
 //take string of data and extract relevant data and put it into object
@@ -51,8 +64,12 @@ static NSMutableArray *allLeaguesWales;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataWales dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    NSArray *userInfo=[json valueForKey:@"results"];
-    //NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+    //unwrap data stored in json file
+    NSDictionary *userinfo=[json valueForKey:@"result"];
+    NSDictionary *detailedUserInfo = [userinfo valueForKey:@"extractorData"];
+    NSArray *nextLayerUserInfo = [detailedUserInfo valueForKey:@"data"];
+    NSArray *nextNextLayerUserInfo = [nextLayerUserInfo valueForKey:@"group"];
+    NSArray *finalLayerUserInfo = [nextNextLayerUserInfo objectAtIndex:0];
     NSDictionary *singleGameDetails;
     //NSDictionary *user1;
     NSInteger i = 0;
@@ -61,28 +78,42 @@ static NSMutableArray *allLeaguesWales;
     
     [self resetLeaguesWales];
     
-    if(userInfo != nil){
-        for( i = 0; i < [userInfo count]; i++ ) {
+    if(finalLayerUserInfo != nil){
+        for( i = 0; i < [finalLayerUserInfo count]; i++ ) {
             
             skey = [NSString stringWithFormat:@"%ld",(long)i];
             
-            singleGameDetails = [userInfo objectAtIndex:i];
+            singleGameDetails = [finalLayerUserInfo objectAtIndex:i];
             
             LeagueWales * newLeaguesWales
             = [[LeagueWales alloc] init];
+            NSArray *textUnwrapper;
+            NSArray *finalTextUnwrapper;
             
-            newLeaguesWales.team = [singleGameDetails objectForKey:@"teams"];
+            textUnwrapper = [singleGameDetails valueForKey:@"teams"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.team = [finalTextUnwrapper valueForKey:@"text"];
             //newLeaguesWales.team = [user1 valueForKey:@"text"];
             
-            newLeaguesWales.points = [singleGameDetails objectForKey:@"points"];
+            textUnwrapper = [singleGameDetails valueForKey:@"points"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.points = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesWales.goalDifference = [singleGameDetails objectForKey:@"goaldifference"];
+            textUnwrapper = [singleGameDetails valueForKey:@"goaldifference"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.goalDifference = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesWales.wins = [singleGameDetails objectForKey:@"wins"];
+            textUnwrapper = [singleGameDetails valueForKey:@"wins"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.wins = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesWales.losses = [singleGameDetails objectForKey:@"losses"];
+            textUnwrapper = [singleGameDetails valueForKey:@"losses"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.losses = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesWales.draws = [singleGameDetails objectForKey:@"draws"];
+            textUnwrapper = [singleGameDetails valueForKey:@"draws"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesWales.draws = [finalTextUnwrapper valueForKey:@"text"];
             
             newLeaguesWales.index = [NSString stringWithFormat:@"%ld", (long)index];
             
