@@ -26,24 +26,7 @@ static NSMutableArray *allLeaguesWales;
 
 //take data from api and format the json into a string
 + (NSString *) getDataFromWales{
-    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    //[request setHTTPMethod:@"GET"];
-    //[request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/5tfl53ne?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
-    //[request setURL:[NSURL URLWithString:@"https://data.import.io/extractor/b8c451d0-ba9e-4d67-9066-0b2b96189c78/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
-    
-    
-   
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
-    
-    //NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    /*if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/5tfl53ne?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        return nil;
-    }
-    */
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://data.import.io/extractor/b8c451d0-ba9e-4d67-9066-0b2b96189c78/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
     

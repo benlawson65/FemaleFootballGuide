@@ -29,21 +29,17 @@ static NSMutableArray *allLeaguesScotland;
 
 //take data from api and format the json into a string
 + (NSString *) getDataFromScotland{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/5m2m62ug?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
     
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://data.import.io/extractor/f1b35d1a-2086-4154-b24b-e7fd789f00ff/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
     
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/5m2m62ug?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        return nil;
-    }
+    //get raw data from url
+    NSData *theData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
     
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    //return newJSON;
+    return [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
 }
 
 //take string of data and extract relevant data and put it into object
@@ -52,10 +48,13 @@ static NSMutableArray *allLeaguesScotland;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataScotland dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    NSDictionary *userinfo=[json valueForKey:@"results"];
-    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+    //unwrap data stored in json file
+    NSDictionary *userinfo=[json valueForKey:@"result"];
+    NSDictionary *detailedUserInfo = [userinfo valueForKey:@"extractorData"];
+    NSArray *nextLayerUserInfo = [detailedUserInfo valueForKey:@"data"];
+    NSArray *nextNextLayerUserInfo = [nextLayerUserInfo valueForKey:@"group"];
+    NSArray *finalLayerUserInfo = [nextNextLayerUserInfo objectAtIndex:0];
     NSDictionary *singleGameDetails;
-    NSDictionary *user1;
     NSInteger i = 0;
     NSString *skey;
     NSInteger index = 1;
@@ -63,27 +62,42 @@ static NSMutableArray *allLeaguesScotland;
     [self resetLeaguesScotland];
     
     if(userinfo != nil){
-        for( i = 0; i < [detailedUserInfo count]; i++ ) {
+        for( i = 0; i < [finalLayerUserInfo count]; i++ ) {
             
             skey = [NSString stringWithFormat:@"%ld",(long)i];
             
-            singleGameDetails = [detailedUserInfo objectAtIndex:i];
+            singleGameDetails = [finalLayerUserInfo objectAtIndex:i];
             
             LeagueScotland * newLeaguesScotland
             = [[LeagueScotland alloc] init];
             
-            user1 = [singleGameDetails objectForKey:@"Team"];
-            newLeaguesScotland.team = [user1 valueForKey:@"text"];
+            NSArray *textUnwrapper;
+            NSArray *finalTextUnwrapper;
             
-            newLeaguesScotland.points = [singleGameDetails objectForKey:@"Points"];
+            textUnwrapper = [singleGameDetails valueForKey:@"team"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.team = [finalTextUnwrapper valueForKey:@"text"];
+            //newLeaguesWales.team = [user1 valueForKey:@"text"];
             
-            newLeaguesScotland.goalDifference = [singleGameDetails objectForKey:@"GoalDifference"];
+            textUnwrapper = [singleGameDetails valueForKey:@"points"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.points = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesScotland.wins = [singleGameDetails objectForKey:@"Wins"];
+            textUnwrapper = [singleGameDetails valueForKey:@"goaldifference"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.goalDifference = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesScotland.losses = [singleGameDetails objectForKey:@"Losses"];
+            textUnwrapper = [singleGameDetails valueForKey:@"wins"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.wins = [finalTextUnwrapper valueForKey:@"text"];
             
-            newLeaguesScotland.draws = [singleGameDetails objectForKey:@"Draws"];
+            textUnwrapper = [singleGameDetails valueForKey:@"losses"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.losses = [finalTextUnwrapper valueForKey:@"text"];
+            
+            textUnwrapper = [singleGameDetails valueForKey:@"draws"];
+            finalTextUnwrapper = [textUnwrapper objectAtIndex:0];
+            newLeaguesScotland.draws = [finalTextUnwrapper valueForKey:@"text"];
             
             newLeaguesScotland.index = [NSString stringWithFormat:@"%ld", (long)index];
             
