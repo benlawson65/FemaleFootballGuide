@@ -25,21 +25,15 @@ static NSMutableArray *allFixturesNorthernOne;
 }
 
 + (NSString *) getDataFromNorthernOne{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/dda7nmno?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://data.import.io/extractor/13910188-d057-4d1e-a6e4-452c1ee6ef65/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
     
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
+    //get raw data from url
+    NSData *theData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/cwfs0frq?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        return nil;
-    }
-    
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    //return newJSON;
+    return [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
 }
 
 + (void) formatData: (NSString*) returnedDataNorthernOne{
@@ -47,8 +41,12 @@ static NSMutableArray *allFixturesNorthernOne;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataNorthernOne dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    NSDictionary *userinfo=[json valueForKey:@"results"];
-    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+    //unwrap data stored in json file
+    NSDictionary *userinfo=[json valueForKey:@"result"];
+    NSDictionary *detailedUserInfo = [userinfo valueForKey:@"extractorData"];
+    NSArray *nextLayerUserInfo = [detailedUserInfo valueForKey:@"data"];
+    NSArray *nextNextLayerUserInfo = [nextLayerUserInfo valueForKey:@"group"];
+    NSArray *finalLayerUserInfo = [nextNextLayerUserInfo objectAtIndex:0];
     NSDictionary *singleGameDetails;
     NSDictionary *user1;
     NSInteger i = 0;
@@ -57,27 +55,27 @@ static NSMutableArray *allFixturesNorthernOne;
     [self resetFixturesNorthernOne];
     
     if(userinfo != nil){
-        for( i = 0; i < [detailedUserInfo count]; i++ ) {
+        for( i = 0; i < [finalLayerUserInfo count]; i++ ) {
             
             skey = [NSString stringWithFormat:@"%ld",(long)i];
             
-            singleGameDetails = [detailedUserInfo objectAtIndex:i];
+            singleGameDetails = [finalLayerUserInfo objectAtIndex:i];
             
             FixturesNorthernOne * newFixturesNorthernOne = [[FixturesNorthernOne alloc] init];
             
-            user1 = [singleGameDetails objectForKey:@"Home Team"];
+            user1 = [singleGameDetails objectForKey:@"home"];
             NSString *strWithDataHome = [FixturesNorthernOne checkDataLocation:user1];
             newFixturesNorthernOne.homeTeam = strWithDataHome;
             
-            user1 = [singleGameDetails objectForKey:@"Away Team"];
+            user1 = [singleGameDetails objectForKey:@"away"];
             NSString *strWithDataAway = [FixturesNorthernOne checkDataLocation:user1];
             newFixturesNorthernOne.awayTeam = strWithDataAway;
             
-            user1 = [singleGameDetails objectForKey:@"Date/Time"];
+            user1 = [singleGameDetails objectForKey:@"time"];
             NSString *strWithDataDate = [FixturesNorthernOne checkDataLocation:user1];
             newFixturesNorthernOne.timeDate = strWithDataDate;
             
-            user1 = [singleGameDetails objectForKey:@"Venue"];
+            user1 = [singleGameDetails objectForKey:@"venue"];
             NSString *strWithDataVenue = [FixturesNorthernOne checkDataLocation:user1];
             newFixturesNorthernOne.venue = strWithDataVenue;
             
@@ -114,10 +112,12 @@ static NSMutableArray *allFixturesNorthernOne;
 
 + (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
     NSString *strContainingWantedData;
+    NSArray *wrappedData;
     
     //user1 = [singleGameDetails objectForKey:@"Home Team"];
-    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
-        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+    if ([dictionaryContainingData isKindOfClass:[NSArray class]]){
+        wrappedData = [dictionaryContainingData valueForKey:@"text"];
+        strContainingWantedData = [wrappedData objectAtIndex:0];
         
     }
     else{

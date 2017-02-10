@@ -325,6 +325,8 @@ static NSMutableArray *fixtureList;
     longitude = [[coordinates objectAtIndex:1] doubleValue];
     
     //if cant find already specified location in manual json file, find it now using google geolocation coding
+    
+    /*
     if ([coordinates count] == 0){
         //encode address
         NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -341,7 +343,7 @@ static NSMutableArray *fixtureList;
         }
 
     }
-    
+    */
     
     CLLocationCoordinate2D center;
     center.latitude = latitude;

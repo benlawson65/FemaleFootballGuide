@@ -26,29 +26,27 @@ static NSMutableArray *allFixturesWales;
 }
 
 + (NSString *) getDataFromWales{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"https://www.kimonolabs.com/api/3sxh1q4s?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://data.import.io/extractor/1c8f1bd4-36c6-4405-ae10-3094000776fd/json/latest?_apikey=b8d1c620bb0f45829c91f9bdd88e104d8a221fc188b9bcaa1e6c6dea97764aa5eccacf8beea0c56608f514597cbbb97a51107c5a2058f7b85ea0d997ea70f853045cb071338cb6ed77dfc7ed551354d4"]];
     
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
+    //get raw data from url
+    NSData *theData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", @"www.kimonolabs.com/api/3sxh1q4s?apikey=Zj1H9tsMUShsxu92JbWjbkhoaRIBxa4A", (long)[responseCode statusCode]);
-        return nil;
-    }
-    
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
+    //return newJSON;
+    return [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
 }
 + (void) formatData: (NSString*) returnedDataWales{
     NSError *error =  nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[returnedDataWales dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    NSDictionary *userinfo=[json valueForKey:@"results"];
-    NSArray *detailedUserInfo = [userinfo valueForKey:@"collection1"];
+    NSDictionary *userinfo=[json valueForKey:@"result"];
+    NSDictionary *detailedUserInfo = [userinfo valueForKey:@"extractorData"];
+    NSArray *nextLayerUserInfo = [detailedUserInfo valueForKey:@"data"];
+    NSArray *nextNextLayerUserInfo = [nextLayerUserInfo valueForKey:@"group"];
+    NSArray *finalLayerUserInfo = [nextNextLayerUserInfo objectAtIndex:0];
+
     NSDictionary *singleGameDetails;
     NSDictionary *user1;
     NSInteger i = 0;
@@ -57,36 +55,33 @@ static NSMutableArray *allFixturesWales;
     [self resetFixturesWales];
     
     if(userinfo != nil){
-        for( i = 0; i < [detailedUserInfo count]; i++ ) {
+        for( i = 0; i < [finalLayerUserInfo count]; i++ ) {
             
             skey = [NSString stringWithFormat:@"%ld",(long)i];
             
-            singleGameDetails = [detailedUserInfo objectAtIndex:i];
+            singleGameDetails = [finalLayerUserInfo objectAtIndex:i];
             
             FixturesWales * newFixturesWales
             = [[FixturesWales alloc] init];
            
-            user1 = [singleGameDetails objectForKey:@"Home Team"];
+            user1 = [singleGameDetails objectForKey:@"home"];
             NSString *strWithDataHome = [FixturesWales checkDataLocation:user1];
             newFixturesWales.homeTeam = strWithDataHome;
             
-            user1 = [singleGameDetails objectForKey:@"Away Team"];
+            user1 = [singleGameDetails objectForKey:@"away"];
             NSString *strWithDataAway = [FixturesWales checkDataLocation:user1];
             newFixturesWales.awayTeam = strWithDataAway;
             
-            user1 = [singleGameDetails objectForKey:@"Time"];
+            user1 = [singleGameDetails objectForKey:@"date"];
             NSString *strWithDataTime = [FixturesWales checkDataLocation:user1];
             newFixturesWales.timeDate = strWithDataTime;
             
-            user1 = [singleGameDetails objectForKey:@"Date"];
-            NSString *strWithDataDate = [FixturesWales checkDataLocation:user1];
-            newFixturesWales.dateOnly = strWithDataDate;
-            
             newFixturesWales.index = [NSString stringWithFormat:@"%ld", (long)i];
             
-            NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesWales.dateOnly, newFixturesWales.timeDate];
+            NSString *mergeDateTime = [NSString stringWithFormat:@"%@ %@",newFixturesWales.timeDate, @"14:00"];
             
             newFixturesWales.timeDate = mergeDateTime;
+
             
             //format date to check its in future
             NSDateFormatter *dateFormatFixture=[[NSDateFormatter alloc]init];
@@ -138,10 +133,12 @@ static NSMutableArray *allFixturesWales;
 
 + (NSString *) checkDataLocation: (NSDictionary*) dictionaryContainingData{
     NSString *strContainingWantedData;
+    NSArray *wrappedData;
     
     //user1 = [singleGameDetails objectForKey:@"Home Team"];
-    if ([dictionaryContainingData isKindOfClass:[NSDictionary class]]){
-        strContainingWantedData = [dictionaryContainingData valueForKey:@"text"];
+    if ([dictionaryContainingData isKindOfClass:[NSArray class]]){
+        wrappedData = [dictionaryContainingData valueForKey:@"text"];
+        strContainingWantedData = [wrappedData objectAtIndex:0];
         
     }
     else{

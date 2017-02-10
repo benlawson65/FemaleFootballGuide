@@ -222,15 +222,17 @@ static BOOL firstLoad;
         
         CLLocationCoordinate2D location = [Location getLocationFromAddressString:locationObj.venue];
         
-        if (location.longitude == 0.000000 && location.latitude == 0.000000){
+        //if location was found, add to map
+        if (floor(location.longitude) != 0 && floor(location.latitude) != 0){
             GMSMarker *testMarker = [[GMSMarker alloc] init];
-            location.longitude = location.longitude + i;
+            //location.longitude = location.longitude + i;
             testMarker.position = location;
             testMarker.title = locationObj.venue;
             testMarker.snippet = snippet;
             testMarker.map = mapView_;
             
         }
+         /*
         else if(!(location.longitude == 0.000001 && location.latitude == 0.000001)){
             GMSMarker *testMarker = [[GMSMarker alloc] init];
             testMarker.position = location;
@@ -238,7 +240,7 @@ static BOOL firstLoad;
             testMarker.snippet = snippet;
             testMarker.map = mapView_;
         }
-        
+        */
         
     }
 
@@ -297,10 +299,15 @@ CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.positio
             NSString *durationLocation = [Location getDuration];
             NSString *distanceLocation = [Location getDistance];
             //NSString *snippetUpdateTemp = [NSString stringWithFormat:@"%@ (%@ %@)",snippetUpdate,distanceLocation,durationLocation];
-            
+    
+    //check if snippet already contains distance and duration data
+    if(!([marker.snippet containsString:@"miles"] && [marker.snippet containsString:@"min"])){
+        
         NSString *currentSnippet = [NSString stringWithFormat:@"%@ (%@ %@)",marker.snippet,distanceLocation,durationLocation];
-
+        
         marker.snippet = currentSnippet;
+    }
+    
     
     
     
